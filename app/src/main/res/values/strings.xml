@@ -1,3 +1,28 @@
 <resources>
-    <string name="app_name">Blinksales</string>
+    <string name="app_name">Shopooze</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_cart">Pending Cart</string>
+    <string name="nav_category">Category</string>
+    <string name="nav_products">Products</string>
+    <string name="nav_counterfoil">Counterfoil</string>
+    <string name="nav_bill_list">  Bill list</string>
+    <string name="nav_remain_payment_list">Remain Payment list</string>
+    <string name="nav_payment_list">Payment list</string>
+    <string name="nav_expense_list">Expense list</string>
+    <string name="nav_sales_return">Sales return</string>
+    <string name="nav_vendor_and_customer">Vendor and Customer</string>
+    <string name="nav_customers">Customers</string>
+    <string name="nav_vendor_list"> Vendor list</string>
+    <string name="nav_purchase_list">Purchase list</string>
+    <string name="nav_purchase_return">Purchase return</string>
+    <string name="nav_general">General</string>
+    <string name="nav_report">Report</string>
+    <string name="nav_app_manual">App Manual</string>
+    <string name="nav_contact_Us">Contact Us</string>
+    <string name="nav_settings">Settings</string>
+    <string name="nav_profile">Profile</string>
+    <string name="nav_login">Login</string>
+    <string name="nav_logout">Logout</string>
 </resources>

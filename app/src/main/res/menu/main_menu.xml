@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single" >
+        <item
+            android:id="@+id/nav_dashboard"
+            android:icon="@drawable/ic_dashboard"
+
+            android:title="@string/nav_dashboard" />
+
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/ic_pending_cart"
+            android:title="@string/nav_cart" />
+
+        <item
+            android:id="@+id/nav_category"
+            android:icon="@drawable/ic_category"
+            android:title="@string/nav_category" />
+
+        <item
+            android:id="@+id/nav_products"
+            android:icon="@drawable/ic_products"
+            android:title="@string/nav_products" />
+    </group>
+
+    <item android:title="@string/nav_counterfoil">
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_bill_list"
+                    android:icon="@drawable/ic_bill_list"
+                    android:title="@string/nav_bill_list" />
+
+                <item
+                    android:id="@+id/nav_remain_payment_list"
+                    android:icon="@drawable/ic_pending_bill"
+                    android:title="@string/nav_remain_payment_list" />
+
+                <item
+                    android:id="@+id/nav_payment_list"
+                    android:icon="@drawable/ic_payment_bill"
+                    android:title="@string/nav_payment_list" />
+                <item
+                    android:id="@+id/nav_expense_list"
+                    android:icon="@drawable/ic_expense_list"
+                    android:title="@string/nav_expense_list" />
+                <item
+                    android:id="@+id/nav_sales_return"
+                    android:icon="@drawable/ic_sales_return"
+                    android:title="@string/nav_sales_return" />
+            </group>
+        </menu>
+    </item>
+
+    <item android:title="@string/nav_vendor_and_customer">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_customers"
+                android:icon="@drawable/ic_customers"
+                android:title="@string/nav_customers" />
+
+            <item
+                android:id="@+id/nav_vendor_list"
+                android:icon="@drawable/ic_vendor_list"
+                android:title="@string/nav_vendor_list" />
+            <item
+                android:id="@+id/nav_purchase_list"
+                android:icon="@drawable/ic_purchase_list"
+                android:title="@string/nav_purchase_list" />
+            <item
+                android:id="@+id/nav_purchase_return"
+                android:icon="@drawable/ic_purchase_retrun"
+                android:title="@string/nav_purchase_return" />
+        </menu>
+    </item><item android:title="@string/nav_general">
+
+        <menu>
+
+            <item
+                android:id="@+id/nav_report"
+                android:icon="@drawable/ic_report"
+                android:title="@string/nav_report" />
+
+            <item
+                android:id="@+id/nav_app_manual"
+                android:icon="@drawable/ic_manual"
+                android:title="@string/nav_app_manual" />
+            <item
+                android:id="@+id/nav_contact_Us"
+                android:icon="@drawable/ic_contact"
+                android:title="@string/nav_contact_Us" />
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/nav_settings" />
+        </menu>
+    </item>
+    <item android:title="@string/nav_profile">
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+
+                <item
+                    android:id="@+id/nav_login"
+                    android:icon="@drawable/ic_login"
+                    android:title="@string/nav_login" />
+
+                <item
+                    android:id="@+id/nav_profile"
+                    android:icon="@drawable/ic_profile"
+                    android:title="@string/nav_profile" />
+
+                <item
+                    android:id="@+id/nav_logout"
+                    android:icon="@drawable/ic_logout"
+                    android:title="@string/nav_logout" />
+            </group>
+        </menu>
+    </item>
+</menu>
