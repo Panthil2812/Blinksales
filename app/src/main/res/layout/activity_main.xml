@@ -2,34 +2,71 @@
 <androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity"
-    tools:openDrawer="start"
-    android:background="@color/colorPrimaryDark">
+    tools:openDrawer="start">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/toolbar"
-            app:title="Navigation Drawer Demo"
-            app:titleTextColor="@color/cardview_light_background"
-            android:background="@color/colorAccent"
-            />
-    </RelativeLayout>
+            android:background="@color/colorPrimaryDark"
+            app:navigationIcon="@drawable/menu_icon"
+            app:title="Dashborad"
+            app:titleTextAppearance="@style/Actionbar"
+            app:titleTextColor="@color/colorAccent">
+
+            <ImageButton
+                android:id="@+id/id_btn_refresh"
+                style="@style/Actionbar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/refresh_icon"/>
+
+            <TextView
+                android:id="@+id/id_weight"
+                style="@style/Actionbar"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+
+                android:background="@drawable/button_background"
+                android:gravity="center|center_horizontal"
+                android:text="10.0000" />
+<!--            <TextView-->
+<!--                android:id="@+id/id_delete"-->
+<!--                style="@style/Actionbar"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:gravity="center|center_horizontal"-->
+<!--                android:text="Delete"-->
+<!--                android:textSize="18dp"/>-->
+<!--          <androidx.appcompat.widget.SearchView-->
+<!--              android:layout_width="wrap_content"-->
+<!--              android:layout_height="match_parent"/>-->
+
+        </androidx.appcompat.widget.Toolbar>
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_menu"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:id="@+id/navmenu"
-        app:menu="@menu/main_menu"
+        android:layout_gravity="start"
+        android:background="@color/primary_light"
         app:headerLayout="@layout/header"
-        android:layout_gravity="start"/>
+        app:itemTextColor="@color/colorAccent"
+        app:menu="@menu/main_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

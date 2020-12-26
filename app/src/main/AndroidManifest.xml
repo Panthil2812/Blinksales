@@ -10,15 +10,19 @@
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash_screen" android:screenOrientation="userLandscape">
+        <activity
+            android:name=".Splash_screen"
+            android:screenOrientation="userLandscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:screenOrientation="userLandscape"></activity>
-
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="userLandscape"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
