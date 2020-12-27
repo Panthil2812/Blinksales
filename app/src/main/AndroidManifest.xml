@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     package="com.rku.blinksales">
 
     <application
-        android:allowBackup="true"
+        android:fullBackupContent="true"
         android:icon="@drawable/ic_shopping_cart"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash_screen" android:screenOrientation="userLandscape">
+        <activity
+            android:name=".login"
+            android:screenOrientation="userLandscape" />
+        <activity
+            android:name=".Splash_screen"
+            android:screenOrientation="userLandscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" android:screenOrientation="userLandscape"></activity>
-
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="userLandscape" />
     </application>
 
 </manifest>

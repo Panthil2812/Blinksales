@@ -10,26 +10,26 @@
     tools:openDrawer="start"
     android:background="@color/colorPrimaryDark">
 
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/toolbar"
-            app:title="Navigation Drawer Demo"
-            app:titleTextColor="@color/cardview_light_background"
-            android:background="@color/colorAccent"
-            />
-    </RelativeLayout>
-
     <com.google.android.material.navigation.NavigationView
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/navmenu"
         app:menu="@menu/main_menu"
         app:headerLayout="@layout/header"
-        android:layout_gravity="start"/>
+        android:layout_gravity="start">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorAccent"
+                app:title="Navigation Drawer Demo"
+                app:titleTextColor="@color/cardview_light_background" />
+        </RelativeLayout>
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
