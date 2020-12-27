@@ -9,6 +9,7 @@
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".registration"></activity>
         <activity
             android:name=".login"
             android:screenOrientation="userLandscape" />
