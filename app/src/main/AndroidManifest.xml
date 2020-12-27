@@ -9,10 +9,11 @@
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".registration"></activity>
+        <activity android:name=".Signup_page"></activity>
+        <activity android:name=".Login_page" />
         <activity
-            android:name=".login"
-            android:screenOrientation="userLandscape" />
+            android:name=".ui.login.Signup_Activity"
+            android:label="@string/title_activity_signup_" />
         <activity
             android:name=".Splash_screen"
             android:screenOrientation="userLandscape">
