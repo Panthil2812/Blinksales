@@ -10,6 +10,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -169,12 +170,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new Settings()).commit();
                 Toast.makeText(this, R.string.nav_settings, Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_login:
-                getSupportActionBar().setTitle(R.string.nav_login);
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new Dashboard()).commit();
-                Toast.makeText(this,R.string.nav_login, Toast.LENGTH_SHORT).show();
-                break;
             case R.id.nav_profile:
                 getSupportActionBar().setTitle(R.string.nav_profile);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -182,9 +177,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this,R.string.nav_profile, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
-                getSupportActionBar().setTitle(R.string.nav_logout);
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new Dashboard()).commit();
+                startActivity(new Intent(MainActivity.this,Login_page.class));
                 Toast.makeText(this, R.string.nav_logout, Toast.LENGTH_SHORT).show();
                 break;
         }
