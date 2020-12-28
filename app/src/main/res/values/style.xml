@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 <!-- Base application theme. -->
-<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+<style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
     <!-- Customize your theme here. -->
     <item name="colorPrimary">@color/colorPrimaryDark</item>
     <item name="colorPrimaryDark">@color/colorPrimary</item>
@@ -22,9 +22,21 @@
     </style>
 
     <style name="Button">
-        <item name="android:background">@drawable/button_background</item>
+        <item name="android:background">@drawable/textview_background</item>
         <item name="android:textSize">24sp</item>
         <item name="android:layout_marginTop">32dp</item>
     </style>
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/colorAccent</item>
+        <item name="boxStrokeErrorColor">@color/colorAccent</item>
+        <item name="hintTextColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textColorHint">@color/divider</item>
 
+    <!--           android:textColorHint="@color/divider"-->
+    <!--           app:boxStrokeColor="@color/colorAccent"-->
+    <!--           app:boxStrokeErrorColor="@color/colorAccent"-->
+    <!--           app:errorTextColor="@color/primary_light"-->
+    <!--           app:hintTextColor="@color/colorAccent"-->
+    </style>
 </resources>

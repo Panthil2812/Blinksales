@@ -25,5 +25,14 @@
     <string name="nav_profile">Profile</string>
     <string name="nav_login">Login</string>
     <string name="nav_logout">Logout</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="repassword">Repassword</string>
+    <string name="email">Email</string>
+    <string name="register">REGISTER</string>
+    <string name="login">LOGIN</string>
+    <string name="forgetpassword">Forget Password?</string>
+    <string name="loginTosignup">Don\'t have an account? Sign Up</string>
+    <string name="signupTologin">Already have an account? Sign In</string>
 
 </resources>
