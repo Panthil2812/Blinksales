@@ -34,5 +34,21 @@
     <string name="forgetpassword">Forget Password?</string>
     <string name="loginTosignup">Don\'t have an account? Sign Up</string>
     <string name="signupTologin">Already have an account? Sign In</string>
+    <string name="products">Product Name</string>
+    <string name="products_category">Category</string>
+    <string name="products_rate">Rate</string>
+    <string name="products_qty">Qty</string>
+    <string name="products_mrp">MRP</string>
+    <string name="product_unit_weight">Unit</string>
+    <string name="product_qty">Qty</string>
+    <string name="products_unit">Unit</string>
+    <string name="products_barcode">Barcode</string>
+    <string name="products_sgst">SGST</string>
+    <string name="products_hsn">HSN</string>
+    <string name="products_discount">Discount(%)</string>
+    <string name="products_discount_expiry">Expires in date</string>
+    <string name="products_discount_applicable">Discount applicable min qty</string>
+    <string name="add">ADD</string>
+    <string name="products_cgst">CGST</string>
 
 </resources>
