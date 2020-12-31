@@ -9,7 +9,7 @@
 
 </style>
     <style name="Actionbar">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:layout_gravity">right</item>
         <item name="android:layout_marginRight">10dp</item>
 
@@ -32,7 +32,6 @@
         <item name="hintTextColor">@color/colorAccent</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textColorHint">@color/divider</item>
-
     <!--           android:textColorHint="@color/divider"-->
     <!--           app:boxStrokeColor="@color/colorAccent"-->
     <!--           app:boxStrokeErrorColor="@color/colorAccent"-->

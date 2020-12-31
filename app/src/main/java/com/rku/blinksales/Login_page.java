@@ -25,17 +25,14 @@ public class Login_page extends AppCompatActivity {
         Password = findViewById(R.id.id_login_password);
         login = findViewById(R.id.id_login_btn);
         InToUp = findViewById(R.id.id_login_signup);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String txtusername = Username.getText().toString().trim();
-                String txtpassword = Password.getText().toString().trim();
-                if(txtusername.equals("Admin") && txtpassword.equals("admin"))
-                {
-                    startActivity(new Intent(Login_page.this,MainActivity.class));
-                }else{
-                    Toast.makeText(Login_page.this,"Login failed",Toast.LENGTH_SHORT).show();
-                }
+        login.setOnClickListener(v -> {
+            String txtusername = Username.getText().toString().trim();
+            String txtpassword = Password.getText().toString().trim();
+            if(txtusername.equals("Admin") && txtpassword.equals("admin"))
+            {
+                startActivity(new Intent(Login_page.this,MainActivity.class));
+            }else{
+                Toast.makeText(Login_page.this,"Login failed",Toast.LENGTH_SHORT).show();
             }
         });
     }

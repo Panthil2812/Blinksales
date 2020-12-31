@@ -9,18 +9,18 @@
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash_screen" android:screenOrientation="userLandscape">
+        <activity android:name=".Splash_screen" android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".Login_page" android:screenOrientation="userLandscape"> </activity>
+        <activity android:name=".Login_page"  android:screenOrientation="locked"> </activity>
 
-        <activity android:name=".Signup_page" android:screenOrientation="userLandscape"></activity>
+        <activity android:name=".Signup_page"  android:screenOrientation="locked"></activity>
 
-        <activity android:name=".MainActivity" android:screenOrientation="userLandscape" ></activity>
+        <activity android:name=".MainActivity" android:screenOrientation="locked"></activity>
     </application>
 
 </manifest>
