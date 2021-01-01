@@ -50,5 +50,16 @@
     <string name="products_discount_applicable">Discount applicable min qty</string>
     <string name="add">ADD</string>
     <string name="products_cgst">CGST</string>
+    <string name="name">Name</string>
+    <string name="company_name">Company Name</string>
+    <string name="nav_contact">Contact Number</string>
+    <string name="gst_number">GST Number</string>
+    <string name="address">Address</string>
+    <string name="save">Save</string>
+    <string name="job">Job Title</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="country">Country</string>
+    <string name="city">City</string>
+    <string name="region">Region</string>
 
 </resources>

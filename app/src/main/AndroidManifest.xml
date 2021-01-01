@@ -9,18 +9,33 @@
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Splash_screen" android:screenOrientation="locked">
+        <activity android:name=".Contact_us_form"></activity>
+        <activity android:name=".Purchase_return_form" />
+        <activity android:name=".Purchase_list_form" />
+        <activity android:name=".Vendor_list_form" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Customers_form" />
+        <activity android:name=".Sales_return_form" />
+        <activity android:name=".Expense_list_form" />
+        <activity
+            android:name=".Splash_screen"
+            android:screenOrientation="locked">
 
-        <activity android:name=".Login_page"  android:screenOrientation="locked"> </activity>
-
-        <activity android:name=".Signup_page"  android:screenOrientation="locked"></activity>
-
-        <activity android:name=".MainActivity" android:screenOrientation="locked"></activity>
+        </activity>
+        <activity
+            android:name=".Login_page"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".Signup_page"
+            android:screenOrientation="locked" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="locked" />
     </application>
 
 </manifest>

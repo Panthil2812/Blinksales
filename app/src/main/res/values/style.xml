@@ -38,4 +38,22 @@
     <!--           app:errorTextColor="@color/primary_light"-->
     <!--           app:hintTextColor="@color/colorAccent"-->
     </style>
-</resources>
+
+    <style name="TextInputLayoutStyleForm" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">
+        <item name="android:textSize">18sp</item>
+        <item name="android:layout_marginTop">16dp</item>
+        <item name="android:textColorHint">@color/colorAccent</item>
+        <item name="boxStrokeColor" >@color/colorAccent</item>
+        <item name="boxBackgroundColor">@color/colorPrimary</item>
+<!--        <item name="strokeColor">@color/colorAccent</item>-->
+<!--        <item name="endIconTint">@color/colorAccent</item>-->
+        <item name="hintTextColor">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+ <!--        <item name="helperTextTextColor">@color/colorAccent</item>-->
+<!--        <item name="placeholderTextColor">@color/colorAccent</item>-->
+<!--        <item name="suffixTextColor">@color/colorAccent</item>-->
+<!--        <item name="prefixTextColor">@color/colorAccent</item>-->
+<!--        <item name="counterOverflowTextColor">@color/colorAccent</item>-->
+<!--        <item name="counterTextColor">@color/colorAccent</item>-->
+    </style>
+    </resources>
