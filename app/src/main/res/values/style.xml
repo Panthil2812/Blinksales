@@ -56,4 +56,10 @@
 <!--        <item name="counterOverflowTextColor">@color/colorAccent</item>-->
 <!--        <item name="counterTextColor">@color/colorAccent</item>-->
     </style>
-    </resources>
+
+    <style name="Calendar" parent="ThemeOverlay.MaterialComponents.MaterialCalendar">
+
+
+    </style>
+
+</resources>

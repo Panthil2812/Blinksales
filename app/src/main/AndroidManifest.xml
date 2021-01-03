@@ -13,15 +13,17 @@
         <activity android:name=".Purchase_return_form" />
         <activity android:name=".Purchase_list_form" />
         <activity android:name=".Vendor_list_form" >
+
+        </activity>
+        <activity android:name=".Customers_form" />
+        <activity android:name=".Sales_return_form" />
+        <activity android:name=".Expense_list_form" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Customers_form" />
-        <activity android:name=".Sales_return_form" />
-        <activity android:name=".Expense_list_form" />
         <activity
             android:name=".Splash_screen"
             android:screenOrientation="locked">

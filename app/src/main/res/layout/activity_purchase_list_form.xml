@@ -1,9 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/primary_light"
     tools:context=".Purchase_list_form">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PURCHASE LIST"
+            android:textColor="@color/colorAccent"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_pur_lst_ven_layout"
+            style="@style/TextInputLayoutStyleForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:hint="Vendor Name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_pur_lst_ven_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none|textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_pur_lst_amount_layout"
+            style="@style/TextInputLayoutStyleForm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Amount"
+            app:layout_constraintEnd_toStartOf="@+id/id_pur_lst_tax_amount_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_ven_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_pur_lst_amount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none|textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_pur_lst_tax_amount_layout"
+            style="@style/TextInputLayoutStyleForm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:hint="Tax Amount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/id_pur_lst_amount_layout"
+            app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_ven_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_pur_lst_tax_amount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_pur_lst_email_layout"
+            style="@style/TextInputLayoutStyleForm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_amount_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_pur_lst_email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none|textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_pur_lst_address_layout"
+            style="@style/TextInputLayoutStyleForm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="Address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_email_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_pur_lst_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:singleLine="false" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/id_pur_lst_btn_save"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/button_background"
+            android:text="@string/save"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_address_layout" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
