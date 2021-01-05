@@ -6,6 +6,7 @@
     <string name="nav_cart">Pending Cart</string>
     <string name="nav_category">Category</string>
     <string name="nav_products">Products</string>
+    <string name="nav_category_products">Category and Products</string>
     <string name="nav_counterfoil">Counterfoil</string>
     <string name="nav_bill_list">  Bill list</string>
     <string name="nav_remain_payment_list">Remain Payment list</string>

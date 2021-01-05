@@ -1,4 +1,4 @@
-package com.rku.blinksales;
+package com.rku.blinksales.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.rku.blinksales.R;
 
 public class Signup_page extends AppCompatActivity {
     TextInputEditText txtUsername,txtPassword,txtEmail,txtRePassword;

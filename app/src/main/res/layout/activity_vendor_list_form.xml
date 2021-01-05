@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/primary_light"
-    tools:context=".Vendor_list_form">
+    tools:context=".form.Vendor_list_form">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

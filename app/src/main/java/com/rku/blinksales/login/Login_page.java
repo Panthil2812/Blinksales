@@ -1,17 +1,17 @@
-package com.rku.blinksales;
+package com.rku.blinksales.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.rku.blinksales.MainActivity;
+import com.rku.blinksales.R;
 
 public class Login_page extends AppCompatActivity {
     TextInputEditText  Username,Password;
@@ -30,7 +30,7 @@ public class Login_page extends AppCompatActivity {
             String txtpassword = Password.getText().toString().trim();
             if(txtusername.equals("Admin") && txtpassword.equals("admin"))
             {
-                startActivity(new Intent(Login_page.this,MainActivity.class));
+                startActivity(new Intent(Login_page.this, MainActivity.class));
             }else{
                 Toast.makeText(Login_page.this,"Login failed",Toast.LENGTH_SHORT).show();
             }

@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Contact_us_form">
+    tools:context=".form.Contact_us_form">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

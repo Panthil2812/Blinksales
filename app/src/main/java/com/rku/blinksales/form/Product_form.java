@@ -1,10 +1,12 @@
-package com.rku.blinksales;
+package com.rku.blinksales.form;
 
 
 import android.os.Bundle;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.rku.blinksales.R;
 
 public class Product_form extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.rku.blinksales;
+package com.rku.blinksales.form;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
+
+import com.rku.blinksales.R;
 
 public class Customers_form extends AppCompatActivity {
 
