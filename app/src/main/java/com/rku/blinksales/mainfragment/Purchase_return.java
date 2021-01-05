@@ -1,4 +1,4 @@
-package com.rku.blinksales;
+package com.rku.blinksales.mainfragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,11 +8,13 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class Payment_list  extends Fragment {
+import com.rku.blinksales.R;
+
+public class Purchase_return  extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_payment_list, container, false);
+        View view = inflater.inflate(R.layout.fragment_purchase_return, container, false);
         return view;
     }
 

@@ -2,14 +2,11 @@ package com.rku.blinksales;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,6 +16,24 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
+import com.rku.blinksales.login.Login_page;
+import com.rku.blinksales.mainfragment.App_manual;
+import com.rku.blinksales.mainfragment.Bill_list;
+import com.rku.blinksales.mainfragment.Category_Products;
+import com.rku.blinksales.mainfragment.Contact_us;
+import com.rku.blinksales.mainfragment.Customers;
+import com.rku.blinksales.mainfragment.Dashboard;
+import com.rku.blinksales.mainfragment.Expense_list;
+import com.rku.blinksales.mainfragment.Payment_list;
+import com.rku.blinksales.mainfragment.Pending_cart;
+import com.rku.blinksales.mainfragment.Profile;
+import com.rku.blinksales.mainfragment.Purchase_list;
+import com.rku.blinksales.mainfragment.Purchase_return;
+import com.rku.blinksales.mainfragment.Remain_payment_list;
+import com.rku.blinksales.mainfragment.Report;
+import com.rku.blinksales.mainfragment.Sales_return;
+import com.rku.blinksales.mainfragment.Settings;
+import com.rku.blinksales.mainfragment.Vendor_list;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     NavigationView navigationView;
@@ -78,16 +93,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new Pending_cart()).commit();
                 Toast.makeText(this, R.string.nav_cart, Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_category:
-                getSupportActionBar().setTitle(R.string.nav_category);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Category()).commit();
-                Toast.makeText(this, R.string.nav_category, Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.nav_category:
+//                getSupportActionBar().setTitle(R.string.nav_category);
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new Category()).commit();
+//                Toast.makeText(this, R.string.nav_category, Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.nav_products:
                 getSupportActionBar().setTitle(R.string.nav_products);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Products()).commit();
+                        new Category_Products()).commit();
                 Toast.makeText(this, R.string.nav_products, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_bill_list:
@@ -177,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this,R.string.nav_profile, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
-                startActivity(new Intent(MainActivity.this,Login_page.class));
+                startActivity(new Intent(MainActivity.this, Login_page.class));
                 Toast.makeText(this, R.string.nav_logout, Toast.LENGTH_SHORT).show();
                 break;
         }

@@ -9,14 +9,14 @@
             android:id="@+id/nav_cart"
             android:icon="@drawable/ic_pending_cart"
             android:title="@string/nav_cart" />
-        <item
-            android:id="@+id/nav_category"
-            android:icon="@drawable/ic_category"
-            android:title="@string/nav_category" />
+<!--        <item-->
+<!--            android:id="@+id/nav_category"-->
+<!--            android:icon="@drawable/ic_category"-->
+<!--            android:title="@string/nav_category" />-->
         <item
             android:id="@+id/nav_products"
             android:icon="@drawable/ic_products"
-            android:title="@string/nav_products" />
+            android:title="@string/nav_category_products" />
     </group>
 
     <item android:title="@string/nav_counterfoil">

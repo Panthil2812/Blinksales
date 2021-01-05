@@ -1,4 +1,4 @@
-package com.rku.blinksales;
+package com.rku.blinksales.form;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,7 @@ import android.widget.EditText;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.rku.blinksales.R;
 
 import java.util.Calendar;
 import java.util.Date;

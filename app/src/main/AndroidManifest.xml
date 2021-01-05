@@ -9,15 +9,20 @@
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Contact_us_form"></activity>
-        <activity android:name=".Purchase_return_form" />
-        <activity android:name=".Purchase_list_form" />
-        <activity android:name=".Vendor_list_form" >
+        <activity android:name=".form.Contact_us_form"></activity>
+        <activity android:name=".form.Purchase_return_form" />
+        <activity android:name=".form.Purchase_list_form" />
+        <activity android:name=".form.Vendor_list_form" >
 
         </activity>
-        <activity android:name=".Customers_form" />
-        <activity android:name=".Sales_return_form" />
-        <activity android:name=".Expense_list_form" >
+        <activity android:name=".form.Customers_form" />
+        <activity android:name=".form.Sales_return_form" />
+        <activity android:name=".form.Expense_list_form" >
+
+        </activity>
+        <activity
+            android:name=".login.Splash_screen"
+            android:screenOrientation="locked">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,15 +30,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Splash_screen"
-            android:screenOrientation="locked">
-
-        </activity>
-        <activity
-            android:name=".Login_page"
+            android:name=".login.Login_page"
             android:screenOrientation="locked" />
         <activity
-            android:name=".Signup_page"
+            android:name=".login.Signup_page"
             android:screenOrientation="locked" />
         <activity
             android:name=".MainActivity"
