@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -40,6 +42,12 @@ public class Expense_list_form extends AppCompatActivity {
                 materialDatePicker.show(getSupportFragmentManager(),"DATE PICKER");
             }
         });
+//        id_exp_date.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+//            @Override
+//            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+//                return false;
+//            }
+//        });
 //        id_exp_date.setOnHoverListener(new View.OnHoverListener() {
 //            @Override
 //            public boolean onHover(View v, MotionEvent event) {

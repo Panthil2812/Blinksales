@@ -62,17 +62,18 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_rate_layout"
+            android:id="@+id/id_pro_form_selling_price_layout"
+            style="@style/TextInputLayoutStyleForm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayoutStyleForm"
-            android:hint="@string/products_rate"
-            app:layout_constraintEnd_toStartOf="@+id/id_pro_form_mrp_layout"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp"
+            android:hint="@string/selling_price"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/id_pro_form_mrp_layout"
             app:layout_constraintTop_toBottomOf="@+id/id_pro_form_category_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pro_rate"
+                android:id="@+id/id_pro_selling_price"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="none|textPersonName" />
@@ -80,12 +81,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/id_pro_form_mrp_layout"
+            style="@style/TextInputLayoutStyleForm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayoutStyleForm"
             android:hint="@string/products_mrp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/id_pro_form_rate_layout"
+            app:layout_constraintEnd_toStartOf="@+id/id_pro_form_selling_price_layout"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/id_pro_form_category_layout">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -98,13 +99,13 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/id_pro_form_qty_layout"
+            style="@style/TextInputLayoutStyleForm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayoutStyleForm"
             android:hint="@string/products_qty"
             app:layout_constraintEnd_toStartOf="@+id/id_pro_form_unit_layout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_rate_layout">
+            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_mrp_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/id_pro_qty"
@@ -115,16 +116,17 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/id_pro_form_unit_layout"
+            style="@style/TextInputLayoutStyleForm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayoutStyleForm"
+            android:layout_marginStart="8dp"
             android:hint="@string/products_unit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/id_pro_form_qty_layout"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_mrp_layout">
+            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_selling_price_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_login_unit"
+                android:id="@+id/id_pro_unit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="none|textPersonName" />
@@ -202,58 +204,6 @@
                 android:inputType="none|textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_discount_layout"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            style="@style/TextInputLayoutStyleForm"
-            android:hint="@string/products_discount"
-            app:layout_constraintEnd_toStartOf="@+id/id_pro_form_dexpiry_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_cgst_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pro_discount"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_dexpiry_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:hint="@string/products_discount_expiry"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/id_pro_form_discount_layout"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_sgst_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pro_dexpiry"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_dapplicable_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            style="@style/TextInputLayoutStyleForm"
-            android:hint="@string/products_discount_applicable"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_discount_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pro_dapplicable"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
         <Button
             android:id="@+id/id_pro_btn_add"
             android:layout_width="0dp"
@@ -267,7 +217,7 @@
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_dapplicable_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_sgst_layout" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
