@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:orientation="horizontal"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     android:background="@color/primary_light">
     <LinearLayout
         android:layout_width="match_parent"
@@ -25,12 +25,13 @@
             android:background="@drawable/textview_background">
         </SearchView>
 
+
         <ImageButton
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
             android:background="@drawable/button_background"
             android:backgroundTint="@color/colorAccent"
-            android:src="@drawable/ic_calendar" />
+            android:src="@drawable/ic_filter" />
     </LinearLayout>
 </LinearLayout>

@@ -3,7 +3,8 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_dashboard">Dashboard</string>
-    <string name="nav_cart">Pending Cart</string>
+    <string name="nav_cart">Cart</string>
+    <string name="nav_pending_cart">Pending Cart</string>
     <string name="nav_category">Category</string>
     <string name="nav_products">Products</string>
     <string name="nav_category_products">Category and Products</string>

@@ -19,6 +19,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.rku.blinksales.login.Login_page;
 import com.rku.blinksales.mainfragment.App_manual;
 import com.rku.blinksales.mainfragment.Bill_list;
+import com.rku.blinksales.mainfragment.Cart;
 import com.rku.blinksales.mainfragment.Category_Products;
 import com.rku.blinksales.mainfragment.Contact_us;
 import com.rku.blinksales.mainfragment.Customers;
@@ -89,21 +90,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_cart:
                 getSupportActionBar().setTitle(R.string.nav_cart);
+                id_weight.setVisibility(View.VISIBLE);
+                id_btn_refresh.setVisibility(View.VISIBLE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Pending_cart()).commit();
+                        new Cart()).commit();
                 Toast.makeText(this, R.string.nav_cart, Toast.LENGTH_SHORT).show();
                 break;
-//            case R.id.nav_category:
-//                getSupportActionBar().setTitle(R.string.nav_category);
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new Category()).commit();
-//                Toast.makeText(this, R.string.nav_category, Toast.LENGTH_SHORT).show();
-//                break;
-            case R.id.nav_products:
-                getSupportActionBar().setTitle(R.string.nav_products);
+            case R.id.nav_pending_cart:
+                getSupportActionBar().setTitle(R.string.nav_pending_cart);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Pending_cart()).commit();
+                Toast.makeText(this, R.string.nav_pending_cart, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_category_products:
+                getSupportActionBar().setTitle(R.string.nav_category_products);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Category_Products()).commit();
-                Toast.makeText(this, R.string.nav_products, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.nav_category_products, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_bill_list:
                 getSupportActionBar().setTitle(R.string.nav_bill_list);

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.rku.blinksales">
-
     <application
         android:fullBackupContent="true"
         android:icon="@drawable/ic_shopping_cart"
@@ -9,35 +8,22 @@
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".form.Contact_us_form"></activity>
-        <activity android:name=".form.Purchase_return_form" />
-        <activity android:name=".form.Purchase_list_form" />
-        <activity android:name=".form.Vendor_list_form" >
-
-        </activity>
-        <activity android:name=".form.Customers_form" />
-        <activity android:name=".form.Sales_return_form" />
-        <activity android:name=".form.Expense_list_form" >
-
-        </activity>
-        <activity
-            android:name=".login.Splash_screen"
-            android:screenOrientation="locked">
+        <activity android:name=".form.Contact_us_form"      android:screenOrientation="locked" />
+        <activity android:name=".form.Purchase_return_form" android:screenOrientation="locked" />
+        <activity android:name=".form.Purchase_list_form"   android:screenOrientation="locked" />
+        <activity android:name=".form.Vendor_list_form"     android:screenOrientation="locked" />
+        <activity android:name=".form.Customers_form"       android:screenOrientation="locked" />
+        <activity android:name=".form.Sales_return_form"    android:screenOrientation="locked" />
+        <activity android:name=".form.Expense_list_form"    android:screenOrientation="locked" />
+        <activity android:name=".login.Splash_screen"       android:screenOrientation="locked" />
+        <activity android:name=".login.Login_page"          android:screenOrientation="locked" />
+        <activity android:name=".login.Signup_page"         android:screenOrientation="locked" />
+        <activity android:name=".MainActivity"              android:screenOrientation="locked" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".login.Login_page"
-            android:screenOrientation="locked" />
-        <activity
-            android:name=".login.Signup_page"
-            android:screenOrientation="locked" />
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="locked" />
     </application>
 
 </manifest>
