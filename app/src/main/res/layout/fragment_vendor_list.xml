@@ -23,7 +23,7 @@
             android:layout_alignParentTop="true"
             android:background="@drawable/textview_background"
             android:iconifiedByDefault="false"
-            android:paddingEnd="16dp"
+            android:paddingEnd="8dp"
             android:queryHint="Search here"></SearchView>
     </LinearLayout>
 </LinearLayout>

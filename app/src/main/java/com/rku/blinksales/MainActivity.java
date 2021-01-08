@@ -50,8 +50,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
         id_weight = findViewById(R.id.id_weight);
         id_btn_refresh = findViewById(R.id.id_btn_refresh);
-//        id_weight.setVisibility(View.GONE);
-//        id_btn_refresh.setVisibility(View.GONE);
+        id_weight.setVisibility(View.GONE);
+        id_btn_refresh.setVisibility(View.GONE);
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_menu);
@@ -82,8 +82,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.nav_dashboard:
                 getSupportActionBar().setTitle(R.string.nav_dashboard);
-                id_weight.setVisibility(View.VISIBLE);
-                id_btn_refresh.setVisibility(View.VISIBLE);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Dashboard()).commit();
                 Toast.makeText(this,R.string.nav_dashboard, Toast.LENGTH_SHORT).show();

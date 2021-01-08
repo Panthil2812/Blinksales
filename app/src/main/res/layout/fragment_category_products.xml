@@ -13,17 +13,17 @@
         android:paddingBottom="8dp"
         android:paddingStart="8dp"
         android:paddingEnd="8dp">
+
         <SearchView
             android:id="@+id/simpleSearchView"
+            style="@style/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:iconifiedByDefault="false"
             android:layout_weight="1"
-            android:queryHint="Search here"
-            android:paddingEnd="16dp"
-            style="@style/textView"
-            android:background="@drawable/textview_background">
-        </SearchView>
+            android:background="@drawable/textview_background"
+            android:iconifiedByDefault="false"
+            android:paddingEnd="8dp"
+            android:queryHint="Search here"></SearchView>
 
 
         <ImageButton

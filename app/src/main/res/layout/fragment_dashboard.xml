@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_light">
+
    <LinearLayout
+       android:id="@+id/linearLayout"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:background="@color/colorPrimaryDark"
-       android:paddingTop="16dp"
-       android:paddingBottom="8dp"
+       android:orientation="horizontal"
        android:paddingStart="8dp"
-       android:paddingEnd="8dp">
+       android:paddingTop="8dp"
+       android:paddingEnd="8dp"
+       android:paddingBottom="8dp"
+       app:layout_constraintBottom_toTopOf="@+id/tabs"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent">
+
       <SearchView
           android:id="@+id/simpleSearchView"
+          style="@style/textView"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:iconifiedByDefault="false"
           android:layout_weight="1"
-          android:queryHint="Search here"
-          android:paddingEnd="16dp"
-          style="@style/textView"
-          android:background="@drawable/textview_background">
-      </SearchView>
+          android:background="@drawable/textview_background"
+          android:iconifiedByDefault="false"
+          android:paddingEnd="8dp"
+          android:queryHint="Search here" />
 
       <ImageButton
           android:layout_width="50dp"
@@ -40,54 +48,66 @@
           android:background="@drawable/button_background"
           android:backgroundTint="@color/colorAccent"
           android:src="@drawable/ic_add_to_cart" />
+
    </LinearLayout>
 
-</LinearLayout>
+   <com.google.android.material.tabs.TabLayout
+       android:id="@+id/tabs"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_gravity="start"
+       android:background="@color/colorPrimaryDark"
+       android:elevation="4dp"
+       android:minHeight="?attr/actionBarSize"
+       app:layout_constraintBottom_toTopOf="@+id/viewpager"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+       app:tabBackground="@color/colorPrimaryDark"
+       app:tabGravity="fill"
+       app:tabIndicatorAnimationDuration="@android:integer/config_longAnimTime"
+       app:tabIndicatorColor="@color/colorAccent"
+       app:tabIndicatorGravity="bottom"
+       app:tabMaxWidth="0dp"
+       app:tabMode="scrollable"
+       app:tabSelectedTextColor="@color/colorAccent"
+       app:tabTextColor="@color/secondary_text" />
+
+   <androidx.viewpager.widget.ViewPager
+       android:id="@+id/viewpager"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:elevation="4dp"
+       android:background="@color/primary_light"
+       app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.0"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/tabs">
+   </androidx.viewpager.widget.ViewPager>
+
+   <LinearLayout
+       android:id="@+id/linearLayout2"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:background="@color/colorPrimaryDark"
+       android:orientation="horizontal"
+       android:padding="18dp"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/viewpager">
+
+      <TextView
+          android:id="@+id/id_dashborad_total"
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:gravity="center"
+          android:text="Total Amount: "
+          android:textSize="18dp" />
+   </LinearLayout>
 
 
 
+</androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--    <com.google.android.material.tabs.TabLayout-->
-    <!--        android:id="@+id/tabs"-->
-    <!--        android:layout_width="match_parent"-->
-
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_gravity="start"-->
-    <!--        android:elevation="4dp"-->
-    <!--        android:minHeight="?attr/actionBarSize"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent"-->
-    <!--        app:tabBackground="@color/cardview_light_background"-->
-    <!--        app:tabGravity="fill"-->
-    <!--        app:tabIndicatorAnimationDuration="@android:integer/config_longAnimTime"-->
-    <!--        app:tabIndicatorColor="@color/black"-->
-    <!--        app:tabIndicatorGravity="bottom"-->
-    <!--        app:tabMaxWidth="0dp"-->
-    <!--        app:tabMode="scrollable"-->
-    <!--        app:tabSelectedTextColor="@color/colorPrimary"-->
-    <!--        app:tabTextColor="@color/colorAccent"-->
-    <!--        tools:ignore="MissingConstraints" />-->
-    <!--    <androidx.viewpager.widget.ViewPager-->
-    <!--        android:id="@+id/viewpager"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent">-->
-
-    <!--    </androidx.viewpager.widget.ViewPager>-->
