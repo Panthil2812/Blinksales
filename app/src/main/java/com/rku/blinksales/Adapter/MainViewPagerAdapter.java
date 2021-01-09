@@ -1,15 +1,22 @@
 package com.rku.blinksales.Adapter;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.rku.blinksales.Database.DatabaseHelper;
 import com.rku.blinksales.Fragment.MainViewpagerFragment;
+import com.rku.blinksales.R;
+import com.rku.blinksales.Utility;
 
 import java.util.ArrayList;
 
@@ -43,3 +50,4 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
         return arr.get(position);
     }
 }
+

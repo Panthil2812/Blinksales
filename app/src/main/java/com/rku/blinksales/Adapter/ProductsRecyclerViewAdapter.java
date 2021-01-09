@@ -12,39 +12,36 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.rku.blinksales.InstanceClass.CardInstance;
 import com.rku.blinksales.R;
-import com.rku.blinksales.mainfragment.Dashboard;
 
 import java.util.List;
 
-public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.MyViewHolder>{
+public class ProductsRecyclerViewAdapter extends RecyclerView.Adapter<ProductsRecyclerViewAdapter.MyViewHolder>{
 
     private final List<CardInstance> Data;
 
-    public MainRecyclerViewAdapter( List<CardInstance> data) {
+    public ProductsRecyclerViewAdapter(List<CardInstance> data) {
         this.Data = data;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProductsRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_item,parent,false);
-        MyViewHolder holder = new MyViewHolder(view);
+        ProductsRecyclerViewAdapter.MyViewHolder holder = new ProductsRecyclerViewAdapter.MyViewHolder(view);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductsRecyclerViewAdapter.MyViewHolder holder, int position) {
         try {
             holder.card_name.setText(Data.get(position).getP_name());
 
             holder.card_price.setText("Rs: "+Data.get(position).getP_price());
             holder.card_img.setImageResource(Data.get(position).getP_image());
-//            holder.itemView.setOnClickListener((View.OnClickListener) v -> {
-//
-////               Toast.makeText(v.getContext(),Data.get(position).getP_name()+"  "+Data.get(position).getP_price(),Toast.LENGTH_LONG).show();
-////               TextView txt = (TextView)v.findViewById(R.id.id_dashborad_total);
-////               txt.setText(txt.getText().toString()+" "+Data.get(position).getP_price());
-//            });
+            holder.itemView.setOnClickListener((View.OnClickListener) v -> {
+
+               Toast.makeText(v.getContext(),Data.get(position).getP_name()+"  "+Data.get(position).getP_price(),Toast.LENGTH_LONG).show();
+            });
 
         }catch (Exception e)
         {
