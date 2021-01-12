@@ -207,16 +207,6 @@
                 android:inputType="none|textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Switch
-            android:id="@+id/id_cus_form_loyalty"
-            android:layout_width="0dp"
-            android:layout_height="27dp"
-            android:layout_marginTop="16dp"
-            android:text="Loyalty"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_cus_email_layout" />
-
 
         <TextView
             android:id="@+id/billing_details"
@@ -228,7 +218,7 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_cus_form_loyalty" />
+            app:layout_constraintTop_toBottomOf="@+id/id_cus_email_layout" />
 
         <TextView
             android:id="@+id/label"

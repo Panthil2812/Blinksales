@@ -28,7 +28,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pur_lst_ven_layout"
+            android:id="@+id/id_pur_re_ven_layout"
             style="@style/TextInputLayoutStyleForm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -39,83 +39,116 @@
             app:layout_constraintTop_toBottomOf="@+id/label">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pur_lst_ven_name"
+                android:id="@+id/id_pur_re_ven_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="none|textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pur_lst_amount_layout"
+            android:id="@+id/id_pur_re_amount_layout"
             style="@style/TextInputLayoutStyleForm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Amount"
-            app:layout_constraintEnd_toStartOf="@+id/id_pur_lst_tax_amount_layout"
+            app:layout_constraintEnd_toStartOf="@+id/id_pur_re_reamount_layout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_ven_layout">
+            app:layout_constraintTop_toBottomOf="@+id/id_pur_re_ven_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pur_lst_amount"
+                android:id="@+id/id_pur_re_purAmount"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="none|textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pur_lst_tax_amount_layout"
+            android:id="@+id/id_pur_re_reamount_layout"
             style="@style/TextInputLayoutStyleForm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:hint="Tax Amount"
+            android:hint="Pending Amount"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/id_pur_lst_amount_layout"
-            app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_ven_layout">
+            app:layout_constraintStart_toEndOf="@+id/id_pur_re_amount_layout"
+            app:layout_constraintTop_toBottomOf="@+id/id_pur_re_ven_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pur_lst_tax_amount"
+                android:id="@+id/id_pur_re_pending_amount"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pur_lst_email_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_amount_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pur_lst_email"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pur_lst_address_layout"
+            android:id="@+id/id_pur_lst_redate_layout"
             style="@style/TextInputLayoutStyleForm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Address"
+            android:hint="Select Date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_email_layout">
+            app:layout_constraintTop_toBottomOf="@+id/id_pur_re_amount_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pur_lst_address"
+                android:id="@+id/id_pur_lst_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="date" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_redate_layout">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_weight="4"
+                android:gravity="center|center_horizontal"
+                android:text="Upload Reciept"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/img_pur_reciept"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary" />
+        </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_pur_lst_note_layout"
+            style="@style/TextInputLayoutStyleForm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Note"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_pur_lst_note"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:singleLine="false" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/id_pur_lst_btn_save"
+            android:id="@+id/id_pur_re_btn_save"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
@@ -127,7 +160,7 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_address_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_note_layout" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

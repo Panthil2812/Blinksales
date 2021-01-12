@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/primary_light"
     tools:context=".form.Product_form">
 
@@ -18,7 +18,7 @@
 
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/img_product"
             android:layout_width="120dp"
             android:layout_height="140dp"
             android:layout_marginTop="16dp"
@@ -37,7 +37,8 @@
             android:hint="@string/products"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2">
+            app:layout_constraintTop_toBottomOf="@+id/img_product"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/id_pro_name"
@@ -137,11 +138,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/id_pro_form_barcode_layout"
+            style="@style/TextInputLayoutStyleForm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/TextInputLayoutStyleForm"
             android:hint="@string/products_barcode"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/id_pro_stock"
+            app:layout_constraintHorizontal_weight="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/id_pro_form_qty_layout">
 
@@ -151,6 +153,21 @@
                 android:layout_height="match_parent"
                 android:inputType="none|textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/id_pro_stock"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:text="Stock"
+            android:textColor="@color/colorAccent"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/id_pro_form_barcode_layout"
+            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_unit_layout" />
+
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -195,6 +212,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:hint="@string/products_hsn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/id_pro_form_sgst_layout"
@@ -229,6 +247,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_backarrow" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

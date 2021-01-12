@@ -28,18 +28,18 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_exp_to_whom_layout"
+            android:id="@+id/id_exp_name_layout"
             style="@style/TextInputLayoutStyleForm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:hint="To whom"
+            android:hint="Expense name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/label">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_exp_to_whom"
+                android:id="@+id/id_exp_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="none|textPersonName" />
@@ -51,9 +51,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hint="Amount"
-            app:layout_constraintEnd_toStartOf="@+id/id_exp_date_layout"
+            app:layout_constraintEnd_toStartOf="@+id/id_pur_lst_redate_layout"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_exp_to_whom_layout">
+            app:layout_constraintTop_toBottomOf="@+id/id_exp_name_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/id_exp_amount"
@@ -63,7 +63,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_exp_date_layout"
+            android:id="@+id/id_pur_lst_redate_layout"
             style="@style/TextInputLayoutStyleForm"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -71,39 +71,22 @@
             android:hint="Select Date"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/id_exp_amount_layout"
-            app:layout_constraintTop_toBottomOf="@+id/id_exp_to_whom_layout">
+            app:layout_constraintTop_toBottomOf="@+id/id_exp_name_layout">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_exp_date"
-                android:inputType="date"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_exp_note_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="Notes"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_exp_amount_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_exp_note"
+                android:id="@+id/id_pur_lst_date"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:singleLine="false"/>
+                android:inputType="date" />
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <Button
             android:id="@+id/id_exp_btn_save"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:background="@drawable/button_background"
             android:text="@string/save"
@@ -111,7 +94,51 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_exp_note_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_exp_amount_layout">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                android:layout_weight="4"
+                android:gravity="center|center_horizontal"
+                android:text="Upload Reciept"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/img_pur_reciept"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="10dp"
+                android:layout_weight="1"
+                android:background="@color/colorPrimary" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorAccent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Expense Type"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

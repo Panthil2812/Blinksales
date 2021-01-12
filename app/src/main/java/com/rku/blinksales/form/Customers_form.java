@@ -31,7 +31,6 @@ public class Customers_form extends AppCompatActivity {
         id_cusB_country = findViewById(R.id.id_cusB_country);
         id_cusB_pos_code = findViewById(R.id.id_cusB_pos_code);
         id_cusB_description = findViewById(R.id.id_cusB_description);
-        id_cus_switch_loyalty = findViewById(R.id.id_cus_form_loyalty);
         id_cus_btn_save = findViewById(R.id.id_cus_btn_save);
 
 
