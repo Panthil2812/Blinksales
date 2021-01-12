@@ -25,9 +25,16 @@
             android:iconifiedByDefault="false"
             android:paddingEnd="8dp"
             android:queryHint="Search here">
-            <requestFocus/>
+
         </SearchView>
 
+        <ImageButton
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/button_background"
+            android:backgroundTint="@color/colorAccent"
+            android:src="@drawable/ic_barcode" />
 
         <ImageButton
             android:layout_width="50dp"
@@ -40,17 +47,17 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:padding="8dp"
             android:background="@color/colorPrimaryDark"
             android:elevation="4dp"
             >
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/id_category_recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:id="@+id/id_category_recyclerView"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
         </androidx.core.widget.NestedScrollView>
         <RelativeLayout
             android:layout_width="match_parent"

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!-- Base application theme. -->
-<style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
-    <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/colorPrimaryDark</item>
-    <item name="colorPrimaryDark">@color/colorPrimary</item>
-    <item name="colorAccent">@color/colorAccent</item>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar.Bridge">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
 
-</style>
+    </style>
     <style name="Actionbar">
         <item name="android:textSize">18sp</item>
         <item name="android:layout_gravity">right</item>
@@ -31,11 +31,11 @@
         <item name="hintTextColor">@color/colorAccent</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:textColorHint">@color/divider</item>
-    <!--           android:textColorHint="@color/divider"-->
-    <!--           app:boxStrokeColor="@color/colorAccent"-->
-    <!--           app:boxStrokeErrorColor="@color/colorAccent"-->
-    <!--           app:errorTextColor="@color/primary_light"-->
-    <!--           app:hintTextColor="@color/colorAccent"-->
+        <!--           android:textColorHint="@color/divider"-->
+        <!--           app:boxStrokeColor="@color/colorAccent"-->
+        <!--           app:boxStrokeErrorColor="@color/colorAccent"-->
+        <!--           app:errorTextColor="@color/primary_light"-->
+        <!--           app:hintTextColor="@color/colorAccent"-->
     </style>
 
     <style name="TextInputLayoutStyleForm" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.Dense">

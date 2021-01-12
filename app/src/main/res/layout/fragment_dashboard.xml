@@ -89,7 +89,7 @@
    <LinearLayout
        android:id="@+id/linearLayout2"
        android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       android:layout_height="?attr/actionBarSize"
        android:background="@color/colorPrimaryDark"
        android:orientation="horizontal"
        android:padding="18dp"
@@ -103,8 +103,9 @@
           android:layout_width="wrap_content"
           android:layout_height="match_parent"
           android:gravity="center"
-          android:text="Total Amount: "
-          android:textSize="18dp" />
+          android:textColor="@color/colorAccent"
+          android:text="Total Amount: $1000 /- "
+          android:textSize="18dp"/>
    </LinearLayout>
 
 
