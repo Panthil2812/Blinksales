@@ -1,151 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/primary_light"
-    tools:context=".form.Vendor_list_form">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".form.Vendor_list_form"
+    android:background="@color/primary_light">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp">
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_ven_form_company_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:hint="@string/company_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/label">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_ven_company_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_ven_form_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_ven_form_company_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_ven_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_ven_contact_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/nav_contact"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_ven_form_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_ven_contact"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_ven_email_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_ven_contact_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_ven_email"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_ven_address_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/address"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_ven_email_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_ven_address"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_ven_gst_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/gst_number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_ven_address_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_ven_gst"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/id_ven_btn_save"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/button_background"
-            android:text="@string/save"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="24sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_ven_gst_layout" />
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="5dp"
+        android:padding="8dp">
+        <ImageButton
+            android:id="@+id/id_back_arrow"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:elevation="4dp"
+            android:background="@drawable/ic_backarrow"/>
 
         <TextView
-            android:id="@+id/label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ADD VENDOR"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:text="Add Vendor"
             android:textColor="@color/colorAccent"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textSize="18sp" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <Button
+                    android:id="@+id/id_ven_btn_save"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/button_background"
+                    android:text="@string/save"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_ven_gst_layout" />
 
-</ScrollView>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_ven_contact_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nav_contact"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_ven_form_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_ven_contact"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_ven_email_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_ven_contact_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_ven_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_ven_address_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/address"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_ven_email_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_ven_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_ven_gst_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/gst_number"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_ven_address_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_ven_gst"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_ven_form_company_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/company_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_ven_company_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_ven_form_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Vendor Name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_ven_form_company_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_ven_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

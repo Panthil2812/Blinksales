@@ -4,6 +4,7 @@ package com.rku.blinksales.form;
 import android.app.ActionBar;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -12,6 +13,7 @@ import com.rku.blinksales.R;
 
 public class Product_form extends AppCompatActivity {
     EditText id_pro_name,id_pro_category,id_pro_selling_price,id_pro_mrp,id_pro_qty,id_pro_unit,id_pro_barcode,id_cgst_unit,id_sgst_unit,id_hsn_unit;
+    ImageButton id_back_arrow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,7 +29,10 @@ public class Product_form extends AppCompatActivity {
         id_cgst_unit = findViewById(R.id.id_cgst_unit);
         id_sgst_unit = findViewById(R.id.id_sgst_unit);
         id_hsn_unit = findViewById(R.id.id_hsn_unit);
-
+        id_back_arrow = findViewById(R.id.id_back_arrow);
+        id_back_arrow.setOnClickListener(v -> {
+            onBackPressed();
+        });
     }
 
 }

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,13 +16,16 @@ import com.rku.blinksales.R;
 public class Purchase_return_form extends AppCompatActivity {
 
     TextView id_pur_re_ven_name,id_pur_re_purAmount,id_pur_re_pending_amount,id_pur_re_net_amount,id_pur_re_purdate,id_pur_re_redate;
-    ImageView img_pur_reciept;
+    ImageView img_pur_reciept, id_back_arrow;
     Button id_pur_re_btn_save;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_return_form);
-
+        id_back_arrow = findViewById(R.id.id_back_arrow);
+        id_back_arrow.setOnClickListener(v -> {
+            onBackPressed();
+        });
         id_pur_re_ven_name = findViewById(R.id.id_pur_re_ven_name);
         id_pur_re_purAmount = findViewById(R.id.id_pur_re_purAmount);
         id_pur_re_pending_amount = findViewById(R.id.id_pur_re_pending_amount);

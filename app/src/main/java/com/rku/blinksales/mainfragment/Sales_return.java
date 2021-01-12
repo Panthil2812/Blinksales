@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -26,6 +27,7 @@ public class Sales_return extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext().getApplicationContext(), Sales_return_form.class));
+//                Toast.makeText(getContext(), "Open sales return form", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

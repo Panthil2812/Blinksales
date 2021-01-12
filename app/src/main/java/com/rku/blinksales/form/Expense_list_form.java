@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -15,12 +16,16 @@ import com.rku.blinksales.R;
 public class Expense_list_form extends AppCompatActivity {
 
     EditText id_exp_date,id_exp_to_whom,id_exp_amount;
+    ImageButton id_back_arrow;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_list_form);
-
+        id_back_arrow = findViewById(R.id.id_back_arrow);
+        id_back_arrow.setOnClickListener(v -> {
+            onBackPressed();
+        });
         id_exp_date = findViewById(R.id.id_pur_lst_date);
         id_exp_to_whom = findViewById(R.id.id_exp_name);
         id_exp_amount = findViewById(R.id.id_exp_amount);

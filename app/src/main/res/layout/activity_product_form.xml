@@ -1,255 +1,278 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary_light"
-    tools:context=".form.Product_form">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    tools:context=".form.Product_form"
+    android:background="@color/primary_light">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="24dp"
-        >
+        android:layout_height="?attr/actionBarSize"
+        android:orientation="horizontal"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="5dp"
+        android:padding="8dp">
+        <ImageButton
+            android:id="@+id/id_back_arrow"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:elevation="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_backarrow"/>
 
-
-        <ImageView
-            android:id="@+id/img_product"
-            android:layout_width="120dp"
-            android:layout_height="140dp"
-            android:layout_marginTop="16dp"
-            android:background="@mipmap/bag"
-            android:gravity="left"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_layout"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_marginTop="16dp"
-            android:hint="@string/products"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/img_product"
-            >
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pro_name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_category_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            style="@style/TextInputLayoutStyleForm"
-            android:hint="@string/products_category"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pro_category"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_selling_price_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:hint="@string/selling_price"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/id_pro_form_mrp_layout"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_category_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pro_selling_price"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_mrp_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/products_mrp"
-            app:layout_constraintEnd_toStartOf="@+id/id_pro_form_selling_price_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_category_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pro_mrp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_qty_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/products_qty"
-            app:layout_constraintEnd_toStartOf="@+id/id_pro_form_unit_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_mrp_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pro_qty"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_unit_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:hint="@string/products_unit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/id_pro_form_qty_layout"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_selling_price_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pro_unit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_barcode_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="@string/products_barcode"
-            app:layout_constraintEnd_toStartOf="@+id/id_pro_stock"
-            app:layout_constraintHorizontal_weight="2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_qty_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_pro_barcode"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/id_pro_stock"
-            android:layout_width="wrap_content"
-            android:layout_height="55dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="16dp"
-            android:text="Stock"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:elevation="4dp"
+            android:gravity="center"
+            android:text="Add Product"
             android:textColor="@color/colorAccent"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toEndOf="@+id/id_pro_form_barcode_layout"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_unit_layout" />
+            android:textSize="18sp" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_cgst_layout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            style="@style/TextInputLayoutStyleForm"
-            android:hint="@string/products_cgst"
-            app:layout_constraintEnd_toStartOf="@+id/id_pro_form_sgst_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_cgst_unit"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:padding="24dp"
+                >
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_sgst_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:hint="@string/products_sgst"
-            app:layout_constraintEnd_toStartOf="@+id/id_pro_form_hsn_layout"
-            app:layout_constraintStart_toEndOf="@+id/id_pro_form_cgst_layout"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout">
+                <ImageView
+                    android:id="@+id/img_product"
+                    android:layout_width="120dp"
+                    android:layout_height="140dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@mipmap/bag"
+                    android:gravity="left"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_sgst_unit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pro_form_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/products"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_product"
+                    >
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_pro_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/id_pro_form_hsn_layout"
-            style="@style/TextInputLayoutStyleForm"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:hint="@string/products_hsn"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/id_pro_form_sgst_layout"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pro_form_category_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:hint="@string/products_category"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_layout">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/id_hsn_unit"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:inputType="none|textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/id_pro_btn_add"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/button_background"
-            android:text="@string/add"
-            android:textColor="@color/colorPrimary"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/id_pro_form_sgst_layout" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_backarrow" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_pro_category"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pro_form_selling_price_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="@string/selling_price"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_mrp_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_category_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_pro_selling_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pro_form_mrp_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/products_mrp"
+                    app:layout_constraintEnd_toStartOf="@+id/id_pro_form_selling_price_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_category_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_pro_mrp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
-</ScrollView>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pro_form_qty_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/products_qty"
+                    app:layout_constraintEnd_toStartOf="@+id/id_pro_form_unit_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_mrp_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_pro_qty"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pro_form_unit_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="@string/products_unit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_qty_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_selling_price_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_pro_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pro_form_barcode_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/products_barcode"
+                    app:layout_constraintEnd_toStartOf="@+id/id_pro_stock"
+                    app:layout_constraintHorizontal_weight="2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_qty_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_pro_barcode"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/id_pro_stock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="16dp"
+                    android:text="Stock"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_barcode_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_unit_layout" />
+
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pro_form_cgst_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:hint="@string/products_cgst"
+                    app:layout_constraintEnd_toStartOf="@+id/id_pro_form_sgst_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_cgst_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pro_form_sgst_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:hint="@string/products_sgst"
+                    app:layout_constraintEnd_toStartOf="@+id/id_pro_form_hsn_layout"
+                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_cgst_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_sgst_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pro_form_hsn_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/products_hsn"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_sgst_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_hsn_unit"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:id="@+id/id_pro_btn_add"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/button_background"
+                    android:text="@string/add"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_sgst_layout" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
