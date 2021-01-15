@@ -9,6 +9,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -208,6 +214,92 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         } else {
             super.onBackPressed();
         }
+    }
+
+    public  void printInvoice(){
+        PdfDocument myPdfDocument = new PdfDocument();
+        Paint mypaint = new Paint();
+
+        String[] column = {"invoice number","customer name","contact no","date","qty","amount"};
+
+        PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(1000,900,1).create();
+        PdfDocument.Page myPage = myPdfDocument.startPage(myPageInfo);
+
+        Canvas myCanvas = myPage.getCanvas();
+        mypaint.setTextSize(50);
+        myCanvas.drawText("INVOICE", 30,80,mypaint);
+
+        mypaint.setTextSize(30);
+        myCanvas.drawText("this is a pdf bill", 30,120,mypaint);
+
+        mypaint.setTextAlign(Paint.Align.CENTER);
+        myCanvas.drawText("Invoice No", myCanvas.getWidth()-40, 40,mypaint);
+
+        mypaint.setTextAlign(Paint.Align.LEFT);
+        myCanvas.drawText("2",myCanvas.getWidth()-40, 40,mypaint);
+
+        mypaint.setColor(Color.rgb(150,150,150));
+        myCanvas.drawRect(30,150,myCanvas.getWidth()-30,160,mypaint);
+
+        mypaint.setColor(Color.BLACK);
+        myCanvas.drawText("Date",50,200,mypaint);
+        myCanvas.drawText("12-12-2020",250,200,mypaint);
+
+        myCanvas.drawText("Time",620,200,mypaint);
+        mypaint.setTextAlign(Paint.Align.RIGHT);
+        myCanvas.drawText("12:12:00",myCanvas.getWidth()-40,200,mypaint);
+        mypaint.setTextAlign(Paint.Align.LEFT);
+
+        mypaint.setColor(Color.rgb(150,150,150));
+        myCanvas.drawRect(30,250,250,300,mypaint);
+
+        mypaint.setColor(Color.WHITE);
+        myCanvas.drawText("Bill No: ",50,285,mypaint);
+
+        mypaint.setColor(Color.BLACK);
+        myCanvas.drawText("Customer Name: ",30,350,mypaint);
+        myCanvas.drawText("John", 280,350,mypaint);
+
+        myCanvas.drawText("Phone",620,350,mypaint);
+        mypaint.setTextAlign(Paint.Align.RIGHT);
+        myCanvas.drawText("1234567890",myCanvas.getWidth()-40,350, mypaint);
+        mypaint.setTextAlign(Paint.Align.LEFT);
+
+        mypaint.setColor(Color.rgb(150,150,150));
+        myCanvas.drawRect(30,400,myCanvas.getWidth()-30,450,mypaint);
+
+
+        mypaint.setColor(Color.WHITE);
+        myCanvas.drawText("Item",50,435,mypaint);
+        myCanvas.drawText("Qty",550,435,mypaint);
+        mypaint.setTextAlign(Paint.Align.RIGHT);
+        myCanvas.drawText("Amount",myCanvas.getWidth()-40,435,mypaint);
+        mypaint.setTextAlign(Paint.Align.LEFT);
+
+        mypaint.setColor(Color.BLACK);
+        myCanvas.drawText("Apple",50,480,mypaint);
+        myCanvas.drawText("4",550,480,mypaint);
+        mypaint.setTextAlign(Paint.Align.RIGHT);
+        myCanvas.drawText("200",myCanvas.getWidth()-40,435,mypaint);
+        mypaint.setTextAlign(Paint.Align.RIGHT);
+
+
+        mypaint.setColor(Color.rgb(150,150,150));
+        myCanvas.drawRect(30,550,myCanvas.getWidth()-30,560,mypaint);
+
+        mypaint.setColor(Color.BLACK);
+        myCanvas.drawText("SUBTOTAL",550,600,mypaint);
+        myCanvas.drawText("Tax 4%",550,600,mypaint);
+        mypaint.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.BOLD));
+        myCanvas.drawText("TOTAL",550,600,mypaint);
+        mypaint.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.NORMAL));
+
+        //10:58
+
+
+
+
+
     }
 
 }

@@ -64,5 +64,7 @@
     <string name="city">City</string>
     <string name="region">Region</string>
     <string name="selling_price">Selling Price</string>
-<string name="p">Text is available under the Creative Commons Attribution-ShareAlike License; additional terms may apply. By using this site, you agree to the Terms of Use and Privacy Policy. Wikipedia® is a registered trademark of the Wikimedia Foundation, Inc., a non-profit organization.</string>
+    <string name="p">Text is available under the Creative Commons Attribution-ShareAlike License; additional terms may apply. By using this site, you agree to the Terms of Use and Privacy Policy. Wikipedia® is a registered trademark of the Wikimedia Foundation, Inc., a non-profit organization.</string>
+    <string name="phone">Phone No.</string>
+    <string name="web_link">Website_link</string>
 </resources>
