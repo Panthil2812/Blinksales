@@ -22,9 +22,8 @@
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BillingDetails">
-
-        </activity>
+        <activity android:name=".Settings" />
+        <activity android:name=".BillingDetails" />
         <activity
             android:name=".form.Contact_us_form"
             android:parentActivityName=".MainActivity"
@@ -32,9 +31,7 @@
         <activity
             android:name=".form.Purchase_return_form"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="locked" >
-
-        </activity>
+            android:screenOrientation="locked" />
         <activity
             android:name=".form.Purchase_list_form"
             android:parentActivityName=".MainActivity"
@@ -46,7 +43,7 @@
         <activity
             android:name=".form.Product_form"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="locked">
+            android:screenOrientation="locked" >
 
         </activity>
         <activity
@@ -60,11 +57,18 @@
         <activity
             android:name=".form.Expense_list_form"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="locked"></activity>
+            android:screenOrientation="locked" />
         <activity
             android:name=".login.Splash_screen"
             android:parentActivityName=".MainActivity"
-            android:screenOrientation="locked" />
+            android:screenOrientation="locked" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".login.Login_page"
             android:screenOrientation="locked" />
@@ -74,12 +78,11 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="locked">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
+        <activity
+            android:name=".Profile_page"
+            android:screenOrientation="locked" />
     </application>
 
 </manifest>

@@ -43,54 +43,67 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="24dp"
-                >
+                android:padding="24dp">
 
-                <ImageView
+                <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_product"
-                    android:layout_width="120dp"
-                    android:layout_height="140dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@mipmap/bag"
-                    android:gravity="left"
+                    android:layout_width="150dp"
+
+                    android:layout_height="150dp"
+                    android:src="@drawable/ic_products"
+                    app:civ_border_color="@color/colorAccent"
+                    app:civ_border_width="2dp"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton2">
+
+                </de.hdodenhof.circleimageview.CircleImageView>
+
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pro_form_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:id="@+id/id_cat_name_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputLayoutStyleForm"
                     android:layout_marginTop="16dp"
                     android:hint="@string/products"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/img_product"
-                    >
+                    app:layout_constraintTop_toBottomOf="@+id/img_product">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_pro_name"
+                        android:id="@+id/id_cat_name"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:inputType="none|textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pro_form_category_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:background="@color/colorPrimaryDark"
+                    android:id="@+id/id_cat_category"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputLayoutStyleForm"
-                    android:hint="@string/products_category"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/products"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_layout">
+                    app:layout_constraintTop_toBottomOf="@+id/id_cat_name_layout">
 
-                    <com.google.android.material.textfield.TextInputEditText
+
+                    <TextView
+                        style="@style/TextInputLayoutStyleForm"
                         android:id="@+id/id_pro_category"
+                        android:background="@color/colorPrimaryDark"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
+                        android:layout_height="wrap_content"
+                        android:hint="Category"
+                        android:inputType="none|textPersonName"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="0dp"
+                        app:layout_constraintTop_toBottomOf="@+id/id_cat_name_layout" />
+
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -100,10 +113,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
                     android:hint="@string/selling_price"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/id_pro_form_mrp_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_category_layout">
+                    app:layout_constraintTop_toBottomOf="@+id/id_cat_category">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_pro_selling_price"
@@ -117,10 +131,11 @@
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:hint="@string/products_mrp"
                     app:layout_constraintEnd_toStartOf="@+id/id_pro_form_selling_price_layout"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_category_layout">
+                    app:layout_constraintTop_toBottomOf="@+id/id_cat_category">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_pro_mrp"
@@ -148,6 +163,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:background="@color/colorPrimaryDark"
                     android:id="@+id/id_pro_form_unit_layout"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
@@ -158,11 +174,15 @@
                     app:layout_constraintStart_toEndOf="@+id/id_pro_form_qty_layout"
                     app:layout_constraintTop_toBottomOf="@+id/id_pro_form_selling_price_layout">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <TextView
+                        android:background="@color/colorPrimaryDark"
                         android:id="@+id/id_pro_unit"
+                        style="@style/TextInputLayoutStyleForm"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
+                        android:inputType="none|textPersonName"
+                        android:text="Unit"
+                        android:layout_marginTop="0dp"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -198,12 +218,11 @@
                     app:layout_constraintTop_toBottomOf="@+id/id_pro_form_unit_layout" />
 
 
-
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/id_pro_form_cgst_layout"
+                    style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    style="@style/TextInputLayoutStyleForm"
                     android:hint="@string/products_cgst"
                     app:layout_constraintEnd_toStartOf="@+id/id_pro_form_sgst_layout"
                     app:layout_constraintStart_toStartOf="parent"

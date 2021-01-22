@@ -101,12 +101,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new Cart()).commit();
                 Toast.makeText(this, R.string.nav_cart, Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_pending_cart:
-                getSupportActionBar().setTitle(R.string.nav_pending_cart);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Pending_cart()).commit();
-                Toast.makeText(this, R.string.nav_pending_cart, Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.nav_pending_cart:
+//                getSupportActionBar().setTitle(R.string.nav_pending_cart);
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new Pending_cart()).commit();
+//                Toast.makeText(this, R.string.nav_pending_cart, Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.nav_category_products:
                 getSupportActionBar().setTitle(R.string.nav_category_products);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

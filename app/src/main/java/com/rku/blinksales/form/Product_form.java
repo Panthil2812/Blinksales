@@ -1,7 +1,6 @@
 package com.rku.blinksales.form;
 
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,25 +10,25 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import com.rku.blinksales.R;
 
 public class Product_form extends AppCompatActivity {
-    EditText id_pro_name,id_pro_category,id_pro_selling_price,id_pro_mrp,id_pro_qty,id_pro_unit,id_pro_barcode,id_cgst_unit,id_sgst_unit,id_hsn_unit;
+    EditText id_pro_name,id_pro_selling_price,id_pro_mrp,id_pro_qty,id_pro_barcode,id_cgst_unit,id_sgst_unit,id_hsn_unit;
+    TextView id_pro_unit,id_pro_category;
     ImageView img_product;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_form);
-        id_pro_name = findViewById(R.id.id_pro_name);
+        id_pro_name = findViewById(R.id.id_cat_name);
         id_pro_category = findViewById(R.id.id_pro_category);
         id_pro_selling_price = findViewById(R.id.id_pro_selling_price);
         id_pro_mrp = findViewById(R.id.id_pro_mrp);
@@ -48,6 +47,13 @@ public class Product_form extends AppCompatActivity {
             }
         });
 
+        id_pro_category.setOnClickListener(v -> {
+            new DisplayCategoryFragment(id_pro_category).show(getSupportFragmentManager(),"Dialog");
+        });
+
+        id_pro_unit.setOnClickListener(v -> {
+            new ADDFragment(id_pro_unit).show(getSupportFragmentManager(),"Dialog");
+        });
     }
 
     private void selectImage(Context context) {

@@ -10,6 +10,7 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 
 import com.rku.blinksales.InstanceClass.CardInstance;
+import com.rku.blinksales.form.List_Category;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,6 +61,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.insert( TABLE_NAME2,null,contentValues);
 
     }
+
+    public ArrayList<List_Category> ALL_Category_Bottomsheet(){
+        ArrayList<List_Category> list = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        try {
+            Cursor cursor = db.rawQuery("select " + COL_4 + " from " + TABLE_NAME2 , null);
+            if (cursor.getCount() != 0) {
+                while (cursor.moveToNext()) {
+//                    arr = Arrays.copyOf(arr, arr.length + 1);
+                    String str = cursor.getString(0);
+                    List_Category card = new List_Category(str);
+                    list.add(card);
+//                    arr[arr.length - 1] = cursor.getString(0);
+                }
+            }
+        }catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     public ArrayList<String> ALL_Category(){
         SQLiteDatabase db = getReadableDatabase();
 //        insertData();

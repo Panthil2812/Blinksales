@@ -16,6 +16,7 @@
 
         <ImageButton
             android:id="@+id/imageButton2"
+            android:background="@color/colorPrimaryDark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:foregroundGravity="right"
@@ -28,7 +29,7 @@
             android:layout_width="150dp"
 
             android:layout_height="150dp"
-            android:src="@drawable/img_card_3"
+            android:src="@drawable/ic_profile"
             app:civ_border_color="@color/colorAccent"
             app:civ_border_width="2dp"
             app:layout_constraintEnd_toEndOf="parent"

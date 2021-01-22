@@ -117,7 +117,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearLayout3"
+                    android:id="@+id/linearLayout_upload_reciept"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -125,25 +125,28 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
+                    android:background="@color/colorPrimaryDark"
                     app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_redate_layout">
 
                     <TextView
                         android:id="@+id/textView4"
                         android:layout_width="wrap_content"
-                        android:layout_height="100dp"
-                        android:layout_weight="4"
+                        android:layout_height="match_parent"
                         android:gravity="center|center_horizontal"
                         android:text="Upload Reciept"
                         android:textColor="@color/colorAccent"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:padding="5dp"/>
 
                     <ImageView
                         android:id="@+id/img_pur_reciept"
+
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginRight="10dp"
-                        android:layout_weight="1"
-                        android:background="#971642" />
+                        android:background="#971642"
+                        android:visibility="gone"
+                        />
 
                 </LinearLayout>
 
