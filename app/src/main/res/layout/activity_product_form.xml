@@ -45,6 +45,7 @@
                 android:layout_height="match_parent"
                 android:padding="24dp">
 
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_product"
                     android:layout_width="150dp"
@@ -59,7 +60,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/imageButton2">
 
                 </de.hdodenhof.circleimageview.CircleImageView>
-
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyleForm"
@@ -79,32 +79,23 @@
                         android:inputType="none|textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <TextView
+                    android:id="@+id/id_pro_category"
                     style="@style/TextInputLayoutStyleForm"
-                    android:background="@color/colorPrimaryDark"
-                    android:id="@+id/id_cat_category"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
                     android:layout_marginTop="16dp"
-                    android:hint="@string/products"
+                    android:text="@string/nav_category"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+
+                    android:background="@color/colorPrimaryDark"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_cat_name_layout">
 
 
-                    <TextView
-                        style="@style/TextInputLayoutStyleForm"
-                        android:id="@+id/id_pro_category"
-                        android:background="@color/colorPrimaryDark"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Category"
-                        android:inputType="none|textPersonName"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="0dp"
-                        app:layout_constraintTop_toBottomOf="@+id/id_cat_name_layout" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                </TextView>
 
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -117,7 +108,7 @@
                     android:hint="@string/selling_price"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/id_pro_form_mrp_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/id_cat_category">
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_category">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_pro_selling_price"
@@ -135,7 +126,7 @@
                     android:hint="@string/products_mrp"
                     app:layout_constraintEnd_toStartOf="@+id/id_pro_form_selling_price_layout"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_cat_category">
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_category">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_pro_mrp"
@@ -151,7 +142,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:hint="@string/products_qty"
-                    app:layout_constraintEnd_toStartOf="@+id/id_pro_form_unit_layout"
+                    app:layout_constraintEnd_toStartOf="@+id/id_pro_unit"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_pro_form_mrp_layout">
 
@@ -162,28 +153,22 @@
                         android:inputType="none|textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
+                <TextView
                     android:background="@color/colorPrimaryDark"
-                    android:id="@+id/id_pro_form_unit_layout"
+                    android:id="@+id/id_pro_unit"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
                     android:layout_marginStart="8dp"
-                    android:hint="@string/products_unit"
+                    android:text="Unit"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/id_pro_form_qty_layout"
                     app:layout_constraintTop_toBottomOf="@+id/id_pro_form_selling_price_layout">
 
-                    <TextView
-                        android:background="@color/colorPrimaryDark"
-                        android:id="@+id/id_pro_unit"
-                        style="@style/TextInputLayoutStyleForm"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="none|textPersonName"
-                        android:text="Unit"
-                        android:layout_marginTop="0dp"/>
-                </com.google.android.material.textfield.TextInputLayout>
+                </TextView>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/id_pro_form_barcode_layout"
@@ -215,7 +200,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toEndOf="@+id/id_pro_form_barcode_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_unit_layout" />
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_unit" />
 
 
                 <com.google.android.material.textfield.TextInputLayout

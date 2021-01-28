@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class Product_form extends AppCompatActivity {
     EditText id_pro_name,id_pro_selling_price,id_pro_mrp,id_pro_qty,id_pro_barcode,id_cgst_unit,id_sgst_unit,id_hsn_unit;
     TextView id_pro_unit,id_pro_category;
     ImageView img_product;
+    ImageButton id_back_arrow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +41,7 @@ public class Product_form extends AppCompatActivity {
         id_sgst_unit = findViewById(R.id.id_sgst_unit);
         id_hsn_unit = findViewById(R.id.id_hsn_unit);
         img_product = findViewById(R.id.img_product);
-
+        id_back_arrow = findViewById(R.id.id_back_arrow);
         img_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +55,9 @@ public class Product_form extends AppCompatActivity {
 
         id_pro_unit.setOnClickListener(v -> {
             new ADDFragment(id_pro_unit).show(getSupportFragmentManager(),"Dialog");
+        });
+        id_back_arrow.setOnClickListener(v -> {
+            onBackPressed();
         });
     }
 
