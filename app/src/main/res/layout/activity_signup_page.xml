@@ -32,6 +32,7 @@
                          android:layout_marginEnd="32dp"
                          android:layout_weight="1"
                          android:background="@drawable/button_background"
+                         android:onClick="RegisterUser"
                          android:text="@string/register"
                          android:textColor="@color/colorPrimary"
                          android:textSize="18sp"
@@ -82,7 +83,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:hint="@string/username"
-                                android:inputType="none|textPersonName" />
+                                android:inputType="none|textPersonName"
+                                android:text="admin" />
                      </com.google.android.material.textfield.TextInputLayout>
 
                      <com.google.android.material.textfield.TextInputLayout
@@ -103,7 +105,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:hint="@string/email"
-                                android:inputType="none|textPersonName" />
+                                android:inputType="none|textPersonName"
+                                android:text="admin@gmail.com" />
                      </com.google.android.material.textfield.TextInputLayout>
 
                      <com.google.android.material.textfield.TextInputLayout
@@ -125,7 +128,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginBottom="8dp"
-                                android:hint="@string/password" />
+                                android:hint="@string/password"
+                                android:inputType="textPersonName"
+                                android:text="admin" />
 
                      </com.google.android.material.textfield.TextInputLayout>
 
@@ -146,7 +151,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:hint="@string/repassword"
-                                android:inputType="none|textPersonName" />
+                                android:inputType="none|textPersonName"
+                                android:text="admin" />
                      </com.google.android.material.textfield.TextInputLayout>
 
 

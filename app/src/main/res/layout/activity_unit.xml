@@ -4,24 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@color/colorPrimaryDark"
-    tools:context=".Unit">
-
-    <TextView
+    android:orientation="vertical"
+    >
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="18dp"
-        android:layout_marginBottom="8dp"
-        android:gravity="center"
-        android:text="Choose Product Unit"
-        android:textColor="@color/colorAccent"
-        android:textSize="24dp"
-        android:textStyle="bold" />
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:id="@+id/txtTitleChoose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Choose Product Unit"
+            android:textColor="@color/colorAccent"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/id_Delete_type"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="32dp"
+            android:background="@color/colorPrimaryDark"
+            android:src="@drawable/ic_delete"
+            tools:visibility="visible" />
+    </LinearLayout>
+
 
     <com.google.android.flexbox.FlexboxLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/unit_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,5 +46,20 @@
         app:flexWrap="wrap">
 
     </com.google.android.flexbox.FlexboxLayout>
+
+    <Button
+        android:id="@+id/id_cat_btn_save"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/button_background"
+        android:text="@string/add"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        tools:visibility="visible" />
 
 </LinearLayout>

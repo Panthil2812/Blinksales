@@ -12,11 +12,14 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.rku.blinksales.MainActivity;
 import com.rku.blinksales.R;
+import com.rku.blinksales.Roomdatabase.DatabaseDao;
+import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 
 public class Login_page extends AppCompatActivity {
     TextInputEditText  Username,Password;
     Button login;
     TextView InToUp;
+    DatabaseDao db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,10 +28,11 @@ public class Login_page extends AppCompatActivity {
         Password = findViewById(R.id.id_login_password);
         login = findViewById(R.id.id_login_btn);
         InToUp = findViewById(R.id.id_login_signup);
+        db = MainRoomDatabase.getInstance(this).getDao();
         login.setOnClickListener(v -> {
             String txtusername = Username.getText().toString().trim();
             String txtpassword = Password.getText().toString().trim();
-            if(txtusername.equals("Admin") && txtpassword.equals("admin"))
+            if(db.ValidateUser(txtusername,txtpassword))
             {
                 startActivity(new Intent(Login_page.this, MainActivity.class));
             }else{

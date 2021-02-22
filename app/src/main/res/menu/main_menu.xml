@@ -14,6 +14,11 @@
 <!--            android:icon="@drawable/ic_category"-->
 <!--            android:title="@string/nav_pending_cart" />-->
         <item
+            android:id="@+id/nav_Category"
+            android:icon="@drawable/ic_category"
+            android:title="@string/nav_category"
+            />
+        <item
             android:id="@+id/nav_category_products"
             android:icon="@drawable/ic_products"
             android:title="@string/nav_category_products" />

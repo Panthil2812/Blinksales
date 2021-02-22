@@ -1,44 +1,42 @@
 package com.rku.blinksales.Adapter;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.lifecycle.LiveData;
 
-import com.rku.blinksales.Database.DatabaseHelper;
 import com.rku.blinksales.Fragment.MainViewpagerFragment;
-import com.rku.blinksales.R;
-import com.rku.blinksales.Utility;
+import com.rku.blinksales.InstanceClass.List_Category;
+import com.rku.blinksales.Roomdatabase.CategoryTable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainViewPagerAdapter extends FragmentPagerAdapter {
-
-    ArrayList<String> arr;
-    public MainViewPagerAdapter(@NonNull FragmentManager fm,ArrayList<String> arr) {
+    private List<CategoryTable> arr = new ArrayList<>();
+    //LiveData<List<String>> arr;
+    public MainViewPagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
-        this.arr = arr;
     }
 
     @NonNull
     @Override
     public Fragment getItem(int position) {
         MainViewpagerFragment objFragment = new MainViewpagerFragment();
-//        position = position + 1;
         Bundle bundle = new Bundle();
-        bundle.putString("message",arr.get(position));
+        bundle.putString("message",arr.get(position).getCategory_name());
         objFragment.setArguments(bundle);
         return objFragment;
-    }
 
+    }
+    public void setNotes(List<CategoryTable> notes) {
+        this.arr = notes;
+        notifyDataSetChanged();
+    }
     @Override
     public int getCount() {
         return arr.size();
@@ -47,7 +45,7 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return arr.get(position);
+        return arr.get(position).getCategory_name();
     }
 }
 

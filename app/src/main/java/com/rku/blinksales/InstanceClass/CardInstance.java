@@ -1,7 +1,5 @@
 package com.rku.blinksales.InstanceClass;
 
-import com.rku.blinksales.Database.DatabaseHelper;
-
 public class CardInstance {
     private String p_name;
     private String p_price;

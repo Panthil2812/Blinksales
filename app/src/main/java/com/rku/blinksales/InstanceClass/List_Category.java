@@ -1,4 +1,4 @@
-package com.rku.blinksales.form;
+package com.rku.blinksales.InstanceClass;
 
 public class List_Category {
     private  String C_name;

@@ -4,6 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,66 +14,68 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rku.blinksales.Database.DatabaseHelper;
+import com.rku.blinksales.InstanceClass.List_Category;
 import com.rku.blinksales.R;
+import com.rku.blinksales.Roomdatabase.CategoryTable;
 import com.rku.blinksales.Utility;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRecyclerViewAdapter.MyViewHolder>{
-
-    private final List<String> Data;
-    Context context;
-    ProductsRecyclerViewAdapter recyclerViewAdapter;
-    RecyclerView recyclerView;
-    DatabaseHelper db ;
-    View v1;
-    public CategoryRecyclerViewAdapter(View v1,Context context, List<String> data) {
-        this.Data = data;
-        this.v1 =v1;
-        this.context = context;
-        db = new DatabaseHelper(context);
-    }
+public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRecyclerViewAdapter.NameHolder> {
+    private List<CategoryTable> notes = new ArrayList<>();
+    private OnItemClickListener listener;
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_item,parent,false);
-        MyViewHolder holder = new MyViewHolder(view);
-        return holder;
+    public CategoryRecyclerViewAdapter.NameHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.category_item, parent, false);
+        return new CategoryRecyclerViewAdapter.NameHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        try {
-            holder.txtName.setText(Data.get(position));
-            holder.txtName.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(context,holder.txtName.getText().toString()+" "+position,Toast.LENGTH_LONG).show();
-                    recyclerView = v1.findViewById(R.id.id_products_recyclerView);
-                    recyclerViewAdapter =new ProductsRecyclerViewAdapter(db.getAllData(holder.txtName.getText().toString()));
-                    recyclerView.setLayoutManager(new GridLayoutManager(context, Utility.calculateNoOfColumns(context,180)));
-                    recyclerView.setAdapter(recyclerViewAdapter);
-                }
-            });
-
-        }catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+    public void onBindViewHolder(@NonNull CategoryRecyclerViewAdapter.NameHolder holder, int position) {
+        CategoryTable currentNote = notes.get(position);
+        holder.txtCategoryName.setText(currentNote.getCategory_name());
     }
 
     @Override
     public int getItemCount() {
-        return Data.size();
+        return notes.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView txtName;
-        public MyViewHolder(@NonNull View itemView) {
+    public void setNotes(List<CategoryTable> notes) {
+        this.notes = notes;
+        notifyDataSetChanged();
+    }
+
+    public CategoryTable getNoteAt(int position) {
+        return notes.get(position);
+    }
+
+
+    class NameHolder extends RecyclerView.ViewHolder {
+        private TextView txtCategoryName;
+        private ImageButton EditCategoryName;
+        public NameHolder(View itemView) {
             super(itemView);
-            txtName = itemView.findViewById(R.id.category_item_id);
+            txtCategoryName = itemView.findViewById(R.id.txtCategoryName);
+            EditCategoryName = itemView.findViewById(R.id.EditCategoryName);
+            EditCategoryName.setOnClickListener(v -> {
+                int position = getAdapterPosition();
+
+                if (listener != null && position != RecyclerView.NO_POSITION) {
+                    listener.onItemClick(notes.get(position));
+                }
+            });
         }
     }
+    public interface OnItemClickListener {
+        void onItemClick(CategoryTable note);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
+
 }

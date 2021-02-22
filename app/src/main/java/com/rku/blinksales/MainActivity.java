@@ -27,6 +27,7 @@ import com.rku.blinksales.login.Login_page;
 import com.rku.blinksales.mainfragment.App_manual;
 import com.rku.blinksales.mainfragment.Bill_list;
 import com.rku.blinksales.mainfragment.Cart;
+import com.rku.blinksales.mainfragment.Category;
 import com.rku.blinksales.mainfragment.Category_Products;
 import com.rku.blinksales.mainfragment.Contact_us;
 import com.rku.blinksales.mainfragment.Customers;
@@ -43,13 +44,14 @@ import com.rku.blinksales.mainfragment.Sales_return;
 import com.rku.blinksales.mainfragment.Settings;
 import com.rku.blinksales.mainfragment.Vendor_list;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     NavigationView navigationView;
     ActionBarDrawerToggle toggle;
     DrawerLayout drawer;
     Toolbar toolbar;
     TextView id_weight;
     ImageButton id_btn_refresh;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_menu);
         navigationView.setNavigationItemSelectedListener(this);
-        toggle = new ActionBarDrawerToggle(this, drawer,toolbar,R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         if (savedInstanceState == null) {
@@ -82,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
     }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         id_btn_refresh.setVisibility(View.GONE);
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportActionBar().setTitle(R.string.nav_dashboard);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Dashboard()).commit();
-                Toast.makeText(this,R.string.nav_dashboard, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.nav_dashboard, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_cart:
                 getSupportActionBar().setTitle(R.string.nav_cart);
@@ -107,6 +110,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                        new Pending_cart()).commit();
 //                Toast.makeText(this, R.string.nav_pending_cart, Toast.LENGTH_SHORT).show();
 //                break;
+
+            case R.id.nav_Category:
+                getSupportActionBar().setTitle(R.string.nav_category);
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Category()).commit();
+                Toast.makeText(this, R.string.nav_category_products, Toast.LENGTH_SHORT).show();
+                break;
             case R.id.nav_category_products:
                 getSupportActionBar().setTitle(R.string.nav_category_products);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -197,7 +207,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportActionBar().setTitle(R.string.nav_profile);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Profile()).commit();
-                Toast.makeText(this,R.string.nav_profile, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, R.string.nav_profile, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
                 startActivity(new Intent(MainActivity.this, Login_page.class));
@@ -207,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -216,88 +227,85 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    public  void printInvoice(){
+    public void printInvoice() {
         PdfDocument myPdfDocument = new PdfDocument();
         Paint mypaint = new Paint();
 
-        String[] column = {"invoice number","customer name","contact no","date","qty","amount"};
+        String[] column = {"invoice number", "customer name", "contact no", "date", "qty", "amount"};
 
-        PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(1000,900,1).create();
+        PdfDocument.PageInfo myPageInfo = new PdfDocument.PageInfo.Builder(1000, 900, 1).create();
         PdfDocument.Page myPage = myPdfDocument.startPage(myPageInfo);
 
         Canvas myCanvas = myPage.getCanvas();
         mypaint.setTextSize(50);
-        myCanvas.drawText("INVOICE", 30,80,mypaint);
+        myCanvas.drawText("INVOICE", 30, 80, mypaint);
 
         mypaint.setTextSize(30);
-        myCanvas.drawText("this is a pdf bill", 30,120,mypaint);
+        myCanvas.drawText("this is a pdf bill", 30, 120, mypaint);
 
         mypaint.setTextAlign(Paint.Align.CENTER);
-        myCanvas.drawText("Invoice No", myCanvas.getWidth()-40, 40,mypaint);
+        myCanvas.drawText("Invoice No", myCanvas.getWidth() - 40, 40, mypaint);
 
         mypaint.setTextAlign(Paint.Align.LEFT);
-        myCanvas.drawText("2",myCanvas.getWidth()-40, 40,mypaint);
+        myCanvas.drawText("2", myCanvas.getWidth() - 40, 40, mypaint);
 
-        mypaint.setColor(Color.rgb(150,150,150));
-        myCanvas.drawRect(30,150,myCanvas.getWidth()-30,160,mypaint);
+        mypaint.setColor(Color.rgb(150, 150, 150));
+        myCanvas.drawRect(30, 150, myCanvas.getWidth() - 30, 160, mypaint);
 
         mypaint.setColor(Color.BLACK);
-        myCanvas.drawText("Date",50,200,mypaint);
-        myCanvas.drawText("12-12-2020",250,200,mypaint);
+        myCanvas.drawText("Date", 50, 200, mypaint);
+        myCanvas.drawText("12-12-2020", 250, 200, mypaint);
 
-        myCanvas.drawText("Time",620,200,mypaint);
+        myCanvas.drawText("Time", 620, 200, mypaint);
         mypaint.setTextAlign(Paint.Align.RIGHT);
-        myCanvas.drawText("12:12:00",myCanvas.getWidth()-40,200,mypaint);
+        myCanvas.drawText("12:12:00", myCanvas.getWidth() - 40, 200, mypaint);
         mypaint.setTextAlign(Paint.Align.LEFT);
 
-        mypaint.setColor(Color.rgb(150,150,150));
-        myCanvas.drawRect(30,250,250,300,mypaint);
+        mypaint.setColor(Color.rgb(150, 150, 150));
+        myCanvas.drawRect(30, 250, 250, 300, mypaint);
 
         mypaint.setColor(Color.WHITE);
-        myCanvas.drawText("Bill No: ",50,285,mypaint);
+        myCanvas.drawText("Bill No: ", 50, 285, mypaint);
 
         mypaint.setColor(Color.BLACK);
-        myCanvas.drawText("Customer Name: ",30,350,mypaint);
-        myCanvas.drawText("John", 280,350,mypaint);
+        myCanvas.drawText("Customer Name: ", 30, 350, mypaint);
+        myCanvas.drawText("John", 280, 350, mypaint);
 
-        myCanvas.drawText("Phone",620,350,mypaint);
+        myCanvas.drawText("Phone", 620, 350, mypaint);
         mypaint.setTextAlign(Paint.Align.RIGHT);
-        myCanvas.drawText("1234567890",myCanvas.getWidth()-40,350, mypaint);
+        myCanvas.drawText("1234567890", myCanvas.getWidth() - 40, 350, mypaint);
         mypaint.setTextAlign(Paint.Align.LEFT);
 
-        mypaint.setColor(Color.rgb(150,150,150));
-        myCanvas.drawRect(30,400,myCanvas.getWidth()-30,450,mypaint);
+        mypaint.setColor(Color.rgb(150, 150, 150));
+        myCanvas.drawRect(30, 400, myCanvas.getWidth() - 30, 450, mypaint);
 
 
         mypaint.setColor(Color.WHITE);
-        myCanvas.drawText("Item",50,435,mypaint);
-        myCanvas.drawText("Qty",550,435,mypaint);
+        myCanvas.drawText("Item", 50, 435, mypaint);
+        myCanvas.drawText("Qty", 550, 435, mypaint);
         mypaint.setTextAlign(Paint.Align.RIGHT);
-        myCanvas.drawText("Amount",myCanvas.getWidth()-40,435,mypaint);
+        myCanvas.drawText("Amount", myCanvas.getWidth() - 40, 435, mypaint);
         mypaint.setTextAlign(Paint.Align.LEFT);
 
         mypaint.setColor(Color.BLACK);
-        myCanvas.drawText("Apple",50,480,mypaint);
-        myCanvas.drawText("4",550,480,mypaint);
+        myCanvas.drawText("Apple", 50, 480, mypaint);
+        myCanvas.drawText("4", 550, 480, mypaint);
         mypaint.setTextAlign(Paint.Align.RIGHT);
-        myCanvas.drawText("200",myCanvas.getWidth()-40,435,mypaint);
+        myCanvas.drawText("200", myCanvas.getWidth() - 40, 435, mypaint);
         mypaint.setTextAlign(Paint.Align.RIGHT);
 
 
-        mypaint.setColor(Color.rgb(150,150,150));
-        myCanvas.drawRect(30,550,myCanvas.getWidth()-30,560,mypaint);
+        mypaint.setColor(Color.rgb(150, 150, 150));
+        myCanvas.drawRect(30, 550, myCanvas.getWidth() - 30, 560, mypaint);
 
         mypaint.setColor(Color.BLACK);
-        myCanvas.drawText("SUBTOTAL",550,600,mypaint);
-        myCanvas.drawText("Tax 4%",550,600,mypaint);
-        mypaint.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.BOLD));
-        myCanvas.drawText("TOTAL",550,600,mypaint);
-        mypaint.setTypeface(Typeface.create(Typeface.DEFAULT,Typeface.NORMAL));
+        myCanvas.drawText("SUBTOTAL", 550, 600, mypaint);
+        myCanvas.drawText("Tax 4%", 550, 600, mypaint);
+        mypaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.BOLD));
+        myCanvas.drawText("TOTAL", 550, 600, mypaint);
+        mypaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
 
         //10:58
-
-
-
 
 
     }

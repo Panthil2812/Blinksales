@@ -1,18 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:textColor="@color/colorAccent"
-    android:background="@drawable/textview_background"
-    android:text="Category"
-    android:textSize="18dp"
-android:paddingStart="12dp"
-    android:paddingEnd="12dp"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    android:gravity="center"
-    android:id="@+id/category_item_id"
->
-</TextView>
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/cardview_background"
+        android:layout_marginBottom="8dp"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/txtCategoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center|start"
+            android:maxLines="1"
+            android:paddingStart="16dp"
+            android:text="Title"
+            android:textColor="@color/colorAccent"
+            android:textSize="18dp" />
+
+        <ImageButton
+            android:id="@+id/EditCategoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            android:padding="8dp"
+            app:srcCompat="@drawable/ic_edit" />
+    </LinearLayout>

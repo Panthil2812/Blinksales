@@ -92,7 +92,7 @@
                     android:layout_height="match_parent"
                     android:hint="@string/username"
                     android:inputType="none|textPersonName"
-                    android:text="Admin"
+                    android:text="admin"
                     android:textSize="18dp" />
             </com.google.android.material.textfield.TextInputLayout>
 

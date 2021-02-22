@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_light"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:context=".form.Product_form"
-    android:background="@color/primary_light">
+    tools:context=".form.Product_form">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:orientation="horizontal"
         android:background="@color/colorPrimaryDark"
         android:elevation="5dp"
+        android:orientation="horizontal"
         android:padding="8dp">
+
         <ImageButton
             android:id="@+id/id_back_arrow"
             android:layout_width="70dp"
             android:layout_height="match_parent"
-            android:elevation="4dp"
             android:layout_weight="1"
-            android:background="@drawable/ic_backarrow"/>
+            android:background="@drawable/ic_backarrow"
+            android:elevation="4dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -33,9 +35,11 @@
             android:textColor="@color/colorAccent"
             android:textSize="18sp" />
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -62,8 +66,8 @@
                 </de.hdodenhof.circleimageview.CircleImageView>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/TextInputLayoutStyleForm"
                     android:id="@+id/id_cat_name_layout"
+                    style="@style/TextInputLayoutStyleForm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -85,11 +89,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
                     android:layout_marginTop="16dp"
-                    android:text="@string/nav_category"
+                    android:background="@color/colorPrimaryDark"
                     android:gravity="start|center"
                     android:paddingStart="12dp"
 
-                    android:background="@color/colorPrimaryDark"
+                    android:text="@string/nav_category"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_cat_name_layout">
@@ -154,15 +158,15 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
-                    android:background="@color/colorPrimaryDark"
                     android:id="@+id/id_pro_unit"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
                     android:layout_height="?attr/actionBarSize"
                     android:layout_marginStart="8dp"
-                    android:text="Unit"
+                    android:background="@color/colorPrimaryDark"
                     android:gravity="start|center"
                     android:paddingStart="12dp"
+                    android:text="Unit"
 
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/id_pro_form_qty_layout"
@@ -188,19 +192,37 @@
                         android:inputType="none|textPersonName" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.switchmaterial.SwitchMaterial
+                <LinearLayout
                     android:id="@+id/id_pro_stock"
+                    style="@style/TextInputLayoutStyleForm"
                     android:layout_width="wrap_content"
-                    android:layout_height="55dp"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="16dp"
-                    android:text="Stock"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="8dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="1"
                     app:layout_constraintStart_toEndOf="@+id/id_pro_form_barcode_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_unit" />
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_unit">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:textColor="@color/colorAccent"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:textSize="18dp"
+                        android:text="Stock"
+                        />
+
+                    <Switch
+                        android:id="@+id/id_Switch_Stock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:theme="@style/SwitchTheme"
+                       />
+                </LinearLayout>
 
 
                 <com.google.android.material.textfield.TextInputLayout

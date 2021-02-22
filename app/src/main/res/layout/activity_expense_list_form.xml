@@ -33,105 +33,79 @@
             android:textColor="@color/colorAccent"
             android:textSize="18sp" />
     </LinearLayout>
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="18dp">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_exp_name_layout"
+            style="@style/TextInputLayoutStyleForm"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="wrap_content"
+            android:hint="Expense name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_exp_name"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/primary_light"
-                android:padding="20dp">
+                android:inputType="none|textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_exp_name_layout"
-                    style="@style/TextInputLayoutStyleForm"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/id_exp_amount_layout"
+                style="@style/TextInputLayoutStyleForm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginEnd="8dp"
+                android:hint="Amount">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/id_exp_amount"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Expense name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_exp_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_exp_amount_layout"
-                    style="@style/TextInputLayoutStyleForm"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Amount"
-                    app:layout_constraintEnd_toStartOf="@+id/id_pur_lst_redate_layout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_exp_name_layout">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_exp_amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pur_lst_redate_layout"
-                    style="@style/TextInputLayoutStyleForm"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:hint="Select Date"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/id_exp_amount_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/id_exp_name_layout">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_pur_lst_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="date" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <Button
-                    android:id="@+id/id_exp_btn_save"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:background="@drawable/button_background"
-                    android:text="@string/save"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
+                    android:inputType="none|textPersonName" />
+            </com.google.android.material.textfield.TextInputLayout>
                 <TextView
-                    android:id="@+id/textView6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="Expense Type"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_exp_amount_layout" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:id="@+id/id_exp_date"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="8dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Select Date">
+                </TextView>
 
         </LinearLayout>
-    </ScrollView>
+        <TextView
+            android:id="@+id/id_exp_type"
+            style="@style/TextInputLayoutStyleForm"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:paddingStart="18dp"
+            android:background="@color/colorPrimaryDark"
+            android:gravity="start|center"
+            android:text="Select Expense Type">
+        </TextView>
+        <Button
+            android:id="@+id/id_exp_btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:text="@string/save"
+            android:layout_marginTop="24dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp" />
+    </LinearLayout>
+
 
 </LinearLayout>
 

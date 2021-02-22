@@ -1,4 +1,4 @@
-package com.rku.blinksales;
+package com.rku.blinksales.form;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageButton;
+
+import com.rku.blinksales.R;
 
 import java.io.IOException;
 
