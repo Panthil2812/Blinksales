@@ -117,14 +117,14 @@ public class Category extends Fragment {
                     Paint p = new Paint();
                     if (dX > 0) {
                         /* Set your color for positive displacement */
-                        p.setColor(getResources().getColor(R.color.colorAccent));
+                        p.setColor(getResources().getColor(R.color.colorPrimary));
 
                         // Draw Rect with varying right side, equal to displacement dX
                         c.drawRect((float) itemView.getLeft(), (float) itemView.getTop(), dX,
                                 (float) itemView.getBottom(), p);
                     } else {
                         /* Set your color for negative displacement */
-                        p.setColor(getResources().getColor(R.color.colorAccent));
+                        p.setColor(getResources().getColor(R.color.colorPrimary));
                         // Draw Rect with varying left side, equal to the item's right side plus negative displacement dX
                         c.drawRect((float) itemView.getRight() + dX, (float) itemView.getTop(),
                                 (float) itemView.getRight(), (float) itemView.getBottom(), p);

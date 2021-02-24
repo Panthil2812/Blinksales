@@ -42,7 +42,7 @@
             android:id="@+id/id_exp_name_layout"
             style="@style/TextInputLayoutStyleForm"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="55dp"
             android:hint="Expense name">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -60,23 +60,23 @@
                 android:id="@+id/id_exp_amount_layout"
                 style="@style/TextInputLayoutStyleForm"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
                 android:hint="Amount">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/id_exp_amount"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:inputType="none|textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
                 <TextView
                     android:id="@+id/id_exp_date"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="50dp"
                     android:layout_marginStart="8dp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@drawable/cart_background"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Select Date">
@@ -87,9 +87,9 @@
             android:id="@+id/id_exp_type"
             style="@style/TextInputLayoutStyleForm"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
+            android:layout_height="55dp"
             android:paddingStart="18dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="@drawable/cart_background"
             android:gravity="start|center"
             android:text="Select Expense Type">
         </TextView>

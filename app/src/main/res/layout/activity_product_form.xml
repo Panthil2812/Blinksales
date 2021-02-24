@@ -69,7 +69,7 @@
                     android:id="@+id/id_cat_name_layout"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="55dp"
                     android:layout_marginTop="16dp"
                     android:hint="@string/products"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -87,9 +87,9 @@
                     android:id="@+id/id_pro_category"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="50dp"
                     android:layout_marginTop="16dp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@drawable/cart_background"
                     android:gravity="start|center"
                     android:paddingStart="12dp"
 
@@ -106,7 +106,7 @@
                     android:id="@+id/id_pro_form_selling_price_layout"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="55dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:hint="@string/selling_price"
@@ -125,7 +125,7 @@
                     android:id="@+id/id_pro_form_mrp_layout"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="55dp"
                     android:layout_marginTop="16dp"
                     android:hint="@string/products_mrp"
                     app:layout_constraintEnd_toStartOf="@+id/id_pro_form_selling_price_layout"
@@ -144,9 +144,10 @@
                     android:id="@+id/id_pro_form_qty_layout"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="55dp"
                     android:hint="@string/products_qty"
                     app:layout_constraintEnd_toStartOf="@+id/id_pro_unit"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_pro_form_mrp_layout">
 
@@ -161,16 +162,19 @@
                     android:id="@+id/id_pro_unit"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
-                    android:layout_height="?attr/actionBarSize"
+                    android:layout_height="50dp"
                     android:layout_marginStart="8dp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@drawable/cart_background"
                     android:gravity="start|center"
                     android:paddingStart="12dp"
                     android:text="Unit"
 
+                    app:layout_constraintBottom_toBottomOf="@+id/id_pro_form_qty_layout"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/id_pro_form_qty_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_selling_price_layout">
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_selling_price_layout"
+                    app:layout_constraintVertical_bias="1.0">
 
                 </TextView>
 
@@ -178,7 +182,7 @@
                     android:id="@+id/id_pro_form_barcode_layout"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="55dp"
                     android:hint="@string/products_barcode"
                     app:layout_constraintEnd_toStartOf="@+id/id_pro_stock"
                     app:layout_constraintHorizontal_weight="2"
@@ -198,30 +202,30 @@
                     android:layout_width="wrap_content"
                     android:layout_height="50dp"
                     android:layout_marginStart="8dp"
-                    android:background="@color/colorPrimaryDark"
+                    android:background="@drawable/cart_background"
                     android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/id_pro_form_barcode_layout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_barcode_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_unit">
+                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_barcode_layout">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:textColor="@color/colorAccent"
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
-                        android:textSize="18dp"
                         android:text="Stock"
-                        />
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18dp" />
 
                     <Switch
                         android:id="@+id/id_Switch_Stock"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:theme="@style/SwitchTheme"
-                       />
+                        android:paddingEnd="4dp"
+                        android:paddingStart="4dp"/>
                 </LinearLayout>
 
 
@@ -229,7 +233,7 @@
                     android:id="@+id/id_pro_form_cgst_layout"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="55dp"
                     android:hint="@string/products_cgst"
                     app:layout_constraintEnd_toStartOf="@+id/id_pro_form_sgst_layout"
                     app:layout_constraintStart_toStartOf="parent"
@@ -246,7 +250,7 @@
                     android:id="@+id/id_pro_form_sgst_layout"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="55dp"
                     android:layout_marginStart="8dp"
                     android:hint="@string/products_sgst"
                     app:layout_constraintEnd_toStartOf="@+id/id_pro_form_hsn_layout"
@@ -265,7 +269,7 @@
                     android:id="@+id/id_pro_form_hsn_layout"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="55dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:hint="@string/products_hsn"
