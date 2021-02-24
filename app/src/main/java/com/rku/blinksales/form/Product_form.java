@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -38,6 +39,7 @@ import java.net.URI;
 import java.util.UUID;
 
 public class Product_form extends AppCompatActivity {
+    CheckBox ck_gst_included;
     EditText id_pro_name,id_pro_selling_price,id_pro_mrp,id_pro_qty,id_pro_barcode,id_cgst_unit,id_sgst_unit,id_hsn_unit;
     TextView id_pro_unit,id_pro_category;
     ImageView img_product;
@@ -61,6 +63,7 @@ public class Product_form extends AppCompatActivity {
         img_product = findViewById(R.id.img_product);
         id_Switch_Stock = findViewById(R.id.id_Switch_Stock);
         id_back_arrow = findViewById(R.id.id_back_arrow);
+        ck_gst_included = findViewById(R.id.ck_gst_included);
         img_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,19 +130,20 @@ public class Product_form extends AppCompatActivity {
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                     String picturePath = cursor.getString(columnIndex);
                     File file = new File(picturePath);
-                    long l = file.length();
-                    float i = (float)l/1048576;
-                    if(i<3)
-                    {
-                        System.out.println("Size of Image : "+i+" MP");
-                       // imagePath.setText("URL");
-                        img_product.setImageBitmap(BitmapFactory.decodeFile(picturePath));
-
-                    }else{
-                        System.out.println("Size of Image is 3 MP");
-                      //  imagePath.setText("Size of Image : 3 MP");
-                        img_product.setImageResource(R.drawable.ic_products);
-                    }
+//                    long l = file.length();
+//                    float i = (float)l/1048576;
+//                    if(i<3)
+//                    {
+//                        System.out.println("Size of Image : "+i+" MP");
+//                       // imagePath.setText("URL");
+//                        img_product.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+//
+//                    }else{
+//                        System.out.println("Size of Image is 3 MP");
+//                      //  imagePath.setText("Size of Image : 3 MP");
+//                        img_product.setImageResource(R.drawable.ic_products);
+//                    }
+                    img_product.setImageBitmap(BitmapFactory.decodeFile(picturePath));
                     cursor.close();
                 }
             }

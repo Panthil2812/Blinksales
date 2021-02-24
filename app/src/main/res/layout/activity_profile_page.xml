@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"></ImageButton>
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/id_img_profile"
             android:layout_width="150dp"
 
@@ -35,9 +35,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageButton2">
+            app:layout_constraintTop_toBottomOf="@+id/imageButton2"
+            app:shapeAppearanceOverlay="@style/Circular"
+           >
 
-        </de.hdodenhof.circleimageview.CircleImageView>
+        </com.google.android.material.imageview.ShapeableImageView>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/id_profile_name_layout"

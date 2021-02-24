@@ -50,10 +50,10 @@
                 android:padding="24dp">
 
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/img_product"
                     android:layout_width="150dp"
-
+                    app:shapeAppearanceOverlay="@style/Circular"
                     android:layout_height="150dp"
                     android:src="@drawable/ic_products"
                     app:civ_border_color="@color/colorAccent"
@@ -63,7 +63,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageButton2">
 
-                </de.hdodenhof.circleimageview.CircleImageView>
+                </com.google.android.material.imageview.ShapeableImageView>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/id_cat_name_layout"
@@ -237,7 +237,7 @@
                     android:hint="@string/products_cgst"
                     app:layout_constraintEnd_toStartOf="@+id/id_pro_form_sgst_layout"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout">
+                    app:layout_constraintTop_toBottomOf="@+id/ck_gst_included">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_cgst_unit"
@@ -255,7 +255,7 @@
                     android:hint="@string/products_sgst"
                     app:layout_constraintEnd_toStartOf="@+id/id_pro_form_hsn_layout"
                     app:layout_constraintStart_toEndOf="@+id/id_pro_form_cgst_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout">
+                    app:layout_constraintTop_toBottomOf="@+id/ck_gst_included">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_sgst_unit"
@@ -271,11 +271,10 @@
                     android:layout_width="0dp"
                     android:layout_height="55dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
                     android:hint="@string/products_hsn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/id_pro_form_sgst_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout">
+                    app:layout_constraintTop_toBottomOf="@+id/ck_gst_included">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_hsn_unit"
@@ -298,6 +297,15 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_pro_form_sgst_layout" />
+
+                <CheckBox
+                    android:id="@+id/ck_gst_included"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="is GST included"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
