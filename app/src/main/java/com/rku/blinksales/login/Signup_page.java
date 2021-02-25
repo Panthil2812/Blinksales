@@ -70,7 +70,7 @@ public class Signup_page extends AppCompatActivity{
         }
         else{
             UserTable userTable = new UserTable(user_name,user_email,user_password);
-                db.insertUser(userTable);
+            db.insertUser(userTable);
               SignUpToLogin(view);
         }
 

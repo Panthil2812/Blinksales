@@ -58,10 +58,10 @@
                          android:layout_width="wrap_content"
                          android:layout_height="wrap_content"
                          android:layout_marginTop="16dp"
-                         android:layout_marginBottom="24dp"
+                         android:layout_marginBottom="16dp"
                          android:onClick="SignUpToLogin"
                          android:text="@string/signupTologin"
-                         android:textSize="14sp"
+                         android:textSize="18sp"
                          app:layout_constraintBottom_toBottomOf="parent"
                          app:layout_constraintEnd_toEndOf="parent"
                          app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +107,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:hint="@string/email"
-                                android:inputType="none|textPersonName"
+                                android:inputType="textEmailAddress"
                                 android:text="admin@gmail.com" />
                      </com.google.android.material.textfield.TextInputLayout>
 
@@ -131,8 +131,9 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginBottom="8dp"
                                 android:hint="@string/password"
-                                android:inputType="textPersonName"
-                                android:text="admin" />
+
+                                android:inputType="textPassword"
+                                android:text="admin123" />
 
                      </com.google.android.material.textfield.TextInputLayout>
 
@@ -153,8 +154,8 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:hint="@string/repassword"
-                                android:inputType="none|textPersonName"
-                                android:text="admin" />
+                                android:inputType="textPassword"
+                                android:text="admin123" />
                      </com.google.android.material.textfield.TextInputLayout>
 
 

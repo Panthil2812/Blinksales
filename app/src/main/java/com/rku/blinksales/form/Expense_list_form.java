@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -21,27 +22,53 @@ import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.ExpenseTable;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.text.DateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class Expense_list_form extends AppCompatActivity {
-    TextView id_exp_date,id_exp_type;
+    TextView id_exp_date,id_exp_type,pageTite;
     EditText id_exp_to_whom,id_exp_amount;
     ImageButton id_back_arrow;
     Button id_exp_btn_save;
-    int i = 0;
+    final int add = -1;
+    int id = -1;
     DatabaseDao db;
+    Date chosenDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_list_form);
+        db = MainRoomDatabase.getInstance(this).getDao();
         id_back_arrow = findViewById(R.id.id_back_arrow);
+        pageTite = findViewById(R.id.pageTite);
         id_exp_date = findViewById(R.id.id_exp_date);
         id_exp_type = findViewById(R.id.id_exp_type);
         id_exp_to_whom = findViewById(R.id.id_exp_name);
         id_exp_amount = findViewById(R.id.id_exp_amount);
         id_exp_btn_save = findViewById(R.id.id_exp_btn_save);
-        db = MainRoomDatabase.getInstance(this).getDao();
+
+        Intent intent = getIntent();
+        if (intent.hasExtra("id")) {
+            pageTite.setText("Edit Expense");
+            id_exp_to_whom.setText(intent.getStringExtra("name"));
+            id_exp_amount.setText(intent.getStringExtra("amount"));
+            id_exp_date.setText(intent.getStringExtra("date"));
+            String sDate1=intent.getStringExtra("date");
+            try {
+                chosenDate = new SimpleDateFormat(String.valueOf(DateFormat.MEDIUM), Locale.UK).parse(sDate1);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            id_exp_type.setText(intent.getStringExtra("type"));
+            id = intent.getIntExtra("id",-1);
+
+        } else {
+            pageTite.setText("Add Expense");
+        }
 
         id_back_arrow.setOnClickListener(v -> {
             onBackPressed();
@@ -53,11 +80,17 @@ public class Expense_list_form extends AppCompatActivity {
             int  mYear = c.get(Calendar.YEAR);
             int mMonth = c.get(Calendar.MONTH);
             int mDay = c.get(Calendar.DAY_OF_MONTH);
-
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
                         @Override
                         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                            id_exp_date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                            Calendar cal = Calendar.getInstance();
+                            cal.setTimeInMillis(0);
+                            cal.set(year, monthOfYear, dayOfMonth, 0, 0, 0);
+                            chosenDate = cal.getTime();
+                            DateFormat df_medium_us = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.UK);
+                            String df_medium_us_str = df_medium_us.format(chosenDate);
+//                            dateToTimestamp(chosenDate).toString();
+                            id_exp_date.setText(df_medium_us_str);
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
@@ -91,12 +124,19 @@ public class Expense_list_form extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),"select type",Toast.LENGTH_SHORT).show();
             }
             else{
-                ExpenseTable expenseTable = new ExpenseTable(exp_name,exp_amount,exp_date,exp_type);
+                ExpenseTable expenseTable = new ExpenseTable(exp_name,exp_amount,chosenDate,exp_type);
                 try{
-                    db.insertExpenseTable(expenseTable);
+                    if(add != id)
+                    {
+                        Toast.makeText(getApplicationContext(),"edit expense .........",Toast.LENGTH_SHORT).show();
+                        expenseTable.setId(id);
+                        db.updateExpenseTable(expenseTable);
+                    }else {
+                        db.insertExpenseTable(expenseTable);
+                        Toast.makeText(getApplicationContext(),"insertDate",Toast.LENGTH_SHORT).show();
+                    }
 
-                    Toast.makeText(getApplicationContext(),"insertDate",Toast.LENGTH_SHORT).show();
-                    //onBackPressed();
+                    onBackPressed();
                 }catch (Exception e){e.getStackTrace();}
 
 
@@ -105,5 +145,8 @@ public class Expense_list_form extends AppCompatActivity {
 
 
         });
+
+
+
     }
 }

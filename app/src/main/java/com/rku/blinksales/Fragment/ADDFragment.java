@@ -1,6 +1,7 @@
 package com.rku.blinksales.Fragment;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -36,7 +37,7 @@ public class ADDFragment extends BottomSheetDialogFragment {
     TextView text;
     List<String> list_text = null;
     int i ;
-    DatabaseDao db;
+    private static DatabaseDao db ;
     public ADDFragment(TextView id_pro_unit,int i) {
 
         this.text = id_pro_unit;
@@ -44,14 +45,13 @@ public class ADDFragment extends BottomSheetDialogFragment {
     }
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        db = MainRoomDatabase.getInstance(getContext()).getDao();
+        //db = MainRoomDatabase.getInstance(getContext()).getDao();
         View v = inflater.inflate(R.layout.activity_unit, container, false);
         FlexboxLayout flexboxLayout = v.findViewById(R.id.unit_container);
         TextView title = v.findViewById(R.id.txtTitleChoose);
         ImageButton id_Delete_type = v.findViewById(R.id.id_Delete_type);
-
         Button id_cat_btn_save = v.findViewById(R.id.id_cat_btn_save);
-
+        db = MainRoomDatabase.getInstance(getContext()).getDao();
         if(i == 12) {
             list_text = new ArrayList<>(Arrays.asList("Piece", "Kg", "Gram", "Ml", "Liter", "Mm", "Ft", "Meter", "Sq. Ft.",
                     "Sq.Meter", "km", "Set", "Hour", "Day", "Bunch", "Month", "Year",
@@ -79,8 +79,7 @@ public class ADDFragment extends BottomSheetDialogFragment {
         id_Delete_type.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(),"Delete all ",Toast.LENGTH_SHORT).show();
-                db.deleteAllExpenseType();
+                DeleteDialog(v,getContext());
                 dismiss();
                 text.setText("Select Expense Type ");
 
@@ -150,6 +149,36 @@ public class ADDFragment extends BottomSheetDialogFragment {
                         alertDialog.dismiss();
 
                 }
+            }
+        });
+    }
+    public static void DeleteDialog(View view, Context c){
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        ViewGroup viewGroup = view.findViewById(android.R.id.content);
+        View dialogView = LayoutInflater.from(view.getContext()).inflate(R.layout.delete_dialog, viewGroup, false);
+        builder.setView(dialogView);
+        TextView Dialog_title= dialogView.findViewById(R.id.Dialog_title);
+        TextView Dialog_message= dialogView.findViewById(R.id.Dialog_message);
+        Button OK = dialogView.findViewById(R.id.Dialog_ok);
+        Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+
+        OK.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                db.deleteAllExpenseType();
+                Toast.makeText(c, "Category  deleted", Toast.LENGTH_SHORT).show();
+                alertDialog.cancel();
+            }
+        });
+        Cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                 Toast.makeText(c, "Category Not deleted", Toast.LENGTH_SHORT).show();
+                alertDialog.cancel();
             }
         });
     }

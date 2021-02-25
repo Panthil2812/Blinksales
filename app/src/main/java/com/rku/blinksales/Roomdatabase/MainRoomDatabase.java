@@ -6,7 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
+
+import java.util.Calendar;
+import java.util.Date;
 
 @Database(entities = {
         UserTable.class,
@@ -17,7 +21,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 
 
-
+@TypeConverters({Converters.class})
 
 
 
@@ -61,6 +65,7 @@ public abstract class MainRoomDatabase extends RoomDatabase {
             Dao.insertCategory(new CategoryTable("Fruits4"));
             Dao.insertCategory(new CategoryTable("Grocery5"));
             Dao.insertCategory(new CategoryTable("Vegetables6"));
+            Dao.insertExpenseTable(new ExpenseTable("exp_name","1000", Calendar.getInstance().getTime(),"Tea"));
             return null;
         }
     }

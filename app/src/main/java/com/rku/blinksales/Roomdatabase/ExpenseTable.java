@@ -3,6 +3,8 @@ package com.rku.blinksales.Roomdatabase;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity(tableName = "ExpenseTable")
 public class ExpenseTable {
     @PrimaryKey(autoGenerate = true)
@@ -10,10 +12,10 @@ public class ExpenseTable {
 
     String exp_name;
     String exp_amount;
-    String exp_date;
+    Date exp_date;
     String exp_type;
 
-    public ExpenseTable(String exp_name, String exp_amount, String exp_date, String exp_type) {
+    public ExpenseTable(String exp_name, String exp_amount, Date exp_date, String exp_type) {
         this.exp_name = exp_name;
         this.exp_amount = exp_amount;
         this.exp_date = exp_date;
@@ -44,11 +46,11 @@ public class ExpenseTable {
         this.exp_amount = exp_amount;
     }
 
-    public String getExp_date() {
+    public Date getExp_date() {
         return exp_date;
     }
 
-    public void setExp_date(String exp_date) {
+    public void setExp_date(Date exp_date) {
         this.exp_date = exp_date;
     }
 

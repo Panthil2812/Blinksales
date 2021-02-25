@@ -24,6 +24,7 @@
             android:background="@drawable/ic_backarrow"/>
 
         <TextView
+            android:id="@+id/pageTite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -64,11 +65,12 @@
                 android:layout_weight="1"
                 android:layout_marginEnd="8dp"
                 android:hint="Amount">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/id_exp_amount"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="none|textPersonName" />
+                    android:inputType="none|number" />
             </com.google.android.material.textfield.TextInputLayout>
                 <TextView
                     android:id="@+id/id_exp_date"

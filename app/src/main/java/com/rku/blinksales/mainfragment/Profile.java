@@ -15,7 +15,6 @@ public class Profile  extends Fragment {
     private static final int RESULT_CANCELED = 0;
     private static final int RESULT_OK = -1;
     private CircleImageView id_img_profile;
-    private String userChoosenTask;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
