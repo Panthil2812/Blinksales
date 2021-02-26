@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -21,6 +22,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.android.flexbox.FlexboxLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.textfield.TextInputLayout;
 import com.rku.blinksales.R;
 import com.rku.blinksales.Roomdatabase.CategoryTable;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
@@ -41,7 +43,7 @@ public class ADDFragment extends BottomSheetDialogFragment {
     public ADDFragment(TextView id_pro_unit,int i) {
 
         this.text = id_pro_unit;
-       this.i = i;
+        this.i = i;
     }
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
@@ -90,16 +92,16 @@ public class ADDFragment extends BottomSheetDialogFragment {
         for (int i = 0; i < list_text.size(); i++) {
             final TextView tv = new TextView(getContext());
             tv.setText(list_text.get(i). substring(0, 1). toUpperCase() +list_text.get(i).substring(1).toLowerCase());
-            tv.setHeight(120);
+          //  tv.setHeight(90);
             tv.setTextColor(Color.rgb(68,44,46));
-            tv.setTextSize(14.0f);
+            tv.setTextSize(18.0f);
             tv.setGravity(Gravity.CENTER);
-            tv.setTextColor(Color.parseColor("#000000"));
+            tv.setTextColor(getResources().getColor(R.color.colorAccent));
             tv.setBackground(getResources().getDrawable(R.drawable.unit_border));
             tv.setId(i + 1);
             tv.setLayoutParams(buttonLayoutParams);
             tv.setTag(i);
-            tv.setPadding(30, 10, 30, 10);
+            tv.setPadding(30,20,30,20);
             tv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -118,25 +120,33 @@ public class ADDFragment extends BottomSheetDialogFragment {
         ViewGroup viewGroup = v.findViewById(android.R.id.content);
         View dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.catagory_form_bottom_sheet, viewGroup, false);
         builder.setView(dialogView);
+
+        TextInputLayout id_cat_name_layout = dialogView.findViewById(R.id.id_cat_name_layout);
+        id_cat_name_layout.setHint("Category");
         Button btnAdd = dialogView.findViewById(R.id.id_cat_btn_save);
-        TextView titleDialog = dialogView.findViewById(R.id.texttitle);
+        TextView titleDialog = dialogView.findViewById(R.id.textTitle);
         if(i == 13)
         {
+            id_cat_name_layout.setHint("Expense Type");
             titleDialog.setText("ADD EXPENSE TYPE");
         }
         EditText editName = dialogView.findViewById(R.id.id_cat_name);
         AlertDialog alertDialog = builder.create();
+        alertDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        alertDialog.setCanceledOnTouchOutside(true);
         alertDialog.show();
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String category = editName.getText().toString().trim();
-                category = category. substring(0, 1). toUpperCase() +category.substring(1).toLowerCase();
+               //
                 if (category.isEmpty()) {
                     Toast.makeText(getActivity(), "Enter Name", Toast.LENGTH_LONG).show();
                 } else {
+                    category = category. substring(0, 1). toUpperCase() +category.substring(1).toLowerCase();
                     if(i == 13)
                     {
+
                         ExpenseType expenseType = new ExpenseType(category);
                         db.insertExpenseType(expenseType);
                     }else {
@@ -144,9 +154,9 @@ public class ADDFragment extends BottomSheetDialogFragment {
                         db.insertCategory(categoryTable);
                     }
                     text.setText(category);
-                   // Toast.makeText(getActivity(), "ADD : " + category, Toast.LENGTH_LONG).show();
-                         dismiss();
-                        alertDialog.dismiss();
+                    // Toast.makeText(getActivity(), "ADD : " + category, Toast.LENGTH_LONG).show();
+                    dismiss();
+                    alertDialog.dismiss();
 
                 }
             }
@@ -177,7 +187,7 @@ public class ADDFragment extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
                 //adapter.notifyItemChanged(viewHolder.getAdapterPosition());
-                 Toast.makeText(c, "Category Not deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(c, "Category Not deleted", Toast.LENGTH_SHORT).show();
                 alertDialog.cancel();
             }
         });

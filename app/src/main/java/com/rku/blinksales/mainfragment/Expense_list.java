@@ -20,19 +20,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.rku.blinksales.Adapter.CategoryRecyclerViewAdapter;
-import com.rku.blinksales.Adapter.ListRecyclerViewAdapter;
+import com.rku.blinksales.Adapter.ExpenseListRecyclerViewAdapter;
 import com.rku.blinksales.R;
-import com.rku.blinksales.Roomdatabase.CategoryTable;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.ExpenseTable;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 import com.rku.blinksales.form.Expense_list_form;
-import com.rku.blinksales.form.Product_form;
 
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 public class Expense_list extends Fragment {
     FloatingActionButton id_add_expense;
@@ -47,15 +44,20 @@ public class Expense_list extends Fragment {
         RecyclerView recyclerView = view.findViewById(R.id.expense_list_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        final ListRecyclerViewAdapter adapter = new ListRecyclerViewAdapter();
+        final ExpenseListRecyclerViewAdapter adapter = new ExpenseListRecyclerViewAdapter();
         recyclerView.setAdapter(adapter);
-        db.getAllExpenseList().observe(this, new Observer<List<ExpenseTable>>() {
+        try {
+            db.getAllExpenseList().observe(this, new Observer<List<ExpenseTable>>() {
 
-            @Override
-            public void onChanged(@Nullable List<ExpenseTable> notes) {
-                adapter.setNotes(notes);
-            }
-        });
+                @Override
+                public void onChanged(@Nullable List<ExpenseTable> notes) {
+                    adapter.setNotes(notes);
+                }
+            });
+        }catch (Exception e){
+            e.getStackTrace();
+        }
+
 
         //  add new Expense form in click event.....
         id_add_expense.setOnClickListener(new View.OnClickListener() {
@@ -66,19 +68,17 @@ public class Expense_list extends Fragment {
         });
 
 
-        adapter.setOnItemClickListener(new ListRecyclerViewAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(ExpenseTable note) {
-                Intent intent = new Intent(getContext(), Expense_list_form.class);
-                intent.putExtra("id", note.getId());
-                intent.putExtra("name", note.getExp_name());
-                intent.putExtra("amount", note.getExp_amount());
-                intent.putExtra("type", note.getExp_type());
-                DateFormat df_medium_us = DateFormat.getDateInstance(DateFormat.SHORT, Locale.UK);
-                String df_medium_us_str = df_medium_us.format(note.getExp_date());
-                intent.putExtra("date", df_medium_us_str);
-                startActivity(intent);
-            }
+        adapter.setOnItemClickListener(note -> {
+            Intent intent = new Intent(getContext(), Expense_list_form.class);
+            intent.putExtra("id", note.getId());
+            intent.putExtra("name", note.getExp_name());
+            intent.putExtra("amount", note.getExp_amount());
+            intent.putExtra("type", note.getExp_type());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+            Date date = note.getExp_date();
+            String dateStr = sdf.format(date);
+            intent.putExtra("date", dateStr);
+            startActivity(intent);
         });
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
@@ -101,18 +101,27 @@ public class Expense_list extends Fragment {
                 OK.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        db.deleteExpenseList(adapter.getNoteAt(viewHolder.getAdapterPosition()));
-                        // db.deleteCategory(adapter.getNoteAt(viewHolder.getAdapterPosition()));
-                        Toast.makeText(getActivity(), "Category  deleted", Toast.LENGTH_SHORT).show();
-                        alertDialog.cancel();
+                        try{
+                            db.deleteExpenseList(adapter.getNoteAt(viewHolder.getAdapterPosition()));
+                            Toast.makeText(getActivity(), "Category  deleted", Toast.LENGTH_SHORT).show();
+                            alertDialog.cancel();
+                        }catch (Exception e)
+                        {
+                            e.getStackTrace();
+                        }
+
                     }
                 });
                 Cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        adapter.notifyItemChanged(viewHolder.getAdapterPosition());
-                        Toast.makeText(getActivity(), "Category Not deleted", Toast.LENGTH_SHORT).show();
-                        alertDialog.cancel();
+                        try {
+                            adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                            Toast.makeText(getActivity(), "Category Not deleted", Toast.LENGTH_SHORT).show();
+                            alertDialog.cancel();
+                        }catch (Exception e) {
+                            e.getStackTrace();
+                        }
                     }
                 });
             }
@@ -122,23 +131,23 @@ public class Expense_list extends Fragment {
                 if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
                     // Get RecyclerView item from the ViewHolder
                     View itemView = viewHolder.itemView;
-
                     Paint p = new Paint();
-                    if (dX > 0) {
-                        p.setColor(getResources().getColor(R.color.colorPrimary));
-                        c.drawRect((float) itemView.getLeft(), (float) itemView.getTop(), dX,
-                                (float) itemView.getBottom(), p);
-                    } else {
-                        p.setColor(getResources().getColor(R.color.colorPrimary));
-                        c.drawRect((float) itemView.getRight() + dX, (float) itemView.getTop(),
-                                (float) itemView.getRight(), (float) itemView.getBottom(), p);
-                    }
+                    try{
+                        if (dX > 0) {
+                            p.setColor(getResources().getColor(R.color.colorPrimary));
+                            c.drawRect((float) itemView.getLeft(), (float) itemView.getTop(), dX,
+                                    (float) itemView.getBottom(), p);
+                        } else {
+                            p.setColor(getResources().getColor(R.color.colorPrimary));
+                            c.drawRect((float) itemView.getRight() + dX, (float) itemView.getTop(),
+                                    (float) itemView.getRight(), (float) itemView.getBottom(), p);
+                        }
+                    }catch (Exception e){e.getStackTrace();}
+
                     super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
                 }
             }
         }).attachToRecyclerView(recyclerView);
         return view;
     }
-
-
 }

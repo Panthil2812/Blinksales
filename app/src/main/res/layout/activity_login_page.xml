@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorAccent"
     android:padding="8dp"
+
     tools:context=".login.Login_page">
 
     <ScrollView

@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -23,5 +24,5 @@ public class Cart  extends Fragment {
         id_add_products.setOnClickListener(v -> startActivity(new Intent(getContext().getApplicationContext(), MainActivity.class)));
         return view;
     }
-
+    
 }

@@ -1,49 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
-    android:padding="18dp">
+    android:layout_margin="20dp"
+    android:gravity="center"
+    android:background="@color/colorAccent">
 
-    <TextView
-        android:id="@+id/texttitle"
-        style="@style/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="ADD CATEGORY"
-        android:layout_gravity="center"
-        android:textSize="24sp"
-    />
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/id_cat_name_layout"
-        style="@style/TextInputLayoutStyleForm"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_marginTop="16dp"
-        android:hint="Category">
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:background="@drawable/cardview_background"
+        android:orientation="vertical"
+        android:padding="18dp">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/id_cat_name"
+        <TextView
+            android:id="@+id/textTitle"
+            style="@style/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="8dp"
+            android:text="ADD CATEGORY"
+            android:textSize="24sp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/id_cat_name_layout"
+            style="@style/TextInputLayoutStyleForm"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="none|textPersonName" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="55dp"
+            android:layout_marginTop="16dp"
+            android:hint="Category">
 
-    <Button
-        android:id="@+id/id_cat_btn_save"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="32dp"
-        android:background="@drawable/button_background"
-        android:text="@string/add"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
- />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/id_cat_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:inputType="none|textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <Button
+            android:id="@+id/id_cat_btn_save"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="32dp"
+            android:background="@drawable/cardview_background"
+            android:backgroundTint="@color/colorAccent"
+            android:cursorVisible="true"
+            android:elevation="2dp"
+            android:text="@string/add"
+            android:textColor="@color/primary_light"
+            android:textSize="18sp" />
+    </LinearLayout>
 </LinearLayout>

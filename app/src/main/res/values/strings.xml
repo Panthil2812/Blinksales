@@ -45,13 +45,14 @@
     <string name="product_qty">Qty</string>
     <string name="products_unit">Unit</string>
     <string name="products_barcode">Barcode</string>
-    <string name="products_sgst">SGST</string>
+    <string name="products_sgst">SGST(%)</string>
+    <string name="products_gst">GST(%)</string>
     <string name="products_hsn">HSN</string>
     <string name="products_discount">Discount(%)</string>
     <string name="products_discount_expiry">Expires in date</string>
     <string name="products_discount_applicable">Discount applicable min qty</string>
     <string name="add">ADD</string>
-    <string name="products_cgst">CGST</string>
+    <string name="products_cgst">CGST(%)</string>
     <string name="name">Name</string>
     <string name="company_name">Company Name</string>
     <string name="nav_contact">Contact Number</string>
@@ -67,4 +68,9 @@
     <string name="p">Text is available under the Creative Commons Attribution-ShareAlike License; additional terms may apply. By using this site, you agree to the Terms of Use and Privacy Policy. Wikipedia® is a registered trademark of the Wikimedia Foundation, Inc., a non-profit organization.</string>
     <string name="phone">Phone No.</string>
     <string name="web_link">Website_link</string>
+    <string name="add_product">Add Product</string>
+    <string name="str_unit">Unit</string>
+    <string name="str_stock">Stock</string>
+    <string name="todo">TODO</string>
+    <string name="str_is_gst_included">Is GST included</string>
 </resources>

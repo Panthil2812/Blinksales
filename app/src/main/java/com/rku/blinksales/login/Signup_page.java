@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +31,8 @@ public class Signup_page extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_page);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        db = MainRoomDatabase.getInstance(this).getDao();
         txtUsername = findViewById(R.id.id_signup_username);
         txtEmail = findViewById(R.id.id_signup_email);
         txtPassword = findViewById(R.id.id_signup_password);
@@ -37,7 +40,7 @@ public class Signup_page extends AppCompatActivity{
         signUp = findViewById(R.id.id_signup_btn);
         UpToIn = findViewById(R.id.id_login_signup);
 //        db = new DatabaseHelper(getApplicationContext());
-        db = MainRoomDatabase.getInstance(this).getDao();
+
     }
 
     public void SignUpToLogin(View view) {
@@ -69,8 +72,13 @@ public class Signup_page extends AppCompatActivity{
             Toast.makeText(getApplicationContext(),"not equal password",Toast.LENGTH_SHORT).show();
         }
         else{
-            UserTable userTable = new UserTable(user_name,user_email,user_password);
-            db.insertUser(userTable);
+            try{
+                UserTable userTable = new UserTable(user_name,user_email,user_password);
+                db.insertUser(userTable);
+            }catch (Exception e) {
+                e.getStackTrace();
+            }
+
               SignUpToLogin(view);
         }
 

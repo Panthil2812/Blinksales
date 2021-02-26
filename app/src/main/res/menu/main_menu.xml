@@ -19,9 +19,9 @@
             android:title="@string/nav_category"
             />
         <item
-            android:id="@+id/nav_category_products"
+            android:id="@+id/nav_products"
             android:icon="@drawable/ic_products"
-            android:title="@string/nav_category_products" />
+            android:title="@string/nav_products" />
     </group>
 
     <item android:title="@string/nav_counterfoil">

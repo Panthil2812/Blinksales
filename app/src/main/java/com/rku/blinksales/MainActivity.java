@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.FragmentManager;
 
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -16,6 +17,7 @@ import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         toolbar = findViewById(R.id.toolbar);
         id_weight = findViewById(R.id.id_weight);
         id_btn_refresh = findViewById(R.id.id_btn_refresh);
@@ -66,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         if (savedInstanceState == null) {
+
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new Dashboard()).commit();
             navigationView.setCheckedItem(R.id.nav_dashboard);
@@ -86,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         id_btn_refresh.setVisibility(View.GONE);
         id_weight.setVisibility(View.GONE);
+       // getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         switch (item.getItemId()) {
             case R.id.nav_dashboard:
                 getSupportActionBar().setTitle(R.string.nav_dashboard);
@@ -98,8 +103,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportActionBar().setTitle(R.string.nav_cart);
                 id_weight.setVisibility(View.VISIBLE);
                 id_btn_refresh.setVisibility(View.VISIBLE);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Cart()).commit();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new Cart())
+                        .commit();
                 Toast.makeText(this, R.string.nav_cart, Toast.LENGTH_SHORT).show();
                 break;
 //            case R.id.nav_pending_cart:
@@ -115,10 +121,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         new Category()).commit();
                 Toast.makeText(this, R.string.nav_category_products, Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_category_products:
-                getSupportActionBar().setTitle(R.string.nav_category_products);
+            case R.id.nav_products:
+                getSupportActionBar().setTitle(R.string.nav_products);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Products()).commit();
+                        new Products()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_category_products, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_bill_list:

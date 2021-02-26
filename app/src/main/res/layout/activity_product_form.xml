@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorPrimaryDark"
-        android:elevation="5dp"
+        android:elevation="3dp"
         android:orientation="horizontal"
         android:padding="8dp">
 
@@ -23,6 +23,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/ic_backarrow"
+            android:contentDescription="@string/todo"
             android:elevation="4dp" />
 
         <TextView
@@ -31,7 +32,7 @@
             android:layout_weight="1"
             android:elevation="4dp"
             android:gravity="center"
-            android:text="Add Product"
+            android:text="@string/add_product"
             android:textColor="@color/colorAccent"
             android:textSize="18sp" />
     </LinearLayout>
@@ -42,28 +43,41 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:padding="24dp">
 
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/img_product"
-                    android:layout_width="150dp"
-                    app:shapeAppearanceOverlay="@style/Circular"
-                    android:layout_height="150dp"
-                    android:src="@drawable/ic_products"
-                    app:civ_border_color="@color/colorAccent"
-                    app:civ_border_width="2dp"
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_img_product"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:elevation="5dp"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardCornerRadius="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageButton2">
 
-                </com.google.android.material.imageview.ShapeableImageView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:id="@+id/img_product"
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:contentDescription="@string/todo"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_products" />
+
+                    </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/id_cat_name_layout"
@@ -74,7 +88,7 @@
                     android:hint="@string/products"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/img_product">
+                    app:layout_constraintTop_toBottomOf="@+id/card_img_product">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_cat_name"
@@ -103,40 +117,21 @@
 
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pro_form_selling_price_layout"
+                    android:id="@+id/id_pro_form_mrp_layout"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
                     android:layout_height="55dp"
-                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:hint="@string/selling_price"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_mrp_layout"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_pro_category">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_pro_selling_price"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pro_form_mrp_layout"
-                    style="@style/TextInputLayoutStyleForm"
-                    android:layout_width="0dp"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="16dp"
-                    android:hint="@string/products_mrp"
-                    app:layout_constraintEnd_toStartOf="@+id/id_pro_form_selling_price_layout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_category">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_pro_mrp"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
+                        android:inputType="none|numberSigned|number|numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -155,7 +150,7 @@
                         android:id="@+id/id_pro_qty"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
+                        android:inputType="none|numberSigned|number|numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
@@ -167,14 +162,12 @@
                     android:background="@drawable/cart_background"
                     android:gravity="start|center"
                     android:paddingStart="12dp"
-                    android:text="Unit"
+                    android:text="@string/str_unit"
 
                     app:layout_constraintBottom_toBottomOf="@+id/id_pro_form_qty_layout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_qty_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_selling_price_layout"
-                    app:layout_constraintVertical_bias="1.0">
+                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_qty_layout">
 
                 </TextView>
 
@@ -215,17 +208,18 @@
                         android:gravity="center"
                         android:paddingStart="8dp"
                         android:paddingEnd="8dp"
-                        android:text="Stock"
+                        android:text="@string/str_stock"
                         android:textColor="@color/colorAccent"
-                        android:textSize="18dp" />
+                        android:textSize="18sp" />
 
                     <Switch
                         android:id="@+id/id_Switch_Stock"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:theme="@style/SwitchTheme"
+                        android:checked="true"
+                        android:paddingStart="4dp"
                         android:paddingEnd="4dp"
-                        android:paddingStart="4dp"/>
+                        android:theme="@style/SwitchTheme" />
                 </LinearLayout>
 
 
@@ -234,34 +228,17 @@
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
                     android:layout_height="55dp"
-                    android:hint="@string/products_cgst"
-                    app:layout_constraintEnd_toStartOf="@+id/id_pro_form_sgst_layout"
+                    android:layout_marginTop="8dp"
+                    android:hint="@string/products_gst"
+                    app:layout_constraintEnd_toStartOf="@+id/id_pro_form_hsn_layout"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ck_gst_included">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_cgst_unit"
+                        android:id="@+id/id_gst_unit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pro_form_sgst_layout"
-                    style="@style/TextInputLayoutStyleForm"
-                    android:layout_width="0dp"
-                    android:layout_height="55dp"
-                    android:layout_marginStart="8dp"
-                    android:hint="@string/products_sgst"
-                    app:layout_constraintEnd_toStartOf="@+id/id_pro_form_hsn_layout"
-                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_cgst_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/ck_gst_included">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_sgst_unit"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
+                        android:inputType="none|numberSigned|numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -271,16 +248,17 @@
                     android:layout_width="0dp"
                     android:layout_height="55dp"
                     android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
                     android:hint="@string/products_hsn"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_sgst_layout"
+                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_cgst_layout"
                     app:layout_constraintTop_toBottomOf="@+id/ck_gst_included">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_hsn_unit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
+                        android:inputType="none|numberSigned|number|numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
@@ -290,23 +268,27 @@
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="24dp"
                     android:background="@drawable/button_background"
                     android:text="@string/add"
                     android:textColor="@color/colorPrimary"
                     android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_sgst_layout" />
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_hsn_layout" />
 
                 <CheckBox
                     android:id="@+id/ck_gst_included"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Is GST included"
+                    android:onClick="onCheckboxClicked"
+                    android:text="@string/str_is_gst_included"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout" />
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout"
+                    tools:ignore="OnClick" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

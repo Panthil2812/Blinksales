@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 
 import com.rku.blinksales.R;
@@ -26,6 +27,7 @@ public class Profile_form extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_form);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         id_back_arrow = findViewById(R.id.id_back_arrow);
         id_back_arrow.setOnClickListener(v -> {
             onBackPressed();

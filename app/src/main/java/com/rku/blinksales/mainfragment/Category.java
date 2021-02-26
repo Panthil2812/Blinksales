@@ -32,6 +32,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.textfield.TextInputLayout;
 import com.rku.blinksales.Adapter.CategoryRecyclerViewAdapter;
 import com.rku.blinksales.Adapter.MainViewPagerAdapter;
 import com.rku.blinksales.InstanceClass.List_Category;
@@ -59,13 +60,19 @@ public class Category extends Fragment {
         recyclerView.setHasFixedSize(true);
         final CategoryRecyclerViewAdapter adapter = new CategoryRecyclerViewAdapter();
         recyclerView.setAdapter(adapter);
-        db.getAllCategory().observe(this, new Observer<List<CategoryTable>>() {
+        try {
+            db.getAllCategory().observe(this, new Observer<List<CategoryTable>>() {
 
-            @Override
-            public void onChanged(@Nullable List<CategoryTable> notes) {
-                adapter.setNotes(notes);
-            }
-        });
+                @Override
+                public void onChanged(@Nullable List<CategoryTable> notes) {
+                    adapter.setNotes(notes);
+                }
+            });
+
+        } catch (Exception e)
+        {
+            e.getStackTrace();
+        }
 
         //  Edit Category Name
         adapter.setOnItemClickListener(   note -> CategoryDialog(getView(), note.getCategory_name(), note.getId())  );
@@ -93,17 +100,28 @@ public class Category extends Fragment {
                 OK.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        db.deleteCategory(adapter.getNoteAt(viewHolder.getAdapterPosition()));
-                        Toast.makeText(getActivity(), "Category  deleted", Toast.LENGTH_SHORT).show();
-                        alertDialog.cancel();
+                        try {
+                            db.deleteCategory(adapter.getNoteAt(viewHolder.getAdapterPosition()));
+                            Toast.makeText(getActivity(), "Category  deleted", Toast.LENGTH_SHORT).show();
+                            alertDialog.cancel();
+                        }catch (Exception e){
+                            e.getStackTrace();
+                        }
                     }
                 });
                 Cancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        adapter.notifyItemChanged(viewHolder.getAdapterPosition());
-                        Toast.makeText(getActivity(), "Category Not deleted", Toast.LENGTH_SHORT).show();
-                        alertDialog.cancel();
+                        try {
+                            adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                            Toast.makeText(getActivity(), "Category Not deleted", Toast.LENGTH_SHORT).show();
+                            alertDialog.cancel();
+                        }catch (Exception e){
+                            e.getStackTrace();
+                        }
+
+
+
                     }
                 });
             }
@@ -113,23 +131,22 @@ public class Category extends Fragment {
                 if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
                     // Get RecyclerView item from the ViewHolder
                     View itemView = viewHolder.itemView;
-
                     Paint p = new Paint();
-                    if (dX > 0) {
-                        /* Set your color for positive displacement */
-                        p.setColor(getResources().getColor(R.color.colorPrimary));
+                    try {
+                        if (dX > 0) {
+                            p.setColor(getResources().getColor(R.color.colorPrimary));
 
-                        // Draw Rect with varying right side, equal to displacement dX
-                        c.drawRect((float) itemView.getLeft(), (float) itemView.getTop(), dX,
-                                (float) itemView.getBottom(), p);
-                    } else {
-                        /* Set your color for negative displacement */
-                        p.setColor(getResources().getColor(R.color.colorPrimary));
-                        // Draw Rect with varying left side, equal to the item's right side plus negative displacement dX
-                        c.drawRect((float) itemView.getRight() + dX, (float) itemView.getTop(),
-                                (float) itemView.getRight(), (float) itemView.getBottom(), p);
+                            c.drawRect((float) itemView.getLeft(), (float) itemView.getTop(), dX,
+                                    (float) itemView.getBottom(), p);
+                        } else {
+                            p.setColor(getResources().getColor(R.color.colorPrimary));
+                            c.drawRect((float) itemView.getRight() + dX, (float) itemView.getTop(),
+                                    (float) itemView.getRight(), (float) itemView.getBottom(), p);
+                        }
+
+                    }catch (Exception e){
+                        e.getStackTrace();
                     }
-
                     super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
                 }
             }
@@ -143,6 +160,8 @@ public class Category extends Fragment {
         ViewGroup viewGroup = v.findViewById(android.R.id.content);
         View dialogView = LayoutInflater.from(v.getContext()).inflate(R.layout.catagory_form_bottom_sheet, viewGroup, false);
         builder.setView(dialogView);
+        TextInputLayout id_cat_name_layout = dialogView.findViewById(R.id.id_cat_name_layout);
+        id_cat_name_layout.setHint("Category");
         Button btnAdd = dialogView.findViewById(R.id.id_cat_btn_save);
         EditText editName = dialogView.findViewById(R.id.id_cat_name);
         AlertDialog alertDialog = builder.create();
@@ -157,14 +176,28 @@ public class Category extends Fragment {
                 if (category.isEmpty()) {
                     Toast.makeText(getActivity(), "Enter Name", Toast.LENGTH_LONG).show();
                 } else {
+                    category = category. substring(0, 1). toUpperCase() +category.substring(1).toLowerCase();
                     CategoryTable categoryTable = new CategoryTable(category);
                     if (add == type) {
-                        db.insertCategory(categoryTable);
-                        Toast.makeText(getActivity(), "ADD : " + category, Toast.LENGTH_LONG).show();
+                        try {
+
+                            db.insertCategory(categoryTable);
+                            Toast.makeText(getActivity(), "ADD : " + category, Toast.LENGTH_LONG).show();
+                        }catch (Exception e)
+                        {
+                            e.getStackTrace();
+                        }
+
                     } else {
-                        categoryTable.setId(type);
-                        db.updateCategory(categoryTable);
-                        Toast.makeText(getActivity(), "EDIT : " + category, Toast.LENGTH_LONG).show();
+                        try {
+                            categoryTable.setId(type);
+                            db.updateCategory(categoryTable);
+                            Toast.makeText(getActivity(), "EDIT : " + category, Toast.LENGTH_LONG).show();
+                        }catch (Exception e)
+                        {
+                            e.getStackTrace();
+                        }
+
                     }
                     alertDialog.dismiss();
                 }

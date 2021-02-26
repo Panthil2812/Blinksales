@@ -9,6 +9,8 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,7 +18,9 @@ import java.util.Date;
         UserTable.class,
         CategoryTable.class,
         ExpenseType.class,
-        ExpenseTable.class
+        ExpenseTable.class,
+        ProductTable.class,
+        VendorTable.class
 }, version = 1,exportSchema = false)
 
 
@@ -59,13 +63,25 @@ public abstract class MainRoomDatabase extends RoomDatabase {
         @Override
         protected Void doInBackground(Void... voids) {
 //            noteDao.insert(new Note("Title 1", "Description 1", 1));
-            Dao.insertCategory(new CategoryTable("Fruits1"));
-            Dao.insertCategory(new CategoryTable("Grocery2"));
-            Dao.insertCategory(new CategoryTable("Vegetables3"));
-            Dao.insertCategory(new CategoryTable("Fruits4"));
-            Dao.insertCategory(new CategoryTable("Grocery5"));
-            Dao.insertCategory(new CategoryTable("Vegetables6"));
-            Dao.insertExpenseTable(new ExpenseTable("exp_name","1000", Calendar.getInstance().getTime(),"Tea"));
+
+            try {
+                Dao.insertCategory(new CategoryTable("Fruits1"));
+                Dao.insertCategory(new CategoryTable("Grocery2"));
+                Dao.insertCategory(new CategoryTable("Vegetables3"));
+                Dao.insertCategory(new CategoryTable("Fruits4"));
+                Dao.insertCategory(new CategoryTable("Grocery5"));
+                Dao.insertCategory(new CategoryTable("Vegetables6"));
+                Dao.insertExpenseType(new ExpenseType("Tea"));
+                Dao.insertExpenseType(new ExpenseType("Travel"));
+                Dao.insertExpenseType(new ExpenseType("Wages"));
+                Dao.insertExpenseTable(new ExpenseTable("exp_name","1000", Calendar.getInstance().getTime(),"Tea"));
+                Dao.insertExpenseTable(new ExpenseTable("panthil","100",new SimpleDateFormat("dd-MMM-yyyy").parse("23-Feb-2020"),"Travel"));
+                Dao.insertVendorTable(new VendorTable("RKU","Abhi Malaviya","6353980453","pmalaviya356@rku.ac.in","Surat","22AA0ARAQ1Z0"));
+                Dao.insertVendorTable(new VendorTable("RKU1","Baka Malaviya","6353980453","jmalaviya288@rku.ac.in","Rajkot","22BB0ARAQ1Z0"));
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             return null;
         }
     }

@@ -9,23 +9,21 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import com.rku.blinksales.R;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Profile  extends Fragment {
     private static final int RESULT_CANCELED = 0;
     private static final int RESULT_OK = -1;
-    private CircleImageView id_img_profile;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        id_img_profile = view.findViewById(R.id.id_img_profile);
-        id_img_profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+//        id_img_profile = view.findViewById(R.id.id_img_profile);
+//        id_img_profile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//            }
+//        });
         return view;
     }
 

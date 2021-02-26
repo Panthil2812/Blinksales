@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -42,6 +43,7 @@ public class Expense_list_form extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expense_list_form);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         db = MainRoomDatabase.getInstance(this).getDao();
         id_back_arrow = findViewById(R.id.id_back_arrow);
         pageTite = findViewById(R.id.pageTite);
@@ -56,11 +58,13 @@ public class Expense_list_form extends AppCompatActivity {
             pageTite.setText("Edit Expense");
             id_exp_to_whom.setText(intent.getStringExtra("name"));
             id_exp_amount.setText(intent.getStringExtra("amount"));
-            id_exp_date.setText(intent.getStringExtra("date"));
-            String sDate1=intent.getStringExtra("date");
             try {
-                chosenDate = new SimpleDateFormat(String.valueOf(DateFormat.MEDIUM), Locale.UK).parse(sDate1);
-            } catch (ParseException e) {
+                String strDate = intent.getStringExtra("date");
+                DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+                chosenDate = formatter.parse(strDate);
+                String dateStr = formatter.format(chosenDate);
+                id_exp_date.setText(dateStr);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             id_exp_type.setText(intent.getStringExtra("type"));
@@ -87,9 +91,8 @@ public class Expense_list_form extends AppCompatActivity {
                             cal.setTimeInMillis(0);
                             cal.set(year, monthOfYear, dayOfMonth, 0, 0, 0);
                             chosenDate = cal.getTime();
-                            DateFormat df_medium_us = DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.UK);
-                            String df_medium_us_str = df_medium_us.format(chosenDate);
-//                            dateToTimestamp(chosenDate).toString();
+                            DateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy");
+                            String df_medium_us_str = formatter.format(chosenDate);
                             id_exp_date.setText(df_medium_us_str);
                         }
                     }, mYear, mMonth, mDay);
@@ -129,10 +132,22 @@ public class Expense_list_form extends AppCompatActivity {
                     if(add != id)
                     {
                         Toast.makeText(getApplicationContext(),"edit expense .........",Toast.LENGTH_SHORT).show();
-                        expenseTable.setId(id);
-                        db.updateExpenseTable(expenseTable);
+                        try{
+                            expenseTable.setId(id);
+                            db.updateExpenseTable(expenseTable);
+                        }catch (Exception e)
+                        {
+                            e.getStackTrace();
+                        }
+
                     }else {
-                        db.insertExpenseTable(expenseTable);
+                        try{
+                            db.insertExpenseTable(expenseTable);
+                        }catch (Exception e)
+                        {
+                            e.getStackTrace();
+                        }
+
                         Toast.makeText(getApplicationContext(),"insertDate",Toast.LENGTH_SHORT).show();
                     }
 
@@ -148,5 +163,8 @@ public class Expense_list_form extends AppCompatActivity {
 
 
 
+    }
+    public static Date fromTimestamp(Long value) {
+        return value == null ? null : new Date(value);
     }
 }

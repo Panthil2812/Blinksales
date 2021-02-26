@@ -34,10 +34,10 @@ public interface DatabaseDao {
     @Delete
     void  deleteCategory(CategoryTable categoryTable);
 
-    @Query("SELECT * FROM CategoryTable")
+    @Query("SELECT * FROM CategoryTable ORDER BY category_name ")
     LiveData<List<CategoryTable>> getAllCategory();
 
-    @Query("Select category_name from CategoryTable")
+    @Query("Select category_name from CategoryTable ORDER BY category_name ")
     List<String> getCategory();
 
 
@@ -50,11 +50,11 @@ public interface DatabaseDao {
     void deleteAllExpenseType();
 
 
-    @Query("Select expense_type from ExpenseType")
+    @Query("Select expense_type from ExpenseType ORDER BY expense_type")
     List<String> getExpenseType();
 
 
-    //    ..............................      Expense List Table Query    ..............................
+    //    ..............................  Expense List Table Query    ..............................
 
     @Insert
     void  insertExpenseTable(ExpenseTable expenseTable);
@@ -65,6 +65,37 @@ public interface DatabaseDao {
     @Delete
     void  deleteExpenseList(ExpenseTable expenseTable);
 
-    @Query("Select * from ExpenseTable")
+    @Query("Select * from ExpenseTable ORDER BY exp_date DESC , exp_type")
     LiveData<List<ExpenseTable>> getAllExpenseList();
+
+
+    //    ..............................  Product Table Query    ..............................
+    @Insert
+    void  insertProductTable(ProductTable productTable);
+
+    @Update
+    void  updateProductTable(ProductTable productTable);
+
+    @Delete
+    void  deleteProductTable(ProductTable productTable);
+
+    @Query("Select * from ProductTable")
+    LiveData<List<ProductTable>> getAllProduct();
+
+    //    ..............................  Vendor Table Query    ..............................
+
+    @Insert
+    void  insertVendorTable(VendorTable vendorTable);
+
+    @Update
+    void  updateVendorTable(VendorTable vendorTable);
+
+    @Delete
+    void  deleteVendorTable(VendorTable vendorTable);
+
+    @Query("Select * from VendorTable ORDER BY vendor_name")
+    LiveData<List<VendorTable>> getAllVendorTable();
+
+    @Query("Select * from VendorTable where vendor_name like :searchText")
+    LiveData<List<VendorTable>> getFilterVendorTable(String searchText);
 }

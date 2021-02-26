@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -25,6 +26,7 @@ public class Customers_form extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customers_form);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         id_cus_name = findViewById(R.id.id_cus_name);
         id_cus_job = findViewById(R.id.id_cus_job);

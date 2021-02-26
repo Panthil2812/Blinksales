@@ -24,6 +24,7 @@
             android:background="@drawable/ic_backarrow"/>
 
         <TextView
+            android:id="@+id/title_page"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -74,7 +75,7 @@
                         android:id="@+id/id_ven_contact"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
+                        android:inputType="none|number" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -91,7 +92,7 @@
                         android:id="@+id/id_ven_email"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
+                        android:inputType="none|textEmailAddress" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout

@@ -72,4 +72,11 @@
     <style name="SwitchTheme" parent="Theme.AppCompat.Light">
         <item name="android:colorControlActivated">@color/colorAccent</item>
     </style>
+    
+    <style name="ProgressDialog_Style" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="background">@color/colorPrimaryDark</item>
+        <item name="android:textSize">18dp</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColor">@color/colorAccent</item>
+    </style>
 </resources>
