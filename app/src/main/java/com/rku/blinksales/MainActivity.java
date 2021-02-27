@@ -210,6 +210,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, R.string.nav_profile, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:
+                Session session =new Session(this);
+                session.setUsername("");
                 startActivity(new Intent(MainActivity.this, Login_page.class));
                 Toast.makeText(this, R.string.nav_logout, Toast.LENGTH_SHORT).show();
                 break;
