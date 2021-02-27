@@ -7,9 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -28,13 +26,12 @@ import com.rku.blinksales.mainfragment.App_manual;
 import com.rku.blinksales.mainfragment.Bill_list;
 import com.rku.blinksales.mainfragment.Cart;
 import com.rku.blinksales.mainfragment.Category;
-import com.rku.blinksales.mainfragment.Category_Products;
+import com.rku.blinksales.mainfragment.Products;
 import com.rku.blinksales.mainfragment.Contact_us;
 import com.rku.blinksales.mainfragment.Customers;
 import com.rku.blinksales.mainfragment.Dashboard;
 import com.rku.blinksales.mainfragment.Expense_list;
 import com.rku.blinksales.mainfragment.Payment_list;
-import com.rku.blinksales.mainfragment.Pending_cart;
 import com.rku.blinksales.mainfragment.Profile;
 import com.rku.blinksales.mainfragment.Purchase_list;
 import com.rku.blinksales.mainfragment.Purchase_return;
@@ -97,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(this, R.string.nav_dashboard, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_cart:
+
                 getSupportActionBar().setTitle(R.string.nav_cart);
                 id_weight.setVisibility(View.VISIBLE);
                 id_btn_refresh.setVisibility(View.VISIBLE);
@@ -120,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_category_products:
                 getSupportActionBar().setTitle(R.string.nav_category_products);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Category_Products()).commit();
+                        new Products()).commit();
                 Toast.makeText(this, R.string.nav_category_products, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_bill_list:

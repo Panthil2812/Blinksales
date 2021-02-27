@@ -3,26 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/primary_light">
+    android:background="@color/primary_light"
+    android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@color/primary_light"
-        android:orientation="vertical" >
-        <!--            <<androidx.recyclerview.widget.RecyclerView-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent"-->
-        <!--                android:layout_alignParentStart="true"-->
-        <!--                android:layout_alignParentTop="true"-->
-        <!--                android:layout_alignParentEnd="true"-->
-        <!--                android:layout_alignParentBottom="true"-->
-        <!--                android:layout_marginStart="0dp"-->
-        <!--                android:layout_marginTop="0dp"-->
-        <!--                android:layout_marginEnd="0dp" />-->
-        <include
-            layout="@layout/expense_list_view"/>
+        android:orientation="vertical">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/expense_list_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="0dp" />
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/id_add_expense"

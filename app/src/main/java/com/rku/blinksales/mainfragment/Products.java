@@ -27,7 +27,7 @@ import com.rku.blinksales.form.Product_form;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Category_Products extends Fragment {
+public class Products extends Fragment {
     DatabaseDao db;
     RecyclerView myrv;
     RecyclerView.LayoutManager layoutManager;

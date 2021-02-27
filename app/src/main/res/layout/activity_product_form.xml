@@ -302,7 +302,8 @@
                     android:id="@+id/ck_gst_included"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="is GST included"
+                    android:layout_marginTop="8dp"
+                    android:text="Is GST included"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout" />
