@@ -21,7 +21,6 @@ public class Splash_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        //if (session.getUsername() == ""){
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
             new Timer().schedule(new TimerTask() {
                 @Override
@@ -31,9 +30,6 @@ public class Splash_screen extends AppCompatActivity {
                     finish();
                 }
             },2000);
-        //}else{
-//            Intent intent = new Intent(Splash_screen.this, MainActivity.class);
-//            startActivity(intent);
-//        }
+
     }
 }
