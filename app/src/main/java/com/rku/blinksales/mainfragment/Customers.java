@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -19,6 +22,11 @@ public class Customers  extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_customers, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.nav_customers);
+        TextView id_weight = getActivity().findViewById(R.id.id_weight);
+        ImageButton id_btn_refresh =getActivity().findViewById(R.id.id_btn_refresh);
+        id_weight.setVisibility(View.GONE);
+        id_btn_refresh.setVisibility(View.GONE);
         id_add_customer = view.findViewById(R.id.id_add_customer);
         id_add_customer.setOnClickListener(v -> {
             startActivity(new Intent(getContext().getApplicationContext(), Customers_form.class));

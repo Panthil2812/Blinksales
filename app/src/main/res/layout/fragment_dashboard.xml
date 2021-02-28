@@ -110,4 +110,132 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    android:background="@color/primary_light">-->
+
+<!--   <LinearLayout-->
+<!--       android:id="@+id/linearLayout"-->
+<!--       android:layout_width="match_parent"-->
+<!--       android:layout_height="wrap_content"-->
+<!--       android:background="@color/colorPrimaryDark"-->
+<!--       android:orientation="horizontal"-->
+<!--       android:paddingStart="8dp"-->
+<!--       android:paddingTop="8dp"-->
+<!--       android:paddingEnd="8dp"-->
+<!--       android:paddingBottom="8dp"-->
+<!--       app:layout_constraintEnd_toEndOf="parent"-->
+<!--       app:layout_constraintStart_toStartOf="parent"-->
+<!--       app:layout_constraintTop_toTopOf="parent">-->
+
+<!--      <SearchView-->
+<!--          android:id="@+id/simpleSearchView"-->
+<!--          style="@style/textView"-->
+<!--          android:layout_width="match_parent"-->
+<!--          android:layout_height="wrap_content"-->
+<!--          android:layout_weight="1"-->
+<!--          android:background="@drawable/textview_background"-->
+<!--          android:iconifiedByDefault="false"-->
+<!--          android:paddingEnd="8dp"-->
+<!--          android:queryHint="Search here" />-->
+
+<!--      <ImageButton-->
+<!--          android:layout_width="50dp"-->
+<!--          android:layout_height="match_parent"-->
+<!--          android:layout_marginStart="8dp"-->
+<!--          android:background="@drawable/button_background"-->
+<!--          android:backgroundTint="@color/colorAccent"-->
+<!--          android:src="@drawable/ic_self_collect" />-->
+
+<!--      <ImageButton-->
+<!--          android:layout_width="50dp"-->
+<!--          android:layout_height="match_parent"-->
+<!--          android:layout_marginStart="8dp"-->
+<!--          android:background="@drawable/button_background"-->
+<!--          android:backgroundTint="@color/colorAccent"-->
+<!--          android:src="@drawable/ic_add_to_cart" />-->
+
+<!--   </LinearLayout>-->
+
+<!--   <LinearLayout-->
+<!--       android:layout_width="0dp"-->
+<!--       android:layout_height="0dp"-->
+<!--       app:layout_constraintBottom_toBottomOf="parent"-->
+<!--       app:layout_constraintEnd_toEndOf="parent"-->
+<!--       app:layout_constraintStart_toStartOf="parent"-->
+<!--       app:layout_constraintTop_toBottomOf="@+id/linearLayout"-->
+<!--       android:orientation="vertical">-->
+
+
+<!--         <com.google.android.material.tabs.TabLayout-->
+<!--             android:id="@+id/tabs"-->
+<!--             android:layout_width="match_parent"-->
+<!--             android:layout_height="?android:actionBarSize"-->
+<!--             android:layout_gravity="start"-->
+<!--             android:background="@color/colorPrimaryDark"-->
+<!--             android:elevation="4dp"-->
+<!--             android:minHeight="?attr/actionBarSize"-->
+<!--             app:tabBackground="@color/colorPrimaryDark"-->
+<!--             app:tabGravity="fill"-->
+<!--             app:tabIndicatorAnimationDuration="@android:integer/config_longAnimTime"-->
+<!--             app:tabIndicatorColor="@color/colorAccent"-->
+<!--             app:tabIndicatorGravity="bottom"-->
+<!--             app:tabMaxWidth="0dp"-->
+<!--             app:tabMode="scrollable"-->
+<!--             app:tabSelectedTextColor="@color/colorAccent"-->
+<!--             app:tabTextColor="@color/secondary_text" />-->
+<!--      <androidx.viewpager.widget.ViewPager-->
+<!--          xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--          android:id="@+id/viewpager"-->
+<!--          android:layout_width="match_parent"-->
+<!--          android:layout_height="match_parent">-->
+<!--      </androidx.viewpager.widget.ViewPager>-->
+
+<!--&lt;!&ndash;      <LinearLayout&ndash;&gt;-->
+<!--&lt;!&ndash;          android:id="@+id/linearLayout2"&ndash;&gt;-->
+<!--&lt;!&ndash;          android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;          android:layout_height="?attr/actionBarSize"&ndash;&gt;-->
+<!--&lt;!&ndash;          android:background="@color/colorPrimaryDark"&ndash;&gt;-->
+<!--&lt;!&ndash;          android:orientation="horizontal"&ndash;&gt;-->
+<!--&lt;!&ndash;          android:padding="18dp">&ndash;&gt;-->
+
+<!--&lt;!&ndash;         <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;             android:id="@+id/id_dashborad_total"&ndash;&gt;-->
+<!--&lt;!&ndash;             android:layout_width="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;             android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;             android:gravity="center"&ndash;&gt;-->
+<!--&lt;!&ndash;             android:textColor="@color/colorAccent"&ndash;&gt;-->
+<!--&lt;!&ndash;             android:text="Total Amount: $1000 /- "&ndash;&gt;-->
+<!--&lt;!&ndash;             android:textSize="18dp"/>&ndash;&gt;-->
+<!--&lt;!&ndash;      </LinearLayout>&ndash;&gt;-->
+<!--   </LinearLayout>-->
+
+<!--&lt;!&ndash;   <com.google.android.material.tabs.TabLayout&ndash;&gt;-->
+<!--&lt;!&ndash;       android:id="@+id/tabs"&ndash;&gt;-->
+<!--&lt;!&ndash;       android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;       android:layout_height="wrap_content"&ndash;&gt;-->
+<!--&lt;!&ndash;       android:layout_gravity="start"&ndash;&gt;-->
+<!--&lt;!&ndash;       android:background="@color/colorPrimaryDark"&ndash;&gt;-->
+<!--&lt;!&ndash;       android:elevation="4dp"&ndash;&gt;-->
+<!--&lt;!&ndash;       android:minHeight="?attr/actionBarSize"&ndash;&gt;-->
+<!--&lt;!&ndash;       app:tabBackground="@color/colorPrimaryDark"&ndash;&gt;-->
+<!--&lt;!&ndash;       app:tabGravity="fill"&ndash;&gt;-->
+<!--&lt;!&ndash;       app:tabIndicatorAnimationDuration="@android:integer/config_longAnimTime"&ndash;&gt;-->
+<!--&lt;!&ndash;       app:tabIndicatorColor="@color/colorAccent"&ndash;&gt;-->
+<!--&lt;!&ndash;       app:tabIndicatorGravity="bottom"&ndash;&gt;-->
+<!--&lt;!&ndash;       app:tabMaxWidth="0dp"&ndash;&gt;-->
+<!--&lt;!&ndash;       app:tabMode="scrollable"&ndash;&gt;-->
+<!--&lt;!&ndash;       app:tabSelectedTextColor="@color/colorAccent"&ndash;&gt;-->
+<!--&lt;!&ndash;       app:tabTextColor="@color/secondary_text" />&ndash;&gt;-->
+
+
+
+
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
 

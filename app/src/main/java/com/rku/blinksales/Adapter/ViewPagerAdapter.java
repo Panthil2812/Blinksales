@@ -8,30 +8,30 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.rku.blinksales.Fragment.MainViewpagerFragment;
 import com.rku.blinksales.Fragment.ProductViewpagerFragment;
 
 import java.util.List;
 
-public class MainViewPagerAdapter extends FragmentPagerAdapter {
+public class ViewPagerAdapter extends FragmentPagerAdapter {
     List<String> arr;
-    public MainViewPagerAdapter(@NonNull FragmentManager fm, List<String> arr)
-    {
+    public ViewPagerAdapter(@NonNull FragmentManager fm, List<String> arr) {
         super(fm);
         this.arr = arr;
-    }
 
+    }
+//    private String[]  Category(){
+//        String array[] ={"Fruit","vegetables","Dairy","Heart-healthy oils","Elective"};
+//        return array;
+//    }
     @NonNull
     @Override
     public Fragment getItem(int position) {
-
-        MainViewpagerFragment objFragment = new MainViewpagerFragment();
+        ProductViewpagerFragment objFragment = new ProductViewpagerFragment();
 //        position = position + 1;
         Bundle bundle = new Bundle();
         bundle.putString("message", arr.get(position));
         objFragment.setArguments(bundle);
         return objFragment;
-
     }
 
     @Override
@@ -45,4 +45,3 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
         return arr.get(position);
     }
 }
-

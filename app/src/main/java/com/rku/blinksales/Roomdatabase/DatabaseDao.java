@@ -79,8 +79,11 @@ public interface DatabaseDao {
     @Delete
     void  deleteProductTable(ProductTable productTable);
 
-    @Query("Select * from ProductTable")
-    LiveData<List<ProductTable>> getAllProduct();
+    @Query("Select * from ProductTable where product_category ==:name ")
+    List<ProductTable> getAllProduct(String name);
+
+    @Query("select * from ProductTable where product_category ==:name")
+    LiveData<List<ProductTable>> getCategoryProducts(String name);
 
     //    ..............................  Vendor Table Query    ..............................
 

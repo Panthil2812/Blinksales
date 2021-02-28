@@ -8,21 +8,18 @@ import android.view.ViewGroup;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.rku.blinksales.Adapter.MainRecyclerViewAdapter;
 import com.rku.blinksales.Adapter.ProductRecyclerViewAdapter;
 import com.rku.blinksales.R;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 import com.rku.blinksales.Roomdatabase.ProductTable;
-import com.rku.blinksales.Utility;
 
 import java.util.List;
 
-public class MainViewpagerFragment extends Fragment {
+public class ProductViewpagerFragment extends Fragment {
 
     DatabaseDao db;
     RecyclerView myrv;
@@ -36,18 +33,18 @@ public class MainViewpagerFragment extends Fragment {
 //       // Toast.makeText(getContext(),"Category Name : "+str,Toast.LENGTH_LONG).show();
 //
         myrv = view.findViewById(R.id.id_recyclerView);
-        final MainRecyclerViewAdapter recyclerViewAdapter =new MainRecyclerViewAdapter(db.getAllProduct(str));
+        final ProductRecyclerViewAdapter recyclerViewAdapter =new ProductRecyclerViewAdapter();
 //       // final CategoryRecyclerViewAdapter adapter = new CategoryRecyclerViewAdapter();
-        myrv.setLayoutManager(new GridLayoutManager(getContext(), Utility.calculateNoOfColumns(getContext(),180)));
-    //    myrv.setLayoutManager(new LinearLayoutManager(getContext()));
+//        myrv.setLayoutManager(new GridLayoutManager(getContext(), Utility.calculateNoOfColumns(getContext(),180)));
+        myrv.setLayoutManager(new LinearLayoutManager(getContext()));
         myrv.setHasFixedSize(true);
         myrv.setAdapter(recyclerViewAdapter);
-//        db.getCategoryProducts(str).observe(this, new Observer<List<ProductTable>>() {
-//            @Override
-//            public void onChanged(@Nullable List<ProductTable> notes) {
-//                recyclerViewAdapter.setNotes(notes);
-//            }
-//        });
+        db.getCategoryProducts(str).observe(this, new Observer<List<ProductTable>>() {
+            @Override
+            public void onChanged(@Nullable List<ProductTable> notes) {
+                recyclerViewAdapter.setNotes(notes);
+            }
+        });
 
 //
         //Toast.makeText(getContext(),String.valueOf(db.getAllData(str)),Toast.LENGTH_SHORT).show();

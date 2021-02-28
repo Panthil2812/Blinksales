@@ -73,4 +73,5 @@
     <string name="str_stock">Stock</string>
     <string name="todo">TODO</string>
     <string name="str_is_gst_included">Is GST included</string>
+    <string name="str_product_gst_slab">Product from 0% GST slab</string>
 </resources>

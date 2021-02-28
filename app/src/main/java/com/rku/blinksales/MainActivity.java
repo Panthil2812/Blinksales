@@ -93,19 +93,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
        // getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         switch (item.getItemId()) {
             case R.id.nav_dashboard:
-                getSupportActionBar().setTitle(R.string.nav_dashboard);
+                //getSupportActionBar().setTitle(R.string.nav_dashboard);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Dashboard()).commit();
                 Toast.makeText(this, R.string.nav_dashboard, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_cart:
 
-                getSupportActionBar().setTitle(R.string.nav_cart);
-                id_weight.setVisibility(View.VISIBLE);
-                id_btn_refresh.setVisibility(View.VISIBLE);
+//                getSupportActionBar().setTitle(R.string.nav_cart);
+//                id_weight.setVisibility(View.VISIBLE);
+//                id_btn_refresh.setVisibility(View.VISIBLE);
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new Cart())
-                        .commit();
+                        .addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_cart, Toast.LENGTH_SHORT).show();
                 break;
 //            case R.id.nav_pending_cart:
@@ -116,101 +116,101 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 //                break;
 
             case R.id.nav_Category:
-                getSupportActionBar().setTitle(R.string.nav_category);
+              //  getSupportActionBar().setTitle(R.string.nav_category);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Category()).commit();
+                        new Category()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_category_products, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_products:
-                getSupportActionBar().setTitle(R.string.nav_products);
+                //getSupportActionBar().setTitle(R.string.nav_products);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new Products()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_category_products, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_bill_list:
-                getSupportActionBar().setTitle(R.string.nav_bill_list);
+               // getSupportActionBar().setTitle(R.string.nav_bill_list);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Bill_list()).commit();
+                        new Bill_list()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_bill_list, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_remain_payment_list:
-                getSupportActionBar().setTitle(R.string.nav_remain_payment_list);
+              //  getSupportActionBar().setTitle(R.string.nav_remain_payment_list);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Remain_payment_list()).commit();
+                        new Remain_payment_list()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_remain_payment_list, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_payment_list:
-                getSupportActionBar().setTitle(R.string.nav_payment_list);
+               // getSupportActionBar().setTitle(R.string.nav_payment_list);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Payment_list()).commit();
+                        new Payment_list()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_payment_list, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_expense_list:
-                getSupportActionBar().setTitle(R.string.nav_expense_list);
+                //      getSupportActionBar().setTitle(R.string.nav_expense_list);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Expense_list()).commit();
+                        new Expense_list()).addToBackStack(null).commit();
 
                 Toast.makeText(this, R.string.nav_expense_list, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_sales_return:
-                getSupportActionBar().setTitle(R.string.nav_sales_return);
+                //      getSupportActionBar().setTitle(R.string.nav_sales_return);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Sales_return()).commit();
+                        new Sales_return()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_sales_return, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_customers:
-                getSupportActionBar().setTitle(R.string.nav_customers);
+                //      getSupportActionBar().setTitle(R.string.nav_customers);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Customers()).commit();
+                        new Customers()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_customers, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_vendor_list:
-                getSupportActionBar().setTitle(R.string.nav_vendor_list);
+                //     getSupportActionBar().setTitle(R.string.nav_vendor_list);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Vendor_list()).commit();
+                        new Vendor_list()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_vendor_list, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_purchase_list:
-                getSupportActionBar().setTitle(R.string.nav_purchase_list);
+                //     getSupportActionBar().setTitle(R.string.nav_purchase_list);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Purchase_list()).commit();
+                        new Purchase_list()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_purchase_list, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_purchase_return:
-                getSupportActionBar().setTitle(R.string.nav_purchase_return);
+                //     getSupportActionBar().setTitle(R.string.nav_purchase_return);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Purchase_return()).commit();
+                        new Purchase_return()).addToBackStack(null).commit();
 
                 Toast.makeText(this, R.string.nav_purchase_return, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_report:
-                getSupportActionBar().setTitle(R.string.nav_report);
+                //    getSupportActionBar().setTitle(R.string.nav_report);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Report()).commit();
+                        new Report()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_report, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_app_manual:
-                getSupportActionBar().setTitle(R.string.nav_app_manual);
+                //   getSupportActionBar().setTitle(R.string.nav_app_manual);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new App_manual()).commit();
+                        new App_manual()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_app_manual, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_contact_Us:
-                getSupportActionBar().setTitle(R.string.nav_contact_Us);
+            //    getSupportActionBar().setTitle(R.string.nav_contact_Us);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Contact_us()).commit();
+                        new Contact_us()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_contact_Us, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_settings:
-                getSupportActionBar().setTitle(R.string.nav_settings);
+              //  getSupportActionBar().setTitle(R.string.nav_settings);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Settings()).commit();
+                        new Settings()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_settings, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_profile:
-                getSupportActionBar().setTitle(R.string.nav_profile);
+              //  getSupportActionBar().setTitle(R.string.nav_profile);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Profile()).commit();
+                        new Profile()).addToBackStack(null).commit();
                 Toast.makeText(this, R.string.nav_profile, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_logout:

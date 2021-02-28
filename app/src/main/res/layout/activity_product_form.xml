@@ -121,10 +121,11 @@
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
                     android:layout_height="55dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="16dp"
                     android:hint="@string/selling_price"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/id_pro_form_mrp"
                     app:layout_constraintTop_toBottomOf="@+id/id_pro_category">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -232,7 +233,7 @@
                     android:hint="@string/products_gst"
                     app:layout_constraintEnd_toStartOf="@+id/id_pro_form_hsn_layout"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ck_gst_included">
+                    app:layout_constraintTop_toBottomOf="@+id/product_gst_slab">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_gst_unit"
@@ -252,7 +253,7 @@
                     android:hint="@string/products_hsn"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/id_pro_form_cgst_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/ck_gst_included">
+                    app:layout_constraintTop_toBottomOf="@+id/product_gst_slab">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_hsn_unit"
@@ -279,16 +280,34 @@
                     app:layout_constraintTop_toBottomOf="@+id/id_pro_form_hsn_layout" />
 
                 <CheckBox
-                    android:id="@+id/ck_gst_included"
+                    android:id="@+id/product_gst_slab"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:onClick="onCheckboxClicked"
-                    android:text="@string/str_is_gst_included"
+                    android:text="@string/str_product_gst_slab"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_pro_form_barcode_layout"
                     tools:ignore="OnClick" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pro_form_mrp"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="0dp"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="16dp"
+                    android:hint="@string/products_mrp"
+                    app:layout_constraintBottom_toBottomOf="@+id/id_pro_form_mrp_layout"
+                    app:layout_constraintEnd_toStartOf="@+id/id_pro_form_mrp_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pro_category">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                         />
+                </com.google.android.material.textfield.TextInputLayout>
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

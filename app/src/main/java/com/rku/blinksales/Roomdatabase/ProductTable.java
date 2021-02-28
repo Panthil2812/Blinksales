@@ -19,7 +19,7 @@ public class ProductTable {
     Boolean product_is_include;
     Double gst;
     Double gst_amount;
-    String HSN;
+    String HSN = "";
 
     public ProductTable(String product_image_uri, String product_name, String product_category, Double product_selling_price, String product_qty, String product_unit, String product_price_unit, String product_barcode, Boolean product_stock, Boolean product_is_include, Double gst, Double gst_amount, String HSN) {
         this.product_image_uri = product_image_uri;

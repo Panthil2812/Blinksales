@@ -2,7 +2,6 @@ package com.rku.blinksales.form;
 
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
@@ -14,6 +13,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +24,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +33,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.rku.blinksales.Fragment.ADDFragment;
+import com.rku.blinksales.MainActivity;
 import com.rku.blinksales.R;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
@@ -72,7 +72,7 @@ public class Product_form extends AppCompatActivity {
         img_product = findViewById(R.id.img_product);
         id_Switch_Stock = findViewById(R.id.id_Switch_Stock);
         id_back_arrow = findViewById(R.id.id_back_arrow);
-        ck_gst_included = findViewById(R.id.ck_gst_included);
+        ck_gst_included = findViewById(R.id.product_gst_slab);
         id_pro_btn_add = findViewById(R.id.id_pro_btn_add);
 
         // checkbox of is gst included or not
@@ -156,31 +156,53 @@ public class Product_form extends AppCompatActivity {
                 Double GST = Double.valueOf(id_gst_unit.getText().toString().trim()).doubleValue();
                 Double PRICE = Double.valueOf(id_pro_selling_price.getText().toString().trim()).doubleValue();
 
-                ProgressDialog dialog = new ProgressDialog(Product_form.this);
-                dialog.setTitle(" Please Wait");
-                dialog.setMessage("Loading . . .");
-                dialog.show();
-                Thread mThread = new Thread() {
-                    @Override
-                    public void run() {
+//                ProgressDialog dialog = new ProgressDialog(Product_form.this);
+//                dialog.setTitle(" Please Wait");
+//                dialog.setMessage("Loading . . .");
+//                dialog.show();
+//                Thread mThread = new Thread() {
+//                    @Override
+//                    public void run() {
                         try {
                             Double GST_AMOUNT = (PRICE * GST) / 100;
                             Bitmap bitmap = ((BitmapDrawable) img_product.getDrawable()).getBitmap();
-                            String price_unit = pro_price + "/" + pro_unit;
-                            String UriImage = saveToInternalStorage(bitmap);
-//                            if (pro_hsn.isEmpty()) {
-//                                pro_hsn = null;
-//                            }
+                            String price_unit = pro_price + " ₹/" + pro_unit;
+                            String imagepath ="";
+                            String state = Environment.getExternalStorageState();
+                            if (Environment.MEDIA_MOUNTED.equals(state)) {
+                                File path = new File(Environment.getExternalStorageDirectory() ,"/Mr.Impossible/Panthil/");
+                                if(!path.exists()){
+                                    path.mkdir();
+                                }
+                                //Image File.....
+                                File file = new File(path, System.currentTimeMillis()+".jpg");
+                                if (!file.exists()) {
+                                    //Store.....
+                                    Log.d("path", file.toString());
+                                    imagepath= file.toString();
+                                    //imagePath.setText(imagepath);
+                                    System.out.println("image Uri ..........................................:  "+imagepath);
+                                    Toast.makeText(getApplicationContext(),imagepath,Toast.LENGTH_SHORT).show();
+                                    try {
+                                        FileOutputStream fos = new FileOutputStream(file);
+                                        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+                                        fos.flush();
+                                        fos.close();
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            }
 
-                            ProductTable productTable = new ProductTable(UriImage,
+                            ProductTable productTable = new ProductTable(imagepath,
                                     pro_name, pro_category,
                                     PRICE, pro_qty, pro_unit, price_unit,
                                     pro_Barcode, pro_stock, pro_is_included,
-                                    GST, GST_AMOUNT, pro_hsn);
+                                    GST, GST_AMOUNT, "pro_hsn");
                             db.insertProductTable(productTable);
                             System.out.println("ADD............................................................");
-                            dialog.dismiss();
-
+//                            dialog.dismiss();
+//
 //                            Toast.makeText(getApplicationContext(), "Name : " + pro_name + "\n"
 //                                    + "Category : " + pro_category + "\n"
 //                                    + "Selling price : " + PRICE + "\n"
@@ -196,12 +218,11 @@ public class Product_form extends AppCompatActivity {
                         } catch (Exception e) {
                             e.getStackTrace();
                         }
-                    }
-                };
-                mThread.start();
-
-
-                // Toast.makeText(getApplication(),UriImage,Toast.LENGTH_LONG).show();
+//                    }
+//                };
+//                mThread.start();
+                Toast.makeText(getApplicationContext(),"Product Successfully Added.",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
     }
@@ -218,7 +239,7 @@ public class Product_form extends AppCompatActivity {
         try {
             fos = new FileOutputStream(mypath);
             // Use the compress method on the BitMap object to write image to the OutputStream
-            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 25, fos);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -231,7 +252,34 @@ public class Product_form extends AppCompatActivity {
         return directory.getPath() + "/" + imageName;
 //        return mypath.length();
     }
-
+    private String saveToExternalStorage(Bitmap bitmapImage)
+    {
+        String imagepath = null;
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            File path = new File(Environment.getExternalStorageDirectory() ,"/Shop/image/");
+            if(!path.exists()){
+                path.mkdir();
+            }
+            //Image File.....
+            File file = new File(path, System.currentTimeMillis()+".jpg");
+            if (!file.exists()) {
+                //Store.....
+                Log.d("path", file.toString());
+                imagepath = file.toString();
+//                imagePath.setText(file.toString());
+                try {
+                    FileOutputStream fos = new FileOutputStream(file);
+                    bitmapImage.compress(Bitmap.CompressFormat.JPEG, 25, fos);
+                    fos.flush();
+                    fos.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return imagepath;
+    }
     // open gallery
     private void openGallery() {
         Intent gallery = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -275,6 +323,7 @@ public class Product_form extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= 23) {
 
             if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {
                 Log.v("TAG", "Permission is granted");
                 //Toast.makeText(Product_form.this, "Permission is granted", Toast.LENGTH_SHORT).show();
@@ -283,7 +332,30 @@ public class Product_form extends AppCompatActivity {
 
                 Log.v("TAG", "Permission is revoked");
                 // Toast.makeText(MainActivity.this, "Permission is revoked", Toast.LENGTH_SHORT).show();
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 11);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 11);
+                return false;
+            }
+        } else {
+            //permission is automatically granted on sdk<23 upon installation
+            Log.v("TAG", "Permission is granted");
+            //Toast.makeText(MainActivity.this, "Permission is granted1", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+    }
+
+    public boolean WriteStoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+
+            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v("TAG", "Permission is granted");
+                //Toast.makeText(Product_form.this, "Permission is granted", Toast.LENGTH_SHORT).show();
+                return true;
+            } else {
+
+                Log.v("TAG", "Permission is revoked");
+                // Toast.makeText(MainActivity.this, "Permission is revoked", Toast.LENGTH_SHORT).show();
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 22);
                 return false;
             }
         } else {
@@ -299,6 +371,7 @@ public class Product_form extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
             case 11:
+            case 22:
                 if (grantResults.length > 0 &&
                         grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     // CALL();

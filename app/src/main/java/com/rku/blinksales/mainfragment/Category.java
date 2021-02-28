@@ -17,11 +17,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
@@ -53,6 +56,11 @@ public class Category extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_category, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.nav_category);
+        TextView id_weight = getActivity().findViewById(R.id.id_weight);
+        ImageButton id_btn_refresh =getActivity().findViewById(R.id.id_btn_refresh);
+        id_weight.setVisibility(View.GONE);
+        id_btn_refresh.setVisibility(View.GONE);
         FloatingActionButton id_add_category = view.findViewById(R.id.button_add_category);
         db = MainRoomDatabase.getInstance(getContext()).getDao();
         RecyclerView recyclerView = view.findViewById(R.id.CategoryRecycler_view);

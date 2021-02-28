@@ -62,6 +62,7 @@ public class ADDFragment extends BottomSheetDialogFragment {
             id_cat_btn_save.setVisibility(View.GONE);
             id_Delete_type.setVisibility(View.GONE);
         }else if(i == 11){
+            id_cat_btn_save.setVisibility(View.GONE);
             id_Delete_type.setVisibility(View.GONE);
             list_text = db.getCategory();
             title.setText("Choose Product Category ");
