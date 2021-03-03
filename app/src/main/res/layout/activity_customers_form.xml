@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_light"
     android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:context=".form.Customers_form"
-    android:background="@color/primary_light">
+    tools:context=".form.Customers_form">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:orientation="horizontal"
         android:background="@color/colorPrimaryDark"
         android:elevation="5dp"
+        android:orientation="horizontal"
         android:padding="8dp">
+
         <ImageButton
             android:id="@+id/id_back_arrow"
             android:layout_width="70dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:elevation="4dp"
-            android:background="@drawable/ic_backarrow"/>
+            android:background="@drawable/ic_backarrow"
+            android:elevation="4dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -33,12 +35,15 @@
             android:textColor="@color/colorAccent"
             android:textSize="18sp" />
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -261,6 +266,7 @@
                     android:layout_marginEnd="32dp"
                     android:layout_marginBottom="24dp"
                     android:background="@drawable/button_background"
+                    android:onClick="Save_Customer"
                     android:text="@string/save"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="24sp"
