@@ -89,7 +89,7 @@ public class Expense_list extends Fragment {
             startActivity(intent);
         });
 
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -111,7 +111,7 @@ public class Expense_list extends Fragment {
                     public void onClick(View v) {
                         try{
                             db.deleteExpenseList(adapter.getNoteAt(viewHolder.getAdapterPosition()));
-                            Toast.makeText(getActivity(), "Category  deleted", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Expense List  deleted", Toast.LENGTH_SHORT).show();
                             alertDialog.cancel();
                         }catch (Exception e)
                         {
@@ -125,7 +125,7 @@ public class Expense_list extends Fragment {
                     public void onClick(View v) {
                         try {
                             adapter.notifyItemChanged(viewHolder.getAdapterPosition());
-                            Toast.makeText(getActivity(), "Category Not deleted", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(), "Expense List  Not deleted", Toast.LENGTH_SHORT).show();
                             alertDialog.cancel();
                         }catch (Exception e) {
                             e.getStackTrace();

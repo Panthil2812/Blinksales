@@ -74,4 +74,6 @@
     <string name="todo">TODO</string>
     <string name="str_is_gst_included">Is GST included</string>
     <string name="str_product_gst_slab">Product from 0% GST slab</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

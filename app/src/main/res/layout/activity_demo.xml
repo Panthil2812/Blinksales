@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    tools:context=".DemoActivity"
+    android:background="@color/primary_light">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        app:title="Dashborad"
+        app:titleTextAppearance="@style/Actionbar"
+        app:titleTextColor="@color/colorAccent">
+
+        <ImageButton
+            android:id="@+id/id_btn_refresh"
+            style="@style/Actionbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/refresh_icon" />
+
+        <TextView
+            android:id="@+id/id_weight"
+            style="@style/Actionbar"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@drawable/textview_background"
+            android:gravity="center|center_horizontal"
+            android:text="10.0000"
+            android:textSize="20sp" />
+        <!--            <TextView-->
+        <!--                android:id="@+id/id_delete"-->
+        <!--                style="@style/Actionbar"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:gravity="center|center_horizontal"-->
+        <!--                android:text="Delete"-->
+        <!--                android:textSize="18dp"/>-->
+        <!--          <androidx.appcompat.widget.SearchView-->
+        <!--              android:layout_width="wrap_content"-->
+        <!--              android:layout_height="match_parent"/>-->
+
+    </androidx.appcompat.widget.Toolbar>
+<LinearLayout
+    android:id="@+id/searchLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryDark"
+    android:paddingTop="16dp"
+    android:paddingBottom="8dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp">
+
+    <SearchView
+        android:id="@+id/simpleSearchView"
+        style="@style/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@drawable/textview_background"
+        android:iconifiedByDefault="false"
+        android:paddingEnd="8dp"
+        android:queryHint="Search here">
+
+    </SearchView>
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/button_background"
+        android:backgroundTint="@color/colorAccent"
+        android:src="@drawable/ic_barcode" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/button_background"
+        android:backgroundTint="@color/colorAccent"
+        android:src="@drawable/ic_filter" />
+</LinearLayout>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabsCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:background="@color/colorPrimaryDark"
+        android:elevation="4dp"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintBottom_toTopOf="@+id/viewpager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:tabBackground="@color/colorPrimaryDark"
+        app:tabGravity="fill"
+        app:tabIndicatorAnimationDuration="@android:integer/config_longAnimTime"
+        app:tabIndicatorColor="@color/colorAccent"
+        app:tabIndicatorGravity="bottom"
+        app:tabMaxWidth="0dp"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tabTextColor="@color/secondary_text" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/ProductViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tabsCategory"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="0dp"
+        android:background="@color/primary_light"
+        android:elevation="4dp"
+        app:layout_constraintTop_toBottomOf="@+id/tabs"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/id_add_products"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:clickable="true"
+        android:foregroundGravity="bottom|right"
+        app:srcCompat="@drawable/ic_add_24" />
+</RelativeLayout>
+
+</LinearLayout>

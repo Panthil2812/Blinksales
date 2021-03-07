@@ -27,6 +27,7 @@
             android:elevation="4dp" />
 
         <TextView
+            android:id="@+id/porductpageTite"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -58,7 +59,6 @@
                     app:cardBackgroundColor="@color/colorPrimary"
                     app:cardCornerRadius="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageButton2">
 
@@ -70,8 +70,8 @@
 
                         <ImageView
                             android:id="@+id/img_product"
-                            android:layout_width="130dp"
-                            android:layout_height="130dp"
+                            android:layout_width="133dp"
+                            android:layout_height="136dp"
                             android:contentDescription="@string/todo"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_products" />
@@ -304,10 +304,20 @@
                     app:layout_constraintTop_toBottomOf="@+id/id_pro_category">
 
                     <com.google.android.material.textfield.TextInputEditText
+                      android:id="@+id/id_pro_mrp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                         />
+                        android:inputType="number|numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
+
+                <ImageView
+                    android:id="@+id/id_Rotate_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/card_img_product"
+                    app:layout_constraintStart_toEndOf="@+id/card_img_product"
+                    app:srcCompat="@drawable/refresh_icon" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>

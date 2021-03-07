@@ -10,6 +10,7 @@ public class ProductTable {
     String product_image_uri;
     String product_name;
     String product_category;
+    Double product_mrp;
     Double product_selling_price;
     String product_qty;
     String product_unit;
@@ -19,12 +20,14 @@ public class ProductTable {
     Boolean product_is_include;
     Double gst;
     Double gst_amount;
+    Double discount;
     String HSN = "";
 
-    public ProductTable(String product_image_uri, String product_name, String product_category, Double product_selling_price, String product_qty, String product_unit, String product_price_unit, String product_barcode, Boolean product_stock, Boolean product_is_include, Double gst, Double gst_amount, String HSN) {
+    public ProductTable(String product_image_uri, String product_name, String product_category, Double product_mrp, Double product_selling_price, String product_qty, String product_unit, String product_price_unit, String product_barcode, Boolean product_stock, Boolean product_is_include, Double gst, Double gst_amount, Double discount, String HSN) {
         this.product_image_uri = product_image_uri;
         this.product_name = product_name;
         this.product_category = product_category;
+        this.product_mrp = product_mrp;
         this.product_selling_price = product_selling_price;
         this.product_qty = product_qty;
         this.product_unit = product_unit;
@@ -34,6 +37,7 @@ public class ProductTable {
         this.product_is_include = product_is_include;
         this.gst = gst;
         this.gst_amount = gst_amount;
+        this.discount = discount;
         this.HSN = HSN;
     }
 
@@ -67,6 +71,14 @@ public class ProductTable {
 
     public void setProduct_category(String product_category) {
         this.product_category = product_category;
+    }
+
+    public Double getProduct_mrp() {
+        return product_mrp;
+    }
+
+    public void setProduct_mrp(Double product_mrp) {
+        this.product_mrp = product_mrp;
     }
 
     public Double getProduct_selling_price() {
@@ -125,12 +137,12 @@ public class ProductTable {
         this.product_is_include = product_is_include;
     }
 
-    public Double getgst() {
+    public Double getGst() {
         return gst;
     }
 
-    public void setgst(Double c_gst) {
-        this.gst = c_gst;
+    public void setGst(Double gst) {
+        this.gst = gst;
     }
 
     public Double getGst_amount() {
@@ -139,6 +151,14 @@ public class ProductTable {
 
     public void setGst_amount(Double gst_amount) {
         this.gst_amount = gst_amount;
+    }
+
+    public Double getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
     }
 
     public String getHSN() {

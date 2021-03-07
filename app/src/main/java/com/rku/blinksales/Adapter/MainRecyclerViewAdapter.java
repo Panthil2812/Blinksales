@@ -1,5 +1,6 @@
 package com.rku.blinksales.Adapter;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
@@ -11,20 +12,22 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.rku.blinksales.R;
 import com.rku.blinksales.Roomdatabase.ProductTable;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerViewAdapter.MyViewHolder>{
-
-    private final List<ProductTable> Data;
-
-    public MainRecyclerViewAdapter(List<ProductTable> data) {
-        this.Data = data;
+    private List<ProductTable> notes = new ArrayList<>();
+  //  private final List<ProductTable> Data;
+    Context context;
+    public MainRecyclerViewAdapter(Context context) {
+        this.context = context;
+      //  this.Data = data;
     }
 
     @NonNull
@@ -37,28 +40,35 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
 
     @Override
     public void onBindViewHolder(@NonNull MainRecyclerViewAdapter.MyViewHolder holder, int position) {
+        ProductTable currentNote = notes.get(position);
+
         try {
-            holder.card_name.setText(Data.get(position).getProduct_name());
-
-            holder.card_price.setText(Data.get(position).getProduct_selling_price()+" ₹ /-");
-            String str = Data.get(position).getProduct_image_uri();
-            holder.card_img.setImageBitmap(loadImageFromStorage(str));
-
-//            holder.card_img.setImageResource(Data.get(position).getP_image());
-//            holder.itemView.setOnClickListener((View.OnClickListener) v -> {
+//            holder.card_name.setText(Data.get(position).getProduct_name());
 //
-//               Toast.makeText(v.getContext(),Data.get(position).getP_name()+"  "+Data.get(position).getP_price(),Toast.LENGTH_LONG).show();
-//            });
+//            holder.card_price.setText(Data.get(position).getProduct_selling_price()+" ₹ /-");
+//            String str = Data.get(position).getProduct_image_uri();
+//            File f = new File(str);
+//             Glide.with(context).load(f).fitCenter().placeholder(R.drawable.p1).into(holder.card_img);
+             holder.card_name.setText(currentNote.getProduct_name());
+
+            holder.card_price.setText(currentNote.getProduct_price_unit());
+            String str = currentNote.getProduct_image_uri();
+            File f = new File(str);
+             Glide.with(context).load(f).fitCenter().placeholder(R.drawable.p1).into(holder.card_img);
+
 
         }catch (Exception e)
         {
             e.printStackTrace();
         }
     }
-
+    public void setNotes(List<ProductTable> notes) {
+        this.notes = notes;
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
-        return Data.size();
+        return notes.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
@@ -70,16 +80,5 @@ public class MainRecyclerViewAdapter extends RecyclerView.Adapter<MainRecyclerVi
             card_price= itemView.findViewById(R.id.card_price);
             card_img = itemView.findViewById(R.id.card_img);
         }
-    }
-    private Bitmap loadImageFromStorage(String path) {
-
-        Bitmap bitmap = null;
-        try {
-            File f = new File(path);
-            bitmap = BitmapFactory.decodeStream(new FileInputStream(f));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bitmap;
     }
 }

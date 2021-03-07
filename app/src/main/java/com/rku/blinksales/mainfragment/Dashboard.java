@@ -10,14 +10,10 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.Toolbar;
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -43,6 +39,7 @@ public class Dashboard extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.nav_dashboard);
         FragmentManager fm = getActivity().getSupportFragmentManager();
+
         for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
             fm.popBackStack();
         }
@@ -55,7 +52,10 @@ public class Dashboard extends Fragment {
 
         db = MainRoomDatabase.getInstance(getContext()).getDao();
         List<String> Data = db.getCategory();
+
         ViewPager viewPager = view.findViewById(R.id.viewpager);
+        TabLayout layout = view.findViewById(R.id.tabs);
+        layout.setupWithViewPager(viewPager);
         MainViewPagerAdapter ViewPagerAdapter = new MainViewPagerAdapter(getFragmentManager(),Data);
         viewPager.setAdapter(ViewPagerAdapter);
 //        db.getAllCategory().observe(this, new Observer<List<CategoryTable>>() {
@@ -64,8 +64,7 @@ public class Dashboard extends Fragment {
 //                ViewPagerAdapter.setNotes(notes);
 //            }
 //        });
-        TabLayout layout = view.findViewById(R.id.tabs);
-        layout.setupWithViewPager(viewPager);
+
         return view;
     }
 

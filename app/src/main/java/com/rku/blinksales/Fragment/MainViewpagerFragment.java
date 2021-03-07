@@ -36,19 +36,11 @@ public class MainViewpagerFragment extends Fragment {
 //       // Toast.makeText(getContext(),"Category Name : "+str,Toast.LENGTH_LONG).show();
 //
         myrv = view.findViewById(R.id.id_recyclerView);
-        final MainRecyclerViewAdapter recyclerViewAdapter =new MainRecyclerViewAdapter(db.getAllProduct(str));
-//       // final CategoryRecyclerViewAdapter adapter = new CategoryRecyclerViewAdapter();
+        final MainRecyclerViewAdapter recyclerViewAdapter =new MainRecyclerViewAdapter(getContext());
+        db.getAllProduct(str).observe(this, notes -> recyclerViewAdapter.setNotes(notes));
         myrv.setLayoutManager(new GridLayoutManager(getContext(), Utility.calculateNoOfColumns(getContext(),180)));
-    //    myrv.setLayoutManager(new LinearLayoutManager(getContext()));
         myrv.setHasFixedSize(true);
         myrv.setAdapter(recyclerViewAdapter);
-//        db.getCategoryProducts(str).observe(this, new Observer<List<ProductTable>>() {
-//            @Override
-//            public void onChanged(@Nullable List<ProductTable> notes) {
-//                recyclerViewAdapter.setNotes(notes);
-//            }
-//        });
-
 //
         //Toast.makeText(getContext(),String.valueOf(db.getAllData(str)),Toast.LENGTH_SHORT).show();
         return  view;

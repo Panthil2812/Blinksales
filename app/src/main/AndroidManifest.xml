@@ -8,18 +8,20 @@
     <queries>
         <intent>
             <action android:name="android.intent.action.PICK" />
+
             <data android:mimeType="vnd.android.cursor.dir/image" />
         </intent>
     </queries>
+
     <application
         android:fullBackupContent="true"
         android:icon="@drawable/ic_shopping_cart"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
-        android:requestLegacyExternalStorage="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BillingDetails"/>
+        <activity android:name=".BillingDetails" />
         <activity
             android:name=".form.Contact_us_form"
             android:parentActivityName=".MainActivity"
@@ -40,7 +42,6 @@
             android:name=".form.Product_form"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="locked" />
-
         <activity
             android:name=".form.Customers_form"
             android:parentActivityName=".MainActivity"
@@ -62,7 +63,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".login.Login_page"
@@ -72,7 +72,7 @@
             android:screenOrientation="locked" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="locked"/>
+            android:screenOrientation="locked" />
     </application>
 
 </manifest>

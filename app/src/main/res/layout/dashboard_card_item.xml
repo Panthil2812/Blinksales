@@ -32,8 +32,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:padding="8dp">
 
@@ -54,13 +55,7 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="18sp" />
 
-            <ImageButton
-                android:id="@+id/EditProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:background="@color/primary_light"
-                app:srcCompat="@drawable/ic_edit" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -90,13 +85,20 @@
 
             </LinearLayout>
 
-            <ImageButton
-                android:id="@+id/DeleteProduct"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_margin="3dp"
-                android:background="@color/primary_light"
-                app:srcCompat="@drawable/ic_delete" />
         </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginEnd="8dp"
+        android:orientation="vertical">
+        <ImageButton
+            android:id="@+id/EditProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:background="@color/primary_light"
+            app:srcCompat="@drawable/ic_edit" />
     </LinearLayout>
 </LinearLayout>
