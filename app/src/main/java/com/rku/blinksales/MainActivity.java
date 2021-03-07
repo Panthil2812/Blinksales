@@ -2,12 +2,14 @@ package com.rku.blinksales;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.app.Fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -15,6 +17,7 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -52,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ImageButton id_btn_refresh;
     FrameLayout frameLayout;
 
-
+    boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,10 +100,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()) {
             case R.id.nav_dashboard:
                 //getSupportActionBar().setTitle(R.string.nav_dashboard);
-                // startActivity(new Intent(getApplicationContext(), MainActivity2.class));
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new Dashboard())
-                        .commit();
+                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.fragment_container, new Dashboard())
+//                        .commit();
 
                 Toast.makeText(this, R.string.nav_dashboard, Toast.LENGTH_SHORT).show();
                 break;
@@ -236,7 +239,32 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+
+            if (doubleBackToExitPressedOnce) {
+                new AlertDialog.Builder(this)
+                        .setMessage("Are you sure you want to exit?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                MainActivity.super.onBackPressed();
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+
+                return;
+            }
+
+            this.doubleBackToExitPressedOnce = true;
+            Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+            new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce=false;
+                }
+            }, 2000);
         }
     }
 

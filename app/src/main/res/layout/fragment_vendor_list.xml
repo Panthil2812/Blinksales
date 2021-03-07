@@ -26,7 +26,6 @@
             android:background="@drawable/textview_background"
             android:iconifiedByDefault="false"
             android:paddingEnd="8dp"
-            android:closeIcon="@null"
             android:queryHint="Search here"/>
     </LinearLayout>
 
