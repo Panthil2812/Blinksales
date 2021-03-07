@@ -96,15 +96,4 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
     public void setOnItemClickListener(ProductRecyclerViewAdapter.OnItemClickListener listener) {
         this.listener = listener;
     }
-    private Bitmap loadImageFromStorage(String path) {
-
-        Bitmap bitmap = null;
-        try {
-            File f = new File(path);
-            bitmap = BitmapFactory.decodeStream(new FileInputStream(f));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return bitmap;
-    }
 }

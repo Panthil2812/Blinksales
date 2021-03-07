@@ -149,6 +149,8 @@ public class Vendor_list extends Fragment {
                 }
             }
         }).attachToRecyclerView(recyclerView);
+
+
         vendor_searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

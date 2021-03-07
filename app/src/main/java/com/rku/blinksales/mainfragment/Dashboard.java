@@ -58,12 +58,8 @@ public class Dashboard extends Fragment {
         layout.setupWithViewPager(viewPager);
         MainViewPagerAdapter ViewPagerAdapter = new MainViewPagerAdapter(getFragmentManager(),Data);
         viewPager.setAdapter(ViewPagerAdapter);
-//        db.getAllCategory().observe(this, new Observer<List<CategoryTable>>() {
-//            @Override
-//            public void onChanged(@Nullable List<CategoryTable> notes) {
-//                ViewPagerAdapter.setNotes(notes);
-//            }
-//        });
+
+
 
         return view;
     }

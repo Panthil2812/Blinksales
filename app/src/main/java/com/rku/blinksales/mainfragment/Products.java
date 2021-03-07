@@ -1,5 +1,6 @@
 package com.rku.blinksales.mainfragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -8,8 +9,10 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +39,7 @@ import com.rku.blinksales.Roomdatabase.CategoryTable;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 import com.rku.blinksales.Roomdatabase.ProductTable;
+import com.rku.blinksales.Roomdatabase.VendorTable;
 import com.rku.blinksales.form.Expense_list_form;
 import com.rku.blinksales.form.Product_form;
 import java.util.ArrayList;
@@ -44,10 +48,8 @@ import java.util.List;
 public class Products extends Fragment {
     DatabaseDao db;
     RecyclerView myrv;
-    RecyclerView.LayoutManager layoutManager;
-   // CategoryRecyclerViewAdapter ra;
     FloatingActionButton id_add_products;
-    ArrayList<String> list_text;
+    SearchView product_searchView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -59,7 +61,11 @@ public class Products extends Fragment {
         id_btn_refresh.setVisibility(View.GONE);
         id_add_products = view.findViewById(R.id.id_add_products);
         db = MainRoomDatabase.getInstance(getContext()).getDao();
+
+        //fragment view
         myrv = view.findViewById(R.id.id_product_recyclerView);
+        product_searchView = view.findViewById(R.id.product_search);
+        //recyclerview adapter to display all product
         final ProductRecyclerViewAdapter recyclerViewAdapter =new ProductRecyclerViewAdapter(getContext());
         myrv.setLayoutManager(new LinearLayoutManager(getContext()));
         myrv.setHasFixedSize(true);
@@ -70,6 +76,8 @@ public class Products extends Fragment {
                 recyclerViewAdapter.setNotes(notes);
             }
         });
+
+        //edit product data to product form intent
         recyclerViewAdapter.setOnItemClickListener(note -> {
             Intent intent = new Intent(getContext(), Product_form.class);
             intent.putExtra("id", note.getProduct_id());
@@ -86,10 +94,13 @@ public class Products extends Fragment {
             intent.putExtra("stock", note.getProduct_stock().booleanValue());
             startActivity(intent);
         });
+
+        //add new product
         id_add_products.setOnClickListener(v -> {
               startActivity(new Intent(getContext().getApplicationContext(), Product_form.class));
         });
 
+        // delete product with delete dialog box
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,  ItemTouchHelper.LEFT) {
 
             @Override
@@ -160,8 +171,53 @@ public class Products extends Fragment {
                 }
             }
         }).attachToRecyclerView(myrv);
+
+        //search function for product search
+        product_searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if(query != null)
+                {
+                    Toast.makeText(getContext(),"Search : "+query,Toast.LENGTH_LONG).show();
+                    GetFilterData(query);
+                }
+                closeKeyboard();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //  adapter.getFilter().filter(newText);
+                if(newText != null)
+                {
+                    //Toast.makeText(getContext(),"OnSearch : "+newText,Toast.LENGTH_LONG).show();
+                    GetFilterData(newText);
+                }
+                return true;
+            }
+
+            private void GetFilterData(String str) {
+
+                str = "%" + str + "%";
+                db.searchProducts(str).observe(getViewLifecycleOwner(), new Observer <List<ProductTable>>() {
+                    @Override
+                    public void onChanged(List<ProductTable> notes) {
+                        recyclerViewAdapter.setNotes(notes);
+                    }
+                });
+
+            }
+        });
+
         return view;
 
     }
-
+    public void closeKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            product_searchView.clearFocus();
+        }
+    }
 }

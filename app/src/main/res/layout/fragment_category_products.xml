@@ -17,7 +17,7 @@
         android:paddingEnd="8dp">
 
         <SearchView
-            android:id="@+id/simpleSearchView"
+            android:id="@+id/product_search"
             style="@style/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -50,43 +50,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!--            <com.google.android.material.tabs.TabLayout-->
-        <!--                android:id="@+id/tabsCategory"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:layout_gravity="start"-->
-        <!--                android:background="@color/colorPrimaryDark"-->
-        <!--                android:elevation="4dp"-->
-        <!--                android:minHeight="?attr/actionBarSize"-->
-        <!--                app:layout_constraintBottom_toTopOf="@+id/viewpager"-->
-        <!--                app:layout_constraintEnd_toEndOf="parent"-->
-        <!--                app:layout_constraintStart_toStartOf="parent"-->
-        <!--                app:layout_constraintTop_toBottomOf="@+id/linearLayout"-->
-        <!--                app:tabBackground="@color/colorPrimaryDark"-->
-        <!--                app:tabGravity="fill"-->
-        <!--                app:tabIndicatorAnimationDuration="@android:integer/config_longAnimTime"-->
-        <!--                app:tabIndicatorColor="@color/colorAccent"-->
-        <!--                app:tabIndicatorGravity="bottom"-->
-        <!--                app:tabMaxWidth="0dp"-->
-        <!--                app:tabMode="scrollable"-->
-        <!--                app:tabSelectedTextColor="@color/colorAccent"-->
-        <!--                app:tabTextColor="@color/secondary_text" />-->
-
-        <!--            <androidx.viewpager.widget.ViewPager-->
-        <!--                android:id="@+id/ProductViewPager"-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent"-->
-        <!--                android:layout_below="@+id/tabsCategory"-->
-        <!--                android:layout_alignParentStart="true"-->
-        <!--                android:layout_alignParentEnd="true"-->
-        <!--                android:layout_alignParentBottom="true"-->
-        <!--                android:layout_marginStart="-17dp"-->
-        <!--                android:layout_marginTop="95dp"-->
-        <!--                android:layout_marginEnd="17dp"-->
-        <!--                android:layout_marginBottom="-95dp"-->
-        <!--                android:background="@color/primary_light"-->
-        <!--                android:elevation="4dp"-->
-        <!--                app:layout_constraintTop_toBottomOf="@+id/tabs" />-->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/id_product_recyclerView"

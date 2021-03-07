@@ -203,7 +203,7 @@ public class Product_form extends AppCompatActivity {
                 Double GST = Double.valueOf(id_gst_unit.getText().toString().trim()).doubleValue();
                 Double PRICE = Double.valueOf(id_pro_selling_price.getText().toString().trim()).doubleValue();
                 Double MRP = Double.valueOf(id_pro_mrp.getText().toString().trim()).doubleValue();
-
+                String product_name = pro_name. substring(0, 1). toUpperCase() +pro_name.substring(1).toLowerCase();
                 ProgressDialog dialog = new ProgressDialog(Product_form.this);
                 dialog.setTitle(" Please Wait");
                 dialog.setMessage("Loading . . .");
@@ -219,7 +219,7 @@ public class Product_form extends AppCompatActivity {
                             String imagepath = saveToInternalStorage(bitmap);
 
                             ProductTable productTable = new ProductTable(imagepath,
-                                    pro_name, pro_category,MRP,
+                                    product_name, pro_category,MRP,
                                     PRICE, pro_qty, pro_unit, price_unit,
                                     pro_Barcode, pro_stock, pro_is_included,
                                     GST, GST_AMOUNT,DISCOUNT, pro_hsn);
