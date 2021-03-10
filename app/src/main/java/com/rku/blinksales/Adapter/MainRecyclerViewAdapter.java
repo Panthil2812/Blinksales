@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.rku.blinksales.DoubleTapListener;
 import com.rku.blinksales.R;
 import com.rku.blinksales.Roomdatabase.ProductTable;
 

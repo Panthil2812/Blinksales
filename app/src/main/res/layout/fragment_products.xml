@@ -30,6 +30,7 @@
         </SearchView>
 
         <ImageButton
+            android:id="@+id/id_search_barcode"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"
@@ -37,13 +38,6 @@
             android:backgroundTint="@color/colorAccent"
             android:src="@drawable/ic_barcode" />
 
-        <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/button_background"
-            android:backgroundTint="@color/colorAccent"
-            android:src="@drawable/ic_filter" />
     </LinearLayout>
 
     <RelativeLayout

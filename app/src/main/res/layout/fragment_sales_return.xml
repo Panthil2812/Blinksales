@@ -23,9 +23,10 @@
             android:background="@drawable/textview_background"
             android:iconifiedByDefault="false"
             android:paddingEnd="8dp"
-            android:queryHint="Search here"></SearchView>
+            android:queryHint="Search here"/>
 
         <ImageButton
+            android:id="@+id/sales_filter_Calendar"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_marginStart="8dp"

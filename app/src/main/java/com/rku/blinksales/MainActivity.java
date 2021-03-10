@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         id_weight = findViewById(R.id.id_weight);
         id_btn_refresh = findViewById(R.id.id_btn_refresh);
         frameLayout = findViewById(R.id.fragment_container);
-        id_weight.setVisibility(View.GONE);
-        id_btn_refresh.setVisibility(View.GONE);
+//        id_weight.setVisibility(View.GONE);
+//        id_btn_refresh.setVisibility(View.GONE);
         setSupportActionBar(toolbar);
         drawer = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_menu);
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     .commit();
             navigationView.setCheckedItem(R.id.nav_dashboard);
         }
+
         id_btn_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

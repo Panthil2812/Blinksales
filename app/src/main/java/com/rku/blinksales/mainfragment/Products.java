@@ -6,12 +6,16 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,38 +29,33 @@ import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import com.google.android.material.tabs.TabLayout;
-import com.rku.blinksales.Adapter.MainViewPagerAdapter;
 import com.rku.blinksales.Adapter.ProductRecyclerViewAdapter;
-import com.rku.blinksales.Adapter.ViewPagerAdapter;
-import com.rku.blinksales.InstanceClass.List_Category;
 import com.rku.blinksales.R;
-import com.rku.blinksales.Roomdatabase.CategoryTable;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 import com.rku.blinksales.Roomdatabase.ProductTable;
-import com.rku.blinksales.Roomdatabase.VendorTable;
-import com.rku.blinksales.form.Expense_list_form;
+import com.rku.blinksales.ScanCodeActivity;
 import com.rku.blinksales.form.Product_form;
-import java.util.ArrayList;
+
+import java.io.File;
 import java.util.List;
 
 public class Products extends Fragment {
     DatabaseDao db;
     RecyclerView myrv;
     FloatingActionButton id_add_products;
-    SearchView product_searchView;
+    public static SearchView product_searchView;
+    ImageButton id_search_barcode;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_category_products, container, false);
+        View view = inflater.inflate(R.layout.fragment_products, container, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.nav_products);
         TextView id_weight = getActivity().findViewById(R.id.id_weight);
-        ImageButton id_btn_refresh =getActivity().findViewById(R.id.id_btn_refresh);
+        ImageButton id_btn_refresh = getActivity().findViewById(R.id.id_btn_refresh);
         id_weight.setVisibility(View.GONE);
         id_btn_refresh.setVisibility(View.GONE);
         id_add_products = view.findViewById(R.id.id_add_products);
@@ -65,8 +64,11 @@ public class Products extends Fragment {
         //fragment view
         myrv = view.findViewById(R.id.id_product_recyclerView);
         product_searchView = view.findViewById(R.id.product_search);
+        id_search_barcode = view.findViewById(R.id.id_search_barcode);
+        int searchCloseButtonId = product_searchView.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
+        ImageView closeButton = (ImageView) this.product_searchView.findViewById(searchCloseButtonId);
         //recyclerview adapter to display all product
-        final ProductRecyclerViewAdapter recyclerViewAdapter =new ProductRecyclerViewAdapter(getContext());
+        final ProductRecyclerViewAdapter recyclerViewAdapter = new ProductRecyclerViewAdapter(getContext());
         myrv.setLayoutManager(new LinearLayoutManager(getContext()));
         myrv.setHasFixedSize(true);
         myrv.setAdapter(recyclerViewAdapter);
@@ -95,13 +97,30 @@ public class Products extends Fragment {
             startActivity(intent);
         });
 
+        //barcode intent layout
+        id_search_barcode.setOnClickListener(v -> {
+            Intent intent_barcode = new Intent(getContext(), ScanCodeActivity.class);
+            intent_barcode.putExtra("key", 22);
+            startActivity(intent_barcode);
+            product_searchView.clearFocus();
+            closeKeyboard();
+        });
+
+        //SearchView Close Button Event
+        closeButton.setOnClickListener(v -> {
+            product_searchView.setQuery("", false);
+            product_searchView.clearFocus();
+            closeKeyboard();
+
+        });
+
         //add new product
         id_add_products.setOnClickListener(v -> {
-              startActivity(new Intent(getContext().getApplicationContext(), Product_form.class));
+            startActivity(new Intent(getContext().getApplicationContext(), Product_form.class));
         });
 
         // delete product with delete dialog box
-        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,  ItemTouchHelper.LEFT) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
@@ -117,14 +136,24 @@ public class Products extends Fragment {
                 Button OK = dialogView.findViewById(R.id.Dialog_ok);
                 Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
                 TextView title = dialogView.findViewById(R.id.Dialog_title);
-
+                title.setText("Delete Product");
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
                 OK.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         try {
-                            db.deleteProductTable(recyclerViewAdapter.getNoteAt(viewHolder.getAdapterPosition()));
+                            ProductTable note = recyclerViewAdapter.getNoteAt(viewHolder.getAdapterPosition());
+                            try {
+                                File file = new File(note.getProduct_image_uri());
+                                if (file.exists()) {
+                                    file.delete();
+                                }
+                            } catch (Exception e) {
+                                e.getStackTrace();
+                            }
+
+                            db.deleteProductTable(note);
                             Toast.makeText(getActivity(), "Product  deleted", Toast.LENGTH_SHORT).show();
                             alertDialog.cancel();
                         } catch (Exception e) {
@@ -176,9 +205,8 @@ public class Products extends Fragment {
         product_searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if(query != null)
-                {
-                    Toast.makeText(getContext(),"Search : "+query,Toast.LENGTH_LONG).show();
+                if (query != null) {
+                    Toast.makeText(getContext(), "Search : " + query, Toast.LENGTH_LONG).show();
                     GetFilterData(query);
                 }
                 closeKeyboard();
@@ -188,8 +216,7 @@ public class Products extends Fragment {
             @Override
             public boolean onQueryTextChange(String newText) {
                 //  adapter.getFilter().filter(newText);
-                if(newText != null)
-                {
+                if (newText != null) {
                     //Toast.makeText(getContext(),"OnSearch : "+newText,Toast.LENGTH_LONG).show();
                     GetFilterData(newText);
                 }
@@ -199,7 +226,7 @@ public class Products extends Fragment {
             private void GetFilterData(String str) {
 
                 str = "%" + str + "%";
-                db.searchProducts(str).observe(getViewLifecycleOwner(), new Observer <List<ProductTable>>() {
+                db.searchProducts(str).observe(getViewLifecycleOwner(), new Observer<List<ProductTable>>() {
                     @Override
                     public void onChanged(List<ProductTable> notes) {
                         recyclerViewAdapter.setNotes(notes);
@@ -209,13 +236,16 @@ public class Products extends Fragment {
             }
         });
 
+
         return view;
 
     }
+
+
     public void closeKeyboard() {
         View view = getActivity().getCurrentFocus();
         if (view != null) {
-            InputMethodManager imm = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             product_searchView.clearFocus();
         }

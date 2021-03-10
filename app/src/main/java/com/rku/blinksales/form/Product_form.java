@@ -31,35 +31,46 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.rku.blinksales.Fragment.ADDFragment;
 import com.rku.blinksales.MainActivity;
 import com.rku.blinksales.R;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 import com.rku.blinksales.Roomdatabase.ProductTable;
+import com.rku.blinksales.ScanCodeActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.BreakIterator;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 public class Product_form extends AppCompatActivity {
+
     CheckBox ck_gst_included;
-    EditText id_pro_name, id_pro_selling_price,id_pro_mrp, id_pro_qty, id_pro_barcode, id_gst_unit, id_hsn_unit;
-    TextView id_pro_unit, id_pro_category,porductpageTite;
-    ImageView img_product,id_Rotate_image;
+    EditText id_pro_name, id_pro_selling_price, id_pro_mrp, id_pro_qty, id_gst_unit, id_hsn_unit;
+    public static EditText id_pro_barcode;
+    TextView id_pro_unit, id_pro_category, porductpageTite;
+    ImageView img_product, id_Rotate_image;
     ImageButton id_back_arrow;
     Switch id_Switch_Stock;
     Button id_pro_btn_add;
+    TextInputLayout id_pro_form_barcode_layout;
     private static final int PICK_IMAGE = 100;
     DatabaseDao db;
-    int editcount = -1;
+    int editCount = -1;
+
+    String last_image_uri;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,11 +93,13 @@ public class Product_form extends AppCompatActivity {
         ck_gst_included = findViewById(R.id.product_gst_slab);
         id_pro_btn_add = findViewById(R.id.id_pro_btn_add);
         id_Rotate_image = findViewById(R.id.id_Rotate_image);
+        id_pro_form_barcode_layout = findViewById(R.id.id_pro_form_barcode_layout);
         Intent intent = getIntent();
         if (intent.hasExtra("id")) {
-            editcount = intent.getIntExtra("id",-1);
+            editCount = intent.getIntExtra("id", -1);
             porductpageTite.setText("Edit Expense");
-            File file = new File(intent.getStringExtra("image"));
+            last_image_uri = intent.getStringExtra("image");
+            File file = new File(last_image_uri);
             Glide.with(getApplicationContext()).load(file).placeholder(R.drawable.ic_products).into(img_product);
             id_pro_name.setText(intent.getStringExtra("pro_name"));
             id_pro_category.setText(intent.getStringExtra("category"));
@@ -97,19 +110,17 @@ public class Product_form extends AppCompatActivity {
             id_pro_barcode.setText(intent.getStringExtra("barcode"));
 
             id_hsn_unit.setText(intent.getStringExtra("hsn"));
-            if(intent.getStringExtra("gst").equals("0.0"))
-            {
+            if (intent.getStringExtra("gst").equals("0.0")) {
                 ck_gst_included.setChecked(true);
                 id_gst_unit.setText("0");
                 id_gst_unit.setTextColor(getResources().getColor(R.color.colorAccent));
                 disableEditText(id_gst_unit);
-            }else{
+            } else {
                 id_gst_unit.setText(intent.getStringExtra("gst"));
             }
-            if(intent.getBooleanExtra("stock",false))
-            {
+            if (intent.getBooleanExtra("stock", false)) {
                 id_Switch_Stock.setChecked(true);
-            }else{
+            } else {
                 id_Switch_Stock.setChecked(false);
             }
         } else {
@@ -139,7 +150,7 @@ public class Product_form extends AppCompatActivity {
         img_product.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ReadStoragePermissionGranted()) {
+                if (StoragePermissionGranted()) {
                     openGallery();
                 }
             }
@@ -162,10 +173,17 @@ public class Product_form extends AppCompatActivity {
             onBackPressed();
         });
 
+        //barcode intent layout
+        id_pro_form_barcode_layout.setEndIconOnClickListener(v -> {
+            Intent intent_barcode = new Intent(Product_form.this, ScanCodeActivity.class);
+            intent_barcode.putExtra("key", 11);
+            startActivity(intent_barcode);
+            id_pro_barcode.clearFocus();
+        });
 
         // save to product in database
         id_pro_btn_add.setOnClickListener(v -> {
-           // id_pro_btn_add.requestFocus();
+            // id_pro_btn_add.requestFocus();
             String pro_name = id_pro_name.getText().toString().trim();
             String pro_category = id_pro_category.getText().toString().trim();
             String pro_price = id_pro_selling_price.getText().toString().trim();
@@ -187,9 +205,9 @@ public class Product_form extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Please Select Product Category", Toast.LENGTH_SHORT).show();
             } else if (pro_mrp.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Please enter Product MRP", Toast.LENGTH_SHORT).show();
-            }else if (pro_price.isEmpty()) {
+            } else if (pro_price.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Please enter Product Selling Price", Toast.LENGTH_SHORT).show();
-            }else if( Double.valueOf(id_pro_selling_price.getText().toString().trim()).doubleValue() > Double.valueOf(id_pro_mrp.getText().toString().trim()).doubleValue()){
+            } else if (Double.valueOf(id_pro_selling_price.getText().toString().trim()).doubleValue() > Double.valueOf(id_pro_mrp.getText().toString().trim()).doubleValue()) {
                 Toast.makeText(getApplicationContext(), "Please product Selling price less than MRP", Toast.LENGTH_SHORT).show();
             } else if (pro_qty.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Please enter Product Qty", Toast.LENGTH_SHORT).show();
@@ -199,41 +217,56 @@ public class Product_form extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Please enter Product Barcode", Toast.LENGTH_SHORT).show();
             } else if (pro_price.isEmpty()) {
                 Toast.makeText(getApplicationContext(), "Please enter Product Total GST", Toast.LENGTH_SHORT).show();
+            } else if (editCount != -1 && !pro_Barcode.equals(intent.getStringExtra("barcode")) && db.countBarcode(pro_Barcode) != 0) {
+                Toast.makeText(getApplicationContext(), "Barcode Exists", Toast.LENGTH_SHORT).show();
+            } else if (editCount == -1 && db.countBarcode(pro_Barcode) != 0) {
+                Toast.makeText(getApplicationContext(), "Barcode Exists", Toast.LENGTH_SHORT).show();
             } else {
+                // int count = db.countBarcode(pro_Barcode);
+
                 Double GST = Double.valueOf(id_gst_unit.getText().toString().trim()).doubleValue();
                 Double PRICE = Double.valueOf(id_pro_selling_price.getText().toString().trim()).doubleValue();
                 Double MRP = Double.valueOf(id_pro_mrp.getText().toString().trim()).doubleValue();
-                String product_name = pro_name. substring(0, 1). toUpperCase() +pro_name.substring(1).toLowerCase();
-                ProgressDialog dialog = new ProgressDialog(Product_form.this);
-                dialog.setTitle(" Please Wait");
-                dialog.setMessage("Loading . . .");
-                dialog.show();
+                String product_name = pro_name.substring(0, 1).toUpperCase() + pro_name.substring(1).toLowerCase();
+//                ProgressDialog dialog = new ProgressDialog(Product_form.this);
+//                dialog.setTitle(" Please Wait");
+//                dialog.setMessage("Loading . . .");
+
                 Thread mThread = new Thread() {
                     @Override
                     public void run() {
                         try {
-                            Double DISCOUNT = ((MRP - PRICE)/ MRP)*100;
+//                            dialog.show();
+                            Double DISCOUNT = ((MRP - PRICE) / MRP) * 100;
                             Double GST_AMOUNT = (PRICE * GST) / 100;
                             Bitmap bitmap = ((BitmapDrawable) img_product.getDrawable()).getBitmap();
                             String price_unit = pro_price + " ₹/" + pro_unit;
-                            String imagepath = saveToInternalStorage(bitmap);
+                            String imagepath = saveToExternalStorage(bitmap);
 
                             ProductTable productTable = new ProductTable(imagepath,
-                                    product_name, pro_category,MRP,
+                                    product_name, pro_category, MRP,
                                     PRICE, pro_qty, pro_unit, price_unit,
                                     pro_Barcode, pro_stock, pro_is_included,
-                                    GST, GST_AMOUNT,DISCOUNT, pro_hsn);
+                                    GST, GST_AMOUNT, DISCOUNT, pro_hsn);
 
-                            if(editcount == -1)
-                            {
+                            if (editCount == -1) {
                                 db.insertProductTable(productTable);
-                            }else{
-                                productTable.setProduct_id(editcount);
-                                db.updateProductTable(productTable);
+                            } else {
+
+                                File fdelete = new File(last_image_uri);
+                                if (fdelete.exists()) {
+                                    if (fdelete.delete()) {
+                                        System.out.println("file Deleted........................................................");
+                                        productTable.setProduct_id(editCount);
+                                        db.updateProductTable(productTable);
+                                    } else {
+                                        System.out.println("file not Deleted :");
+                                    }
+                                }
                             }
 
                             System.out.println("ADD............................................................");
-                            dialog.dismiss();
+//                            dialog.dismiss();
 
 //                            Toast.makeText(getApplicationContext(), "Name : " + pro_name + "\n"
 //                                    + "Price :" + PRICE + "\n"
@@ -248,19 +281,18 @@ public class Product_form extends AppCompatActivity {
                     }
                 };
                 mThread.start();
-                Toast.makeText(getApplicationContext(),"Product Successfully Added.",Toast.LENGTH_SHORT).show();
-               onBackPressed();
+                Toast.makeText(getApplicationContext(), "Product Successfully Added.", Toast.LENGTH_SHORT).show();
+                onBackPressed();
             }
         });
 
 
         // Rotate image select after gallery click button
         id_Rotate_image.setOnClickListener(v -> {
-            if(img_product.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_products).getConstantState())
-            {
+            if (img_product.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.ic_products).getConstantState()) {
                 Toast.makeText(getApplicationContext(), "Please select Product image in Gallery", Toast.LENGTH_SHORT).show();
-            }else{
-                Bitmap myImg =  ((BitmapDrawable) img_product.getDrawable()).getBitmap();
+            } else {
+                Bitmap myImg = ((BitmapDrawable) img_product.getDrawable()).getBitmap();
 
                 Matrix matrix = new Matrix();
                 matrix.postRotate(90);
@@ -299,40 +331,55 @@ public class Product_form extends AppCompatActivity {
         return directory.getPath() + "/" + imageName;
 //        return mypath.length();
     }
-    private String saveToExternalStorage(Bitmap bitmapImage) {
-        String imagepath = null;
-        String state = Environment.getExternalStorageState();
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            File path = new File(Environment.getExternalStorageDirectory() ,"/Shop/image/");
-            if(!path.exists()){
-                path.mkdir();
-            }
-            //Image File.....
-            File file = new File(path, System.currentTimeMillis()+".jpg");
-            if (!file.exists()) {
-                //Store.....
-                Log.d("path", file.toString());
-                imagepath = file.toString();
-//                imagePath.setText(file.toString());
-                try {
-                    FileOutputStream fos = new FileOutputStream(file);
-                    bitmapImage.compress(Bitmap.CompressFormat.JPEG, 25, fos);
-                    fos.flush();
-                    fos.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
+
+
+    // PERMISSION RESULT
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case 100:
+                if (grantResults.length > 0 &&
+                        grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
+                    // CALL();
+                    Toast.makeText(getApplicationContext(), "Permission granted", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Permission denied", Toast.LENGTH_SHORT).show();
                 }
-            }
+                break;
         }
-        return imagepath;
     }
-    // open gallery
+
+    //READ AND WRITE STORAGE PERMISSION
+    public boolean StoragePermissionGranted() {
+        if (Build.VERSION.SDK_INT >= 23) {
+
+            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    == PackageManager.PERMISSION_GRANTED) {
+                Log.v("TAG", "Permission is granted");
+                //Toast.makeText(Product_form.this, "Permission is granted", Toast.LENGTH_SHORT).show();
+                return true;
+            } else {
+
+                Log.v("TAG", "Permission is revoked");
+                //  Toast.makeText(MainActivity.this, "Permission is revoked", Toast.LENGTH_SHORT).show();
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
+                return false;
+            }
+        } else {
+            //permission is automatically granted on sdk<23 upon installation
+            Log.v("TAG", "Permission is granted");
+            //Toast.makeText(MainActivity.this, "Permission is granted1", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+    }
+
+    //OPEN GALLERY IN APP
     private void openGallery() {
         Intent gallery = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(gallery, PICK_IMAGE);
     }
 
-    //gallery to image display in product form
+    //SELETED IMAGE SHOW INSIDE APP IMAGE VIEW
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -349,18 +396,10 @@ public class Product_form extends AppCompatActivity {
                     long l = file.length();
                     float i = (float) l / 1048576;
                     if (i < 3) {
-                        System.out.println("Size of Image : " + i + " MB");
-                        // imagePath.setText("URL");
-
-//                        Picasso.get().load(file).centerInside().placeholder(R.drawable.p1).into(img_product);
                         Glide.with(getApplicationContext()).load(file).placeholder(R.drawable.ic_products).into(img_product);
-
                     } else {
-                        System.out.println("Size of Image is 3 MP");
                         Toast.makeText(getApplicationContext(), "Please Image size less than 3MB", Toast.LENGTH_SHORT).show();
-//                        Picasso.get().load(R.drawable.ic_products).centerInside().into(img_product);
                         Glide.with(getApplicationContext()).load(R.drawable.ic_products).into(img_product);
-
                     }
                     cursor.close();
                 }
@@ -368,72 +407,64 @@ public class Product_form extends AppCompatActivity {
         }
     }
 
-
-    //storage permission dialog box
-    public boolean ReadStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 23) {
-
-            if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v("TAG", "Permission is granted");
-                //Toast.makeText(Product_form.this, "Permission is granted", Toast.LENGTH_SHORT).show();
-                return true;
-            } else {
-
-                Log.v("TAG", "Permission is revoked");
-                // Toast.makeText(MainActivity.this, "Permission is revoked", Toast.LENGTH_SHORT).show();
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE}, 11);
-                return false;
-            }
-        } else {
-            //permission is automatically granted on sdk<23 upon installation
-            Log.v("TAG", "Permission is granted");
-            //Toast.makeText(MainActivity.this, "Permission is granted1", Toast.LENGTH_SHORT).show();
-            return true;
+    //IMAGE STORAGE (SAVE) IN EXTERNAL STORAGE
+    private String saveToExternalStorage(Bitmap bitmapImage) {
+        String imageUri = null;
+        String folderName = "Shopooze";
+        File root = new File(Environment.getExternalStorageDirectory().getAbsoluteFile(), folderName);
+        if (!root.exists()) {
+            root.mkdirs();
         }
-    }
-
-    public boolean WriteStoragePermissionGranted() {
-        if (Build.VERSION.SDK_INT >= 23) {
-
-            if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                    == PackageManager.PERMISSION_GRANTED) {
-                Log.v("TAG", "Permission is granted");
-                //Toast.makeText(Product_form.this, "Permission is granted", Toast.LENGTH_SHORT).show();
-                return true;
-            } else {
-
-                Log.v("TAG", "Permission is revoked");
-                // Toast.makeText(MainActivity.this, "Permission is revoked", Toast.LENGTH_SHORT).show();
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 22);
-                return false;
-            }
-        } else {
-            //permission is automatically granted on sdk<23 upon installation
-            Log.v("TAG", "Permission is granted");
-            //Toast.makeText(MainActivity.this, "Permission is granted1", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-    }
-
-    // permission result
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case 11:
-            case 22:
-                if (grantResults.length > 0 &&
-                        grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // CALL();
-                    Toast.makeText(getApplicationContext(), "Permission granted", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Permission denied", Toast.LENGTH_SHORT).show();
+        File path = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/" + folderName, "image");
+        if (path.exists()) {
+//            Toast.makeText(getApplicationContext(), "Directory is already exist", Toast.LENGTH_SHORT).show();
+            String imageName = UUID.randomUUID().toString() + ".jpg";
+            File imageFile = new File(path, imageName);
+            if (!imageFile.exists()) {
+                //Store.....
+                imageUri = imageFile.toString();
+                //txt_image_uri.setText(imageFile.toString());
+                try {
+                    FileOutputStream fos = new FileOutputStream(imageFile);
+                    bitmapImage.compress(Bitmap.CompressFormat.JPEG, 25, fos);
+                    fos.flush();
+                    fos.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                break;
+            }
+        } else {
+            path.mkdir();
+            if (path.isDirectory()) {
+//                Toast.makeText(getApplicationContext(), "Directory is created successfully", Toast.LENGTH_SHORT).show();
+                String imageName = UUID.randomUUID().toString() + ".jpg";
+                File imagefile = new File(path, imageName);
+                if (!imagefile.exists()) {
+                    //Store.....
+                    imageUri = imagefile.toString();
+                    //  txt_image_uri.setText(imagefile.toString());
+                    try {
+                        FileOutputStream fos = new FileOutputStream(imagefile);
+                        bitmapImage.compress(Bitmap.CompressFormat.JPEG, 25, fos);
+                        fos.flush();
+                        fos.close();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+//                String sMessage = "Message : failed to create directory" + "\nPath : " + Environment.getExternalStorageDirectory() +
+//                        "\nmkdirs : " + path.mkdir();
+//                builder.setMessage(sMessage);
+//                builder.show();
+            }
         }
+        return imageUri;
     }
 
+
+    // CLOSE KEYBOARD
     public void closeKeyboard() {
         View view = this.getCurrentFocus();
         if (view != null) {
@@ -442,12 +473,14 @@ public class Product_form extends AppCompatActivity {
         }
     }
 
+    // EDIT TEXT ENABLE
     private void enableEditText(EditText editText) {
         editText.setFocusableInTouchMode(true);
         editText.setFocusable(true);
         editText.setEnabled(true);
     }
 
+    // EDIT TEXT DISABLE
     private void disableEditText(EditText editText) {
         editText.setEnabled(false);
         editText.setFocusable(false);

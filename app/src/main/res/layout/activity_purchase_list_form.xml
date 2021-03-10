@@ -68,34 +68,36 @@
                 <LinearLayout
                     android:id="@+id/linearLayout3"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:orientation="horizontal"
+                   android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_redate_layout">
+                    app:layout_constraintTop_toBottomOf="@+id/id_pur_date">
+
+                    <Button
+                        android:id="@+id/id_upload_bill"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:background="@drawable/button_background"
+                        android:elevation="4dp"
+                        android:gravity="center"
+                        android:text="Upload bill"
+                        android:textColor="@color/primary_light"
+                        android:textSize="14dp" />
 
                     <ImageView
-                        android:id="@+id/img_pur_reciept"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="18dp"
-                        android:layout_weight="1"
-                        android:background="@color/secondary_text" />
-
-                    <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/img_pur_bill"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
+                        android:layout_margin="18dp"
                         android:layout_weight="1"
-                        android:background="@color/colorPrimaryDark"
-                        android:gravity="center|start|center_horizontal"
-                        android:paddingStart="18dp"
-                        android:text="Upload Reciept"
-                        android:textColor="@color/colorAccent"
-                        android:textSize="18sp" />
+                        android:scaleType="fitXY"
+                        android:visibility="gone"
+                        android:background="@color/colorPrimary" />
 
                 </LinearLayout>
 
@@ -116,24 +118,21 @@
                         android:layout_height="match_parent" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pur_lst_redate_layout"
+                <TextView
+                    android:id="@+id/id_pur_date"
                     style="@style/TextInputLayoutStyleForm"
-                    android:layout_width="0dp"
-                    android:layout_height="55dp"
-                    android:hint="Select Date"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/cart_background"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp"
+                    android:gravity="center|start"
+                    android:text="Select Date"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_pur_re_amount_layout">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_pur_lst_date"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="date" />
-                </com.google.android.material.textfield.TextInputLayout>
-
+                </TextView>
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/id_pur_re_ven_layout"
                     style="@style/TextInputLayoutStyleForm"

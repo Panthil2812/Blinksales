@@ -85,8 +85,12 @@ public interface DatabaseDao {
     @Query("select * from ProductTable ORDER BY product_name")
     LiveData<List<ProductTable>> getCategoryProducts();
 
-    @Query("Select * from ProductTable where product_name or product_barcode like :searchText or product_category like :searchText")
+    @Query("Select * from ProductTable where product_name like :searchText or product_barcode like :searchText or product_category like :searchText")
     LiveData<List<ProductTable>> searchProducts(String searchText);
+
+    @Query("select count(product_barcode) from ProductTable where product_barcode == :barcode;")
+    int countBarcode(String barcode);
+
 
     //    ..............................  Vendor Table Query    ..............................
 

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,8 @@ public class Vendor_list extends Fragment {
         db = MainRoomDatabase.getInstance(getContext()).getDao();
         id_add_vendor = view.findViewById(R.id.id_add_vendor);
         vendor_searchView = view.findViewById(R.id.vendor_searchView);
+        int searchCloseButtonId = vendor_searchView.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
+        ImageView closeButton = (ImageView) this.vendor_searchView.findViewById(searchCloseButtonId);
         RecyclerView recyclerView = view.findViewById(R.id.vendor_list_recyclerview1);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
@@ -187,6 +190,13 @@ public class Vendor_list extends Fragment {
             }
         });
 
+        //SearchView Close Button Event
+        closeButton.setOnClickListener(v -> {
+            vendor_searchView.setQuery("",false);
+            vendor_searchView.clearFocus();
+            closeKeyboard();
+
+        });
         return view;
     }
     public void closeKeyboard() {

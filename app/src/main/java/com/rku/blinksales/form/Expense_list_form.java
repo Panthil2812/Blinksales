@@ -96,6 +96,7 @@ public class Expense_list_form extends AppCompatActivity {
                             id_exp_date.setText(df_medium_us_str);
                         }
                     }, mYear, mMonth, mDay);
+            datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
             datePickerDialog.show();
         });
 
