@@ -77,74 +77,83 @@ public class Cart extends Fragment {
 
 
         //if any cart is activity or not
-        if (db.countCart() == 1) {
+       // setRecyclerViewAdapter();
+        if (db.findActivityIdCart() != 0) {
             // recyclerview date display
             int activity_id = db.findActivityIdCart();
-            cartRecyclerViewAdapter = new CartRecyclerViewAdapter(getContext(), getActivity(),id_bill_amount);
+            cartRecyclerViewAdapter = new CartRecyclerViewAdapter(getContext(), getActivity(), id_bill_amount);
             cart_recycler_view.setLayoutManager(new LinearLayoutManager(getContext()));
             cart_recycler_view.setHasFixedSize(true);
             cart_recycler_view.setAdapter(cartRecyclerViewAdapter);
-            db.getDateCartTable(activity_id).observe(this, new Observer<List<CartTable>>() {
+            db.getDateCartTable(db.findActivityIdCart()).observe(this, new Observer<List<CartTable>>() {
                 @Override
                 public void onChanged(@Nullable List<CartTable> notes) {
 
                     cartRecyclerViewAdapter.setNotes(notes);
                 }
             });
-        }
-        cartRecyclerViewAdapter.setOnItemClickListener(new CartRecyclerViewAdapter.OnItemClickListener() {
+            cartRecyclerViewAdapter.setOnItemClickListener(new CartRecyclerViewAdapter.OnItemClickListener() {
 
-            @Override
-            public void plus_btn(CartTable note, EditText qty, TextView amount) {
-                closeKeyboard();
-                qty.clearFocus();
-                String str = qty.getText().toString().trim();
-                String value = note.getProduct_selling_price().toString();
-                Double number = Double.valueOf(str).doubleValue();
-                Double total_amount = Double.valueOf(value).doubleValue();
-                number++;
-                total_amount = (number * total_amount);
+                @Override
+                public void plus_btn(CartTable note, EditText qty, TextView amount) {
+                    closeKeyboard();
+                    qty.clearFocus();
+                    String str = qty.getText().toString().trim();
+                    String value = note.getProduct_selling_price().toString();
+                    Double number = Double.valueOf(str).doubleValue();
+                    Double total_amount = Double.valueOf(value).doubleValue();
+                    number++;
+                    total_amount = (number * total_amount);
 //                qty.setText(number.toString());
 //                amount.setText(total_amount.toString());
-                CartTable cartTable = new CartTable(note.getCart_id(), note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
-                        note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
-                        number, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
-                        note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
-                        total_amount, note.getDiscount(), note.getHSN());
-                cartTable.setCart_item_id(note.getCart_item_id());
-                db.updateCartTable(cartTable);
-                Toast.makeText(getContext(),db.totalCartAmount(note.getCart_id()).toString(),Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void min_btn(CartTable note, EditText qty, TextView amount) {
-                closeKeyboard();
-                qty.clearFocus();
-                String str = qty.getText().toString().trim();
-                String value = note.getProduct_selling_price().toString();
-                Double number = Double.valueOf(str).doubleValue();
-                Double total_amount = Double.valueOf(value).doubleValue();
-                number--;
-                if(number == 0.0)
-                {
-                    Toast.makeText(getContext(),"qty not less than 0",Toast.LENGTH_SHORT).show();
-                }else{
-
-                    total_amount = (number * total_amount);
-
-                    CartTable cartTable = new CartTable(note.getCart_id(), note.getProduct_id(), note.getProduct_image_uri(),
-                            note.getProduct_name(), note.getProduct_category(), note.getProduct_mrp(),
-                            note.getProduct_selling_price(), note.getProduct_qty(), number, note.getProduct_unit(),
-                            note.getProduct_price_unit(), note.getProduct_barcode(), note.getProduct_stock(),
-                            note.getProduct_is_include(), note.getGst(), note.getGst_amount(), total_amount, note.getDiscount(),
-                            note.getHSN());
-
+                    CartTable cartTable = new CartTable(note.getCart_id(), note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
+                            note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
+                            number, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
+                            note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
+                            total_amount, note.getDiscount(), note.getHSN());
                     cartTable.setCart_item_id(note.getCart_item_id());
                     db.updateCartTable(cartTable);
+                    Dashboard.id_dashboard_total_items.setText(db.totalCartItem(note.getCart_id()).toString());
+                    Dashboard.id_dashboard_total_amount.setText(db.totalCartAmount(note.getCart_id()).toString() + " ₹ /-");
+//                    Toast.makeText(getContext(),db.totalCartAmount(note.getCart_id()).toString()+"\n"+db.totalCartItem(note.getCart_id()),Toast.LENGTH_SHORT).show();
                 }
 
-            }
-        });
+                @Override
+                public void min_btn(CartTable note, EditText qty, TextView amount) {
+                    closeKeyboard();
+                    qty.clearFocus();
+                    String str = qty.getText().toString().trim();
+                    String value = note.getProduct_selling_price().toString();
+                    Double number = Double.valueOf(str).doubleValue();
+                    Double total_amount = Double.valueOf(value).doubleValue();
+                    number--;
+                    if (number == 0.0) {
+                        Toast.makeText(getContext(), "qty not less than 0", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        total_amount = (number * total_amount);
+
+                        CartTable cartTable = new CartTable(note.getCart_id(), note.getProduct_id(), note.getProduct_image_uri(),
+                                note.getProduct_name(), note.getProduct_category(), note.getProduct_mrp(),
+                                note.getProduct_selling_price(), note.getProduct_qty(), number, note.getProduct_unit(),
+                                note.getProduct_price_unit(), note.getProduct_barcode(), note.getProduct_stock(),
+                                note.getProduct_is_include(), note.getGst(), note.getGst_amount(), total_amount, note.getDiscount(),
+                                note.getHSN());
+
+                        cartTable.setCart_item_id(note.getCart_item_id());
+                        db.updateCartTable(cartTable);
+                        Dashboard.id_dashboard_total_items.setText(db.totalCartItem(note.getCart_id()).toString());
+                        Dashboard.id_dashboard_total_amount.setText(db.totalCartAmount(note.getCart_id()).toString() + " ₹ /-");
+                    }
+
+                }
+            });
+        } else {
+            cart_recycler_view.setAdapter(null);
+            id_bill_amount.setText("0 ₹ /-");
+
+        }
+
 
         // delete product in cart with dialog box
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
@@ -174,6 +183,11 @@ public class Cart extends Fragment {
                             db.deleteCartTable(note);
                             Toast.makeText(getActivity(), "Product Remove in Cart", Toast.LENGTH_SHORT).show();
                             alertDialog.cancel();
+                            if(db.totalCartItem(note.getCart_id())==0)
+                            {
+                                id_bill_amount.setText("0 ₹ /-");
+                            }
+
                         } catch (Exception e) {
                             e.getStackTrace();
                         }
@@ -225,6 +239,7 @@ public class Cart extends Fragment {
 
         //clear cart onclick method
         id_clear_cart.setOnClickListener(v -> {
+
             Toast.makeText(getContext(), "CLEAR CART ", Toast.LENGTH_SHORT).show();
         });
 
@@ -235,7 +250,16 @@ public class Cart extends Fragment {
 
         //pending cart onclick method
         cart_btn_pending.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "PENDING CART", Toast.LENGTH_SHORT).show();
+            if (db.findActivityIdCart() != 0) {
+                int id = db.findActivityIdCart();
+                db.updateALLPendingCartTable();
+                //cartRecyclerViewAdapter.notifyDataSetChanged();
+                cart_recycler_view.setAdapter(null);
+                id_bill_amount.setText("0 ₹ /-");
+                Toast.makeText(getContext(), "PENDING CART" + db.findActivityIdCart(), Toast.LENGTH_SHORT).show();
+            }
+
+
         });
 
         //barcode onclick method
@@ -255,6 +279,10 @@ public class Cart extends Fragment {
         });
 
         return view;
+    }
+
+    private void setRecyclerViewAdapter() {
+
     }
 
     public void closeKeyboard() {

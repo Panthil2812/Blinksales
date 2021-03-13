@@ -134,11 +134,26 @@ public interface DatabaseDao {
     @Query("Select * from CartTable where cart_id ==:id")
     LiveData<List<CartTable>> getDateCartTable(int id);
 
+    @Query("Select * from CartTable where product_id ==:id")
+    List<CartTable> getOneCartItem(int id);
+
     @Query("UPDATE CartTable SET selected_qty=:qty and total_amount=:amount WHERE  cart_item_id =:id")
     void updateOneCartTable(Double qty,Double amount,int id);
 
-    @Query("SELECT SUM(total_amount) FROM CartTable WHERE cart_id ==:id;")
+    @Query("SELECT SUM(total_amount)  FROM CartTable WHERE cart_id ==:id")
     Double totalCartAmount(int id);
+
+    @Query("SELECT count(cart_id)  FROM CartTable WHERE cart_id ==:id")
+    Double totalCartItem(int id);
+
+    @Query("SELECT count(product_id)  FROM CartTable WHERE cart_id ==:c_id and product_id=:p_id")
+    Double totalProductItem(int c_id,int p_id);
+
+    @Query("Delete from CartTable where cart_id=:id")
+    void DeleteExpireCart(int id);
+
+    @Query("UPDATE CartTable SET selected_qty=:qty and total_amount=:amount where product_id=:id")
+    void updatePendingCartTable(Double qty,Double amount,int id);
 
     //    .............................. Pending Cart Table Query    ..............................
 
@@ -148,16 +163,35 @@ public interface DatabaseDao {
     @Update
     void  updatePendingCartTable(PendingCartTable pendingCartTable);
 
+    @Query("Select cart_id FROM PendingCartTable where cart_create  between :form and :to")
+    List<Integer> getAllExpireCart(long form, long to);
+
+    @Query("Delete FROM PendingCartTable where cart_create  between :form and :to")
+    void ALLDeleteExpirePendingCart(long form, long to);
+
     @Delete
     void  deletePendingCartTable(PendingCartTable pendingCartTable);
 
     @Query("Select * from PendingCartTable where cart_id ==:id")
     LiveData<List<PendingCartTable>> getDatePendingCartTable(int id);
 
+    @Query("Select * from PendingCartTable ORDER BY cart_create DESC ")
+    LiveData<List<PendingCartTable>> getAllPendingCartTable();
+
     @Query("select count(cart_id) from PendingCartTable where cart_status ==1")
     int countCart();
 
     @Query("select cart_id from PendingCartTable Where cart_status == 1")
     int findActivityIdCart();
+
+
+
+    @Query("UPDATE PendingCartTable SET cart_status=0")
+    void updateALLPendingCartTable();
+
+
+    @Query("UPDATE PendingCartTable SET cart_status=1 where cart_id=:id")
+    void updateActiveCartTable(int id);
+
 
 }

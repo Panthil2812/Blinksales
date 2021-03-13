@@ -39,6 +39,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.rku.blinksales.Adapter.CategoryRecyclerViewAdapter;
 import com.rku.blinksales.Adapter.MainViewPagerAdapter;
 import com.rku.blinksales.InstanceClass.List_Category;
+import com.rku.blinksales.MainActivity;
 import com.rku.blinksales.R;
 import com.rku.blinksales.Roomdatabase.CategoryTable;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
@@ -97,41 +98,58 @@ public class Category extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                ViewGroup viewGroup = getView().findViewById(android.R.id.content);
-                View dialogView = LayoutInflater.from(getView().getContext()).inflate(R.layout.delete_dialog, viewGroup, false);
-                builder.setView(dialogView);
-                Button OK = dialogView.findViewById(R.id.Dialog_ok);
-                Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-                OK.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            db.deleteCategory(adapter.getNoteAt(viewHolder.getAdapterPosition()));
-                            Toast.makeText(getActivity(), "Category  deleted", Toast.LENGTH_SHORT).show();
-                            alertDialog.cancel();
-                        }catch (Exception e){
-                            e.getStackTrace();
-                        }
-                    }
-                });
-                Cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            adapter.notifyItemChanged(viewHolder.getAdapterPosition());
-                            Toast.makeText(getActivity(), "Category Not deleted", Toast.LENGTH_SHORT).show();
-                            alertDialog.cancel();
-                        }catch (Exception e){
-                            e.getStackTrace();
-                        }
-
-
-
-                    }
-                });
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//                ViewGroup viewGroup = getView().findViewById(android.R.id.content);
+//                View dialogView = LayoutInflater.from(getView().getContext()).inflate(R.layout.delete_dialog, viewGroup, false);
+//                builder.setView(dialogView);
+//                Button OK = dialogView.findViewById(R.id.Dialog_ok);
+//                Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
+//                AlertDialog alertDialog = builder.create();
+//                alertDialog.show();
+//                OK.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            db.deleteCategory(adapter.getNoteAt(viewHolder.getAdapterPosition()));
+//                            Toast.makeText(getActivity(), "Category  deleted", Toast.LENGTH_SHORT).show();
+//                            alertDialog.cancel();
+//                        }catch (Exception e){
+//                            e.getStackTrace();
+//                        }
+//                    }
+//                });
+//                Cancel.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+//                            Toast.makeText(getActivity(), "Category Not deleted", Toast.LENGTH_SHORT).show();
+//                            alertDialog.cancel();
+//                        }catch (Exception e){
+//                            e.getStackTrace();
+//                        }
+//
+//
+//
+//                    }
+//                });
+                new AlertDialog.Builder(getContext(),R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
+                        .setTitle("Delete Category")
+                        .setMessage("Are you sure you want to delete?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                db.deleteCategory(adapter.getNoteAt(viewHolder.getAdapterPosition()));
+                                Toast.makeText(getActivity(), "Category  deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                            }
+                        })
+                        .show();
             }
 
             @Override

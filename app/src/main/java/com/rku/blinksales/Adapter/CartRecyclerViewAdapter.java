@@ -19,11 +19,13 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.rku.blinksales.MainActivity;
 import com.rku.blinksales.R;
 import com.rku.blinksales.Roomdatabase.CartTable;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 import com.rku.blinksales.Roomdatabase.ProductTable;
+import com.rku.blinksales.mainfragment.Dashboard;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -36,6 +38,7 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
     FragmentActivity manager;
     DatabaseDao db;
     TextView total;
+
     public CartRecyclerViewAdapter(Context context, FragmentActivity manager,TextView total) {
         this.context = context;
         this.manager = manager;
@@ -62,7 +65,9 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
         holder.Product_amount.setText(currentNote.getTotal_amount().toString());
         File f = new File(currentNote.getProduct_image_uri());
         Glide.with(context).load(f).autoClone().placeholder(R.drawable.p1).into(holder.Product_Image);
-       total.setText(db.totalCartAmount(currentNote.getCart_id()).toString()+" ₹ /-");
+        total.setText(db.totalCartAmount(currentNote.getCart_id()).toString()+" ₹ /-");
+        Dashboard.id_dashboard_total_items.setText(db.totalCartItem(currentNote.getCart_id()).toString());
+        Dashboard.id_dashboard_total_amount.setText(db.totalCartAmount(currentNote.getCart_id()).toString() + " ₹ /-");
     }
 
     @Override

@@ -12,7 +12,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_marginBottom="8dp"
         android:layout_weight="1"
         android:orientation="horizontal">
@@ -21,6 +21,7 @@
             android:id="@+id/id_list_item_1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center|start"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
@@ -30,19 +31,21 @@
 
         <TextView
             android:id="@+id/id_list_item_2"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center|end"
             android:paddingStart="18dp"
             android:paddingEnd="18dp"
             android:text="Expense Type"
             android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            tools:visibility="visible" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="horizontal">
 

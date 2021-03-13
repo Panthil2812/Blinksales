@@ -116,7 +116,7 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:textColor="@color/colorAccent"
-                android:text="1000 /-"
+                android:text="0 ₹ /-"
                 android:textSize="18dp"/>
         </LinearLayout>
         <LinearLayout
