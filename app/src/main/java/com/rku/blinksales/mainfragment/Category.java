@@ -200,6 +200,7 @@ public class Category extends Fragment {
                         try {
                             categoryTable.setId(type);
                             db.updateCategory(categoryTable);
+                            db.updateCategoryProductTable(category,category_name);
                             Toast.makeText(getActivity(), "EDIT : " + category, Toast.LENGTH_LONG).show();
                         }catch (Exception e)
                         {

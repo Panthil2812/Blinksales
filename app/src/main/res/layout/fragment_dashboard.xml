@@ -32,21 +32,22 @@
           android:paddingEnd="8dp"
           android:queryHint="Search here" />
 
-      <ImageButton
-          android:layout_width="50dp"
-          android:layout_height="match_parent"
-          android:layout_marginStart="8dp"
-          android:background="@drawable/button_background"
-          android:backgroundTint="@color/colorAccent"
-          android:src="@drawable/ic_self_collect" />
+<!--      <ImageButton-->
+<!--          android:layout_width="50dp"-->
+<!--          android:layout_height="match_parent"-->
+<!--          android:layout_marginStart="8dp"-->
+<!--          android:background="@drawable/button_background"-->
+<!--          android:backgroundTint="@color/colorAccent"-->
+<!--          android:src="@drawable/ic_add_to_cart" />-->
 
       <ImageButton
+          android:id="@+id/go_to_cart"
           android:layout_width="50dp"
           android:layout_height="match_parent"
           android:layout_marginStart="8dp"
           android:background="@drawable/button_background"
           android:backgroundTint="@color/colorAccent"
-          android:src="@drawable/ic_add_to_cart" />
+          android:src="@drawable/ic_cart" />
 
    </LinearLayout>
 
@@ -89,22 +90,67 @@
        android:id="@+id/linearLayout2"
        android:layout_width="match_parent"
        android:layout_height="?attr/actionBarSize"
-       android:background="@color/colorPrimaryDark"
-       android:orientation="horizontal"
-       android:padding="18dp"
+       android:background="@color/colorAccent"
+       android:orientation="vertical"
+       android:padding="5dp"
        app:layout_constraintBottom_toBottomOf="parent"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toBottomOf="@+id/viewpager">
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
 
-      <TextView
-          android:id="@+id/id_dashborad_total"
-          android:layout_width="wrap_content"
-          android:layout_height="match_parent"
-          android:gravity="center"
-          android:textColor="@color/colorAccent"
-          android:text="Total Amount: $1000 /- "
-          android:textSize="18dp"/>
+          android:orientation="horizontal">
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:layout_weight="1"
+              android:layout_marginEnd="5dp"
+              android:gravity="center"
+              android:background="@color/colorPrimaryDark"
+              android:textColor="@color/colorAccent"
+              android:text="Total Items "
+              android:textSize="18dp"/>
+          <TextView
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorPrimaryDark"
+              android:layout_weight="1"
+              android:gravity="center"
+              android:textColor="@color/colorAccent"
+              android:text="Total Amount"
+              android:textSize="18dp"/>
+      </LinearLayout>
+       <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+           android:layout_weight="1"
+          android:orientation="horizontal">
+           <TextView
+               android:id="@+id/id_dashborad_total_items"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:layout_marginEnd="5dp"
+               android:background="@color/colorPrimaryDark"
+               android:gravity="center"
+               android:textColor="@color/colorAccent"
+               android:text="5"
+               android:textSize="18dp"/>
+           <TextView
+               android:id="@+id/id_dashborad_total_amount"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:layout_weight="1"
+               android:background="@color/colorPrimaryDark"
+               android:gravity="center"
+               android:textColor="@color/colorAccent"
+               android:text="$1000 /- "
+               android:textSize="18dp"/>
+      </LinearLayout>
+
    </LinearLayout>
 
 

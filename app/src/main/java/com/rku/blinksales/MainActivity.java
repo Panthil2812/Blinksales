@@ -32,6 +32,7 @@ import com.rku.blinksales.mainfragment.Bill_list;
 import com.rku.blinksales.mainfragment.Cart;
 import com.rku.blinksales.mainfragment.Category;
 import com.rku.blinksales.mainfragment.Dashboard;
+import com.rku.blinksales.mainfragment.Pending_cart;
 import com.rku.blinksales.mainfragment.Products;
 import com.rku.blinksales.mainfragment.Contact_us;
 import com.rku.blinksales.mainfragment.Customers;
@@ -115,12 +116,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                        .commit();
                 Toast.makeText(this, R.string.nav_cart, Toast.LENGTH_SHORT).show();
                 break;
-//            case R.id.nav_pending_cart:
-//                getSupportActionBar().setTitle(R.string.nav_pending_cart);
-//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                        new Pending_cart()).commit();
-//                Toast.makeText(this, R.string.nav_pending_cart, Toast.LENGTH_SHORT).show();
-//                break;
+            case R.id.nav_pending_cart:
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new Pending_cart()).commit();
+                Toast.makeText(this, R.string.nav_pending_cart, Toast.LENGTH_SHORT).show();
+                break;
 
             case R.id.nav_Category:
               //  getSupportActionBar().setTitle(R.string.nav_category);

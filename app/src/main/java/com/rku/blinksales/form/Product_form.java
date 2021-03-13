@@ -221,6 +221,10 @@ public class Product_form extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Barcode Exists", Toast.LENGTH_SHORT).show();
             } else if (editCount == -1 && db.countBarcode(pro_Barcode) != 0) {
                 Toast.makeText(getApplicationContext(), "Barcode Exists", Toast.LENGTH_SHORT).show();
+            }else if (editCount != -1 && !pro_name.equals(intent.getStringExtra("pro_name")) && db.countProductName(pro_name) != 0) {
+                Toast.makeText(getApplicationContext(), "Product Name Exists", Toast.LENGTH_SHORT).show();
+            } else if (editCount == -1 && db.countProductName(pro_name) != 0) {
+                Toast.makeText(getApplicationContext(), "Product Name Exists", Toast.LENGTH_SHORT).show();
             } else {
                 // int count = db.countBarcode(pro_Barcode);
 

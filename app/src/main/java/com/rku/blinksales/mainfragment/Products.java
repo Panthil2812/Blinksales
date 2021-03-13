@@ -67,6 +67,9 @@ public class Products extends Fragment {
         id_search_barcode = view.findViewById(R.id.id_search_barcode);
         int searchCloseButtonId = product_searchView.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
         ImageView closeButton = (ImageView) this.product_searchView.findViewById(searchCloseButtonId);
+
+
+
         //recyclerview adapter to display all product
         final ProductRecyclerViewAdapter recyclerViewAdapter = new ProductRecyclerViewAdapter(getContext());
         myrv.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -111,7 +114,6 @@ public class Products extends Fragment {
             product_searchView.setQuery("", false);
             product_searchView.clearFocus();
             closeKeyboard();
-
         });
 
         //add new product
