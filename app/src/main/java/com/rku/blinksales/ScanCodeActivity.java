@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 
 import com.google.zxing.Result;
 import com.rku.blinksales.form.Product_form;
+import com.rku.blinksales.mainfragment.Cart;
 import com.rku.blinksales.mainfragment.Products;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
@@ -37,6 +38,8 @@ public class ScanCodeActivity extends AppCompatActivity implements ZXingScannerV
                 Product_form.id_pro_barcode.setText(result.getText());
             }else if(i == 22){
                 Products.product_searchView.setQuery(result.getText(),false);
+            }else if(i == 33){
+                Cart.cart_search_view.setQuery(result.getText(),false);
             }
         }
         onBackPressed();

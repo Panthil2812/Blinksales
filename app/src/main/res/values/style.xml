@@ -8,9 +8,30 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="theme">@style/cursor</item>
 
+
+    </style>
+    <!-- Alert Dialog -->
+    <style name="ThemeOverlay.MaterialComponents.MaterialAlertDialog_Background" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <!-- Background Color-->
+        <item name="android:background">@color/colorAccent</item>
+        <!-- Text Color for title and message -->
+        <item name="colorOnSurface">@color/primary_light</item>
+        <item name="android:textSize">18dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:windowTitleSize">24dp</item>
+        <!-- Style for positive button -->
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+        <!-- Style for negative button -->
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
     </style>
 
-
+    <style name="NegativeButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <!-- text color for the button -->
+        <item name="android:textColor">@color/primary_light</item>
+    </style>
+    <style name="PositiveButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/primary_light</item>
+    </style>
     <style name="Actionbar">
         <item name="android:textSize">18sp</item>
         <item name="android:layout_gravity">right</item>
@@ -74,7 +95,7 @@
     <style name="SwitchTheme" parent="Theme.AppCompat.Light">
         <item name="android:colorControlActivated">@color/colorAccent</item>
     </style>
-    
+
     <style name="ProgressDialog_Style" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="background">@color/colorPrimaryDark</item>
         <item name="android:textSize">18dp</item>

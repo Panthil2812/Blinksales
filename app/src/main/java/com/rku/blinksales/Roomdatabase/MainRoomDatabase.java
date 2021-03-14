@@ -20,7 +20,9 @@ import java.util.Date;
         ExpenseType.class,
         ExpenseTable.class,
         ProductTable.class,
-        VendorTable.class
+        VendorTable.class,
+        CartTable.class,
+        PendingCartTable.class
 }, version = 1,exportSchema = false)
 
 

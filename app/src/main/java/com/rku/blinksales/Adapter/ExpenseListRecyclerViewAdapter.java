@@ -55,10 +55,7 @@ public class ExpenseListRecyclerViewAdapter extends RecyclerView.Adapter<Expense
 
 
     class NameHolder extends RecyclerView.ViewHolder {
-        private TextView id_list_item_1;
-        private TextView id_list_item_2;
-        private TextView id_list_item_3;
-        private TextView id_list_item_4;
+        private TextView id_list_item_1, id_list_item_2,id_list_item_3,id_list_item_4;
         public NameHolder(View itemView) {
             super(itemView);
             id_list_item_1 = itemView.findViewById(R.id.id_list_item_1);
