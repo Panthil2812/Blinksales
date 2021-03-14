@@ -7,31 +7,7 @@ android:layout_width="match_parent"
 android:orientation="vertical"
 tools:context=".form.Profile_form"
 android:background="@color/primary_light">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:orientation="horizontal"
-    android:background="@color/colorPrimaryDark"
-    android:elevation="5dp"
-    android:padding="8dp">
-    <ImageButton
-        android:id="@+id/id_back_arrow"
-        android:layout_width="70dp"
-        android:elevation="4dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:background="@drawable/ic_backarrow"/>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:elevation="4dp"
-        android:gravity="center"
-        android:text="Edit Profile"
-        android:textColor="@color/colorAccent"
-        android:textSize="18sp" />
-</LinearLayout>
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -43,127 +19,97 @@ android:background="@color/primary_light">
             android:layout_height="match_parent"
             android:background="@color/colorPrimaryDark"
             tools:context=".form.Profile_form">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                >
+                android:paddingTop="24dp">
 
-                <ImageButton
-                    android:id="@+id/imageButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:foregroundGravity="right"
-                    android:src="@drawable/ic_edit"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"></ImageButton>
-
-                <!--                    <de.hdodenhof.circleimageview.CircleImageView-->
-                <!--                        android:id="@+id/id_img_profile"-->
-                <!--                        android:layout_width="150dp"-->
-
-                <!--                        android:layout_height="150dp"-->
-                <!--                        android:src="@drawable/ic_profile"-->
-                <!--                        app:civ_border_color="@color/colorAccent"-->
-                <!--                        app:civ_border_width="2dp"-->
-                <!--                        app:layout_constraintEnd_toEndOf="parent"-->
-                <!--                        app:layout_constraintHorizontal_bias="0.5"-->
-                <!--                        app:layout_constraintStart_toStartOf="parent"-->
-                <!--                        app:layout_constraintTop_toBottomOf="@+id/imageButton2">-->
-
-                <!--                    </de.hdodenhof.circleimageview.CircleImageView>-->
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/card_img_profile"
-                    android:layout_width="155dp"
-                    android:layout_height="155dp"
-                    app:cardCornerRadius="250dp"
-                    app:cardBackgroundColor="@color/colorAccent"
+                    android:id="@+id/card_img_product"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:elevation="5dp"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardCornerRadius="15dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageButton2">
+
                     <androidx.cardview.widget.CardView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        app:cardCornerRadius="250dp"
-                        android:layout_gravity="center">
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="15dp">
 
                         <ImageView
                             android:id="@+id/img_profile"
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            android:src="@drawable/ic_products"
-                            android:scaleType="centerCrop"/>
+                            android:layout_width="133dp"
+                            android:layout_height="136dp"
+                            android:contentDescription="@string/todo"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_profile" />
 
                     </androidx.cardview.widget.CardView>
                 </androidx.cardview.widget.CardView>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_profile_name_layout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+
+                <TextView
+                    android:id="@+id/id_profile_name"
                     style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="32dp"
-                    android:hint="@string/name"
+                    android:background="@drawable/text_view_form"
+                    android:drawableStart="@drawable/ic_login"
+                    android:drawablePadding="5dp"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+                    android:text="@string/name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/card_img_profile">
+                    app:layout_constraintTop_toBottomOf="@+id/card_img_product">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_profile_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:drawableStart="@drawable/ic_login"
-                        android:drawablePadding="5dp"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_profile_phone_layout"
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/id_profile_phone"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
-                    android:hint="@string/phone"
+                    android:background="@drawable/text_view_form"
+                    android:drawableStart="@drawable/ic_phone"
+                    android:drawablePadding="5dp"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+                    android:text="@string/phone"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_profile_name_layout">
+                    app:layout_constraintTop_toBottomOf="@+id/id_profile_name"/>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_profile_phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:drawableStart="@drawable/ic_phone"
-                        android:drawablePadding="5dp"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_profile_email_layout"
+                <TextView
+                    android:id="@+id/id_profile_email"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="50dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
-                    android:hint="@string/email"
+                    android:background="@drawable/text_view_form"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="5dp"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+                    android:text="@string/email"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_profile_phone_layout">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_email_phone"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:drawableStart="@drawable/ic_email"
-                        android:drawableLeft="@drawable/ic_phone"
-                        android:drawablePadding="5dp"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/id_profile_phone"/>
 
                 <TextView
                     android:id="@+id/textView"
@@ -180,75 +126,65 @@ android:background="@color/primary_light">
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_profile_email_layout" />
+                    app:layout_constraintTop_toBottomOf="@+id/id_profile_email" />
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_profile_company_name_layout"
+                <TextView
+                    android:id="@+id/id_profile_company_name"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
-                    android:hint="@string/company_name"
+                    android:background="@drawable/text_view_form"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="5dp"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+                    android:text="@string/company_name"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_profile_company_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:drawableStart="@drawable/ic_login"
-                        android:drawableLeft="@drawable/ic_login"
-                        android:drawablePadding="5dp"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_profile_company_address_layout"
+                <TextView
+                    android:id="@+id/id_profile_company_address"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
-                    android:hint="@string/address"
+                    android:background="@drawable/text_view_form"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="5dp"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+                    android:text="@string/address"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_profile_company_name_layout">
+                    app:layout_constraintTop_toBottomOf="@+id/id_profile_company_name" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_profile_company_address"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:drawableStart="@drawable/ic_login"
-                        android:drawableLeft="@drawable/ic_login"
-                        android:drawablePadding="5dp"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_profile_company_email_layout"
+                <TextView
+                    android:id="@+id/id_profile_company_email"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:layout_marginStart="32dp"
                     android:layout_marginEnd="32dp"
-                    android:hint="@string/web_link"
+                    android:background="@drawable/text_view_form"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="5dp"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+                    android:text="@string/email"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_profile_company_address_layout">
+                    app:layout_constraintTop_toBottomOf="@+id/id_profile_company_address" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_profile_company_email"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:drawableStart="@drawable/ic_email"
-                        android:drawableLeft="@drawable/ic_email"
-                        android:drawablePadding="5dp"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
             <com.google.android.material.floatingactionbutton.FloatingActionButton
