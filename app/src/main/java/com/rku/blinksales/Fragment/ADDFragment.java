@@ -61,7 +61,13 @@ public class ADDFragment extends BottomSheetDialogFragment {
 
             id_cat_btn_save.setVisibility(View.GONE);
             id_Delete_type.setVisibility(View.GONE);
-        }else if(i == 11){
+        }else if(i == 33){
+            list_text = new ArrayList<>(Arrays.asList("Cash","Credit Card","Debit Card","Paytm","Gpay","UPI","Other","PhonePe"));
+            id_cat_btn_save.setVisibility(View.GONE);
+            id_Delete_type.setVisibility(View.GONE);
+            title.setText("Choose Pay Method");
+        }
+        else if(i == 11){
             id_cat_btn_save.setVisibility(View.GONE);
             id_Delete_type.setVisibility(View.GONE);
             list_text = db.getCategory();

@@ -5,7 +5,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.Camera.autofocus" />
+
     <queries>
         <intent>
             <action android:name="android.intent.action.PICK" />
@@ -15,15 +17,16 @@
     </queries>
 
     <application
+        android:allowBackup="false"
         android:fullBackupContent="true"
+        android:fullBackupOnly="false"
         android:icon="@drawable/ic_shopping_cart"
         android:label="@string/app_name"
-        android:allowBackup="false"
-        android:fullBackupOnly="false"
         android:requestLegacyExternalStorage="true"
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".form.Checkout"></activity>
         <activity android:name=".BillingDetails" />
         <activity
             android:name=".form.Contact_us_form"
@@ -78,8 +81,7 @@
             android:screenOrientation="locked" />
         <activity
             android:name=".ScanCodeActivity"
-            android:screenOrientation="locked"/>
-
+            android:screenOrientation="locked" />
     </application>
 
 </manifest>

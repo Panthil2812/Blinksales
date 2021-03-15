@@ -29,8 +29,9 @@
             android:text="Sales Return"
             android:elevation="4dp"
             android:gravity="center"
+            android:textStyle="bold"
             android:textColor="@color/colorAccent"
-            android:textSize="18dp"/>
+            android:textSize="24sp"/>
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"

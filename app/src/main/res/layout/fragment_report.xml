@@ -17,7 +17,7 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:background="@drawable/cardview_background"
+            android:background="@drawable/card_view_background"
             android:elevation="5dp"
             android:onClick="click1"
             android:orientation="vertical"
@@ -181,7 +181,7 @@
         android:layout_height="match_parent"
         android:layout_margin="8dp"
         android:layout_weight="1"
-        android:background="@drawable/cardview_background"
+        android:background="@drawable/card_view_background"
         android:elevation="5dp"
         android:orientation="vertical"
         android:padding="8dp">
@@ -237,7 +237,7 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp"
             android:layout_weight="1"
-            android:background="@drawable/cardview_background"
+            android:background="@drawable/card_view_background"
             android:elevation="5dp"
             android:padding="8dp"
             android:orientation="vertical">

@@ -101,8 +101,8 @@ public interface DatabaseDao {
     @Query("UPDATE ProductTable SET product_category =:name WHERE  product_category =:old")
     void updateCategoryProductTable(String name,String old);
 
-    @Query("SELECT * FROM ProductTable WHERE product_id ==:id")
-    LiveData<List<ProductTable>> getOneProduct(String id);
+    @Query("SELECT * FROM ProductTable WHERE product_barcode ==:barcode")
+    ProductTable  getOneProduct(String barcode);
 
 
     //    ..............................  Vendor Table Query    ..............................
@@ -137,6 +137,9 @@ public interface DatabaseDao {
     @Query("Select * from CartTable where cart_id ==:id")
     LiveData<List<CartTable>> getDateCartTable(int id);
 
+    @Query("Select * from CartTable where cart_id ==:id")
+    List<CartTable> getAllDateCartTable(int id);
+
     @Query("Select * from CartTable WHERE cart_id ==:c_id and product_id=:p_id")
     CartTable getOneCartItem(int c_id,int p_id);
 
@@ -145,6 +148,9 @@ public interface DatabaseDao {
 
     @Query("SELECT SUM(total_amount)  FROM CartTable WHERE cart_id ==:id")
     Double totalCartAmount(int id);
+
+    @Query("SELECT SUM(gst_amount)  FROM CartTable WHERE cart_id ==:id")
+    Double totalGstAmount(int id);
 
     @Query("SELECT count(cart_id)  FROM CartTable WHERE cart_id ==:id")
     Double totalCartItem(int id);

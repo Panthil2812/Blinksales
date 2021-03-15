@@ -32,8 +32,9 @@
             android:elevation="4dp"
             android:gravity="center"
             android:text="Add Customers"
+            android:textStyle="bold"
             android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
+            android:textSize="24sp"/>
     </LinearLayout>
 
     <ScrollView

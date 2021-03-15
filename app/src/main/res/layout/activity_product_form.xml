@@ -34,8 +34,9 @@
             android:elevation="4dp"
             android:gravity="center"
             android:text="@string/add_product"
+            android:textStyle="bold"
             android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
     </LinearLayout>
 
     <ScrollView
@@ -189,7 +190,7 @@
                         android:id="@+id/id_pro_barcode"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
+                        android:inputType="none|numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <LinearLayout
@@ -241,7 +242,7 @@
                         android:id="@+id/id_gst_unit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none|numberSigned|numberDecimal" />
+                        android:inputType="none|numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -261,7 +262,7 @@
                         android:id="@+id/id_hsn_unit"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none|numberSigned|number|numberDecimal" />
+                        android:inputType="none|textCapWords" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button

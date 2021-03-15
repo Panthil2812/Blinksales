@@ -45,13 +45,16 @@ import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 import com.rku.blinksales.Roomdatabase.PendingCartTable;
 import com.rku.blinksales.Roomdatabase.ProductTable;
 import com.rku.blinksales.ScanCodeActivity;
+import com.rku.blinksales.form.Checkout;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Cart extends Fragment {
+    private static final int RESULT_OK = -1;
     Button id_add_products;
     RecyclerView cart_recycler_view;
     DatabaseDao db;
@@ -59,8 +62,9 @@ public class Cart extends Fragment {
     public static SearchView cart_search_view;
     ImageButton cart_barcode, cart_btn_pending;
     TextView id_clear_cart, id_checkout, id_bill_amount;
-    AutoCompleteTextView search_view;
+    public static AutoCompleteTextView search_view;
     ArrayList<ProductTable> productTables;
+    public static final int ADD_NOTE_REQUEST = 1;
 
     @Nullable
     @Override
@@ -191,7 +195,16 @@ public class Cart extends Fragment {
 
         //check out cart onclick method
         id_checkout.setOnClickListener(v -> {
-            Toast.makeText(getContext(), "CHECKOUT CART", Toast.LENGTH_SHORT).show();
+            Double size =db.totalCartItem(db.findActivityIdCart());
+            if(db.findActivityIdCart() != 0  && size!= 0)
+                {
+                  //  List<CartTable> cartTableList  =db.getAllDateCartTable(db.findActivityIdCart());
+                  //  Toast.makeText(getContext(),"Total item : "+cartTableList.get(0).getProduct_name(),Toast.LENGTH_SHORT).show();
+                    Intent intent_checkout = new Intent(getContext(), Checkout.class);
+                    startActivity(intent_checkout);
+            }else{
+                Toast.makeText(getContext(),"No Product",Toast.LENGTH_SHORT).show();
+            }
         });
 
         //pending cart onclick method
@@ -212,13 +225,8 @@ public class Cart extends Fragment {
         cart_barcode.setOnClickListener(v -> {
             Intent intent_barcode = new Intent(getContext(), ScanCodeActivity.class);
             intent_barcode.putExtra("key", 33);
-            startActivity(intent_barcode);
-            cart_search_view.clearFocus();
+            startActivityForResult(intent_barcode,ADD_NOTE_REQUEST);
             closeKeyboard();
-//            if(search_view.getText().toString().trim().isEmpty())
-//            {
-//                Toast.makeText(getContext(),"empty",Toast.LENGTH_SHORT).show();
-//            }
         });
 
         //search view onclick method
@@ -305,7 +313,89 @@ public class Cart extends Fragment {
 
         return view;
     }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ADD_NOTE_REQUEST && resultCode == RESULT_OK) {
+            String bar = data.getStringExtra("barcode");
+            if(!bar.isEmpty() && db.countBarcode(bar)==1) {
+                ProductTable note = db.getOneProduct(bar);
+                if (db.findActivityIdCart() == 0) {
 
+                    // all cart is pending cart and zero cart created
+
+                    PendingCartTable pendingCartTable = new PendingCartTable(1, "Cart", new Date());
+                    db.insertPendingCartTable(pendingCartTable);
+
+                    int cartId = db.findActivityIdCart();
+                    CartTable cartTable = new CartTable(cartId, note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
+                            note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
+                            1.0, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
+                            note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
+                            note.getProduct_selling_price(), note.getDiscount(), note.getHSN());
+                    db.insertCartTable(cartTable);
+                    AddCart();
+                    Dashboard.id_dashboard_total_items.setText(db.totalCartItem(cartId).toString());
+                    Dashboard.id_dashboard_total_amount.setText(db.totalCartAmount(cartId).toString() + " ₹ /-");
+                    Toast.makeText(getContext(), "add product in cart", Toast.LENGTH_SHORT).show();
+                }
+                else if (db.findActivityIdCart() != 0)
+                {
+                    //activity cart
+                    int cartId = db.findActivityIdCart();
+                    if (db.totalProductItem(cartId, note.getProduct_id()) == 1.0) {
+                        CartTable cartTableList = db.getOneCartItem(cartId, note.getProduct_id());
+                        //   Toast.makeText(getContext(), "cart item :"+cartTableList.getCart_item_id(), Toast.LENGTH_SHORT).show();
+
+                        new MaterialAlertDialogBuilder(getContext(), R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
+                                .setTitle("Product Exists")
+                                .setMessage("Product already added to cart.\n" +
+                                        "Do you want to update?")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        //  CartTable cartTableList = db.getOneCartItem(note.getProduct_id());
+                                        Double qty = cartTableList.getSelected_qty();
+                                        qty++;
+                                        Double total = note.getProduct_selling_price();
+                                        total = qty * total;
+                                        CartTable cartTable = new CartTable(cartId, note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
+                                                note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
+                                                qty, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
+                                                note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
+                                                total, note.getDiscount(), note.getHSN());
+                                        cartTable.setCart_item_id(cartTableList.getCart_item_id());
+                                        db.updateCartTable(cartTable);
+                                        AddCart();
+                                        //db.updateOneCartTable(qty,total,cartTableList.getCart_item_id());
+                                        Dashboard.id_dashboard_total_items.setText(db.totalCartItem(cartId).toString());
+                                        Dashboard.id_dashboard_total_amount.setText(db.totalCartAmount(cartId).toString() + " ₹ /-");
+                                        Toast.makeText(getContext(), "Updated product in cart", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                })
+                                .setNegativeButton("No", null)
+                                .show();
+                    } else {
+                        CartTable cartTable = new CartTable(cartId, note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
+                                note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
+                                1.0, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
+                                note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
+                                note.getProduct_selling_price(), note.getDiscount(), note.getHSN());
+                        db.insertCartTable(cartTable);
+                        AddCart();
+                        Dashboard.id_dashboard_total_items.setText(db.totalCartItem(cartId).toString());
+                        Dashboard.id_dashboard_total_amount.setText(db.totalCartAmount(cartId).toString() + " ₹ /-");
+                        Toast.makeText(getContext(), "add product in cart", Toast.LENGTH_SHORT).show();
+                    }
+                    //  Toast.makeText(getContext(), "add product in cart", Toast.LENGTH_SHORT).show();
+                }
+                search_view.setText("");
+            }else {
+                Toast.makeText(getContext(),"Product not found", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
     private void AddCart() {
         if (db.findActivityIdCart() != 0) {
@@ -388,7 +478,7 @@ public class Cart extends Fragment {
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-            cart_search_view.clearFocus();
+            search_view.clearFocus();
         }
     }
 }

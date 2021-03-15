@@ -30,8 +30,9 @@
             android:elevation="4dp"
             android:gravity="center"
             android:text="Purchase Return"
+            android:textStyle="bold"
             android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -210,7 +211,40 @@
 
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal"
+        android:paddingStart="18dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="8dp"
+        android:visibility="gone">
 
+        <SearchView
+            android:id="@+id/purchase_return_search"
+            style="@style/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/text_view_background"
+            android:iconifiedByDefault="false"
+            android:paddingEnd="8dp"
+            android:queryHint="Search here by id"/>
+
+        <ImageButton
+            android:id="@+id/go_to_Pending"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/button_background"
+            android:backgroundTint="@color/colorAccent"
+            android:src="@drawable/ic_search"
+            android:tint="@color/primary_light" />
+
+    </LinearLayout>
 </LinearLayout>
 
 

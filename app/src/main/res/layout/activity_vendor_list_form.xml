@@ -31,8 +31,9 @@
             android:elevation="4dp"
             android:gravity="center"
             android:text="Add Vendor"
+            android:textStyle="bold"
             android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"

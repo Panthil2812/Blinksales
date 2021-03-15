@@ -32,8 +32,9 @@
             android:elevation="4dp"
             android:gravity="center"
             android:text="Add Purchase"
+            android:textStyle="bold"
             android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
+            android:textSize="24sp" />
     </LinearLayout>
 
     <ScrollView
@@ -43,38 +44,88 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:orientation="vertical"
             android:padding="18dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pur_re_ven_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="8dp"
+                    android:hint="Vendor Name">
 
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_pur_re_ven_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pur_re_amount_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:hint="Amount">
 
-                <Button
-                    android:id="@+id/id_pur_re_btn_save"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="32dp"
-                    android:background="@drawable/button_background"
-                    android:text="@string/save"
-                    android:textColor="@color/colorPrimaryDark"
-                    android:textSize="24sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pur_lst_note_layout" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_pur_re_purAmount"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:inputType="none|textPersonName" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_pur_re_reamount_layout"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="55dp"
+                    android:layout_marginStart="8dp"
+                    android:hint="Pending Amount">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/id_pur_re_pending_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/id_pur_date"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/cart_background"
+                    android:layout_weight="1"
+                    android:paddingStart="12dp"
+                    android:gravity="center|start"
+                    android:text="Select Date">
+                </TextView>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/linearLayout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                   android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pur_date">
+                    android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/id_upload_bill"
@@ -100,69 +151,17 @@
                         android:background="@color/colorPrimary" />
 
                 </LinearLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pur_re_reamount_layout"
-                    style="@style/TextInputLayoutStyleForm"
-                    android:layout_width="0dp"
-                    android:layout_height="55dp"
-                    android:layout_marginStart="8dp"
-                    android:hint="Pending Amount"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/id_pur_re_amount_layout"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pur_re_ven_layout">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_pur_re_pending_amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <TextView
-                    android:id="@+id/id_pur_date"
-                    style="@style/TextInputLayoutStyleForm"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@drawable/cart_background"
-                    android:layout_weight="1"
-                    android:paddingStart="12dp"
-                    android:gravity="center|start"
-                    android:text="Select Date"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pur_re_amount_layout">
-                </TextView>
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pur_re_ven_layout"
-                    style="@style/TextInputLayoutStyleForm"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_marginTop="8dp"
-                    android:hint="Vendor Name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_pur_re_ven_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/id_pur_lst_note_layout"
                     style="@style/TextInputLayoutStyleForm"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:layout_marginTop="16dp"
-                    android:hint="Note"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+                    android:hint="Note">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_pur_lst_note"
@@ -170,27 +169,37 @@
                         android:layout_height="match_parent"
                         android:singleLine="false" />
                 </com.google.android.material.textfield.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:orientation="vertical">
+                <Button
+                    android:id="@+id/id_pur_re_btn_save"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="@drawable/button_background"
+                    android:text="@string/save"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="24sp" />
+            </LinearLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pur_re_amount_layout"
-                    style="@style/TextInputLayoutStyleForm"
-                    android:layout_width="0dp"
-                    android:layout_height="55dp"
-                    android:hint="Amount"
-                    app:layout_constraintEnd_toStartOf="@+id/id_pur_re_reamount_layout"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pur_re_ven_layout">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_pur_re_purAmount"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
 
 </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,24 +1,19 @@
 package com.rku.blinksales.Adapter;
 
-import android.graphics.Color;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.rku.blinksales.R;
-import com.rku.blinksales.Roomdatabase.CategoryTable;
 import com.rku.blinksales.Roomdatabase.PendingCartTable;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class PendingRecyclerViewAdapter extends RecyclerView.Adapter<PendingRecyclerViewAdapter.NameHolder> {
@@ -53,7 +48,7 @@ public class PendingRecyclerViewAdapter extends RecyclerView.Adapter<PendingRecy
             holder.id_list_item_4.setText("Pending");
 
         }else{
-            holder.id_list_item_4.setBackgroundResource(R.drawable.cardview_background);
+            holder.id_list_item_4.setBackgroundResource(R.drawable.card_view_background);
 //            holder.id_list_item_4.setTextColor(Color.parseColor("#FCE4EC"));
             holder.id_list_item_4.setText("Active");
         }
