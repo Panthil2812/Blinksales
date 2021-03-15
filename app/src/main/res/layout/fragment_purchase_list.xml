@@ -21,7 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/textview_background"
+            android:background="@drawable/text_view_background"
             android:iconifiedByDefault="false"
             android:paddingEnd="8dp"
             android:queryHint="Search here"></SearchView>

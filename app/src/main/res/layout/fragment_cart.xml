@@ -16,16 +16,21 @@
         android:paddingEnd="8dp"
         android:paddingBottom="8dp">
 
-        <SearchView
-            android:id="@+id/cart_search_view"
-            style="@style/textView"
+        <AutoCompleteTextView
+            android:id="@+id/cart_search"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:background="@drawable/textview_background"
-            android:iconifiedByDefault="false"
-            android:paddingEnd="8dp"
-            android:queryHint="Barcode search here"/>
+            android:background="@drawable/text_view_background"
+            android:completionThreshold="1"
+            android:drawableLeft="@drawable/ic_search_2"
+            android:drawablePadding="8dp"
+            android:ellipsize="end"
+            android:hint="Search Item"
+            android:padding="8dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:singleLine="true" />
 
         <ImageButton
             android:id="@+id/cart_barcode"

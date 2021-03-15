@@ -21,16 +21,21 @@
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent">
 
-      <SearchView
-          android:id="@+id/simpleSearchView"
-          style="@style/textView"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_weight="1"
-          android:background="@drawable/textview_background"
-          android:iconifiedByDefault="false"
-          android:paddingEnd="8dp"
-          android:queryHint="Search here" />
+          <AutoCompleteTextView
+              android:id="@+id/actv"
+              android:layout_width="match_parent"
+              android:layout_height="50dp"
+              android:layout_weight="1"
+              android:background="@drawable/text_view_background"
+              android:completionThreshold="1"
+              android:drawableLeft="@drawable/ic_search_2"
+              android:drawablePadding="8dp"
+              android:ellipsize="end"
+              android:hint="Search Item"
+              android:padding="8dp"
+              android:paddingStart="18dp"
+              android:paddingEnd="18dp"
+              android:singleLine="true" />
 
       <ImageButton
           android:id="@+id/go_to_Pending"

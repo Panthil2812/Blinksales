@@ -73,11 +73,16 @@ public class MainViewpagerFragment extends Fragment {
                 Dashboard.id_dashboard_total_items.setText(db.totalCartItem(cartId).toString());
                 Dashboard.id_dashboard_total_amount.setText(db.totalCartAmount(cartId).toString() + " ₹ /-");
                 Toast.makeText(getContext(), "add product in cart", Toast.LENGTH_SHORT).show();
-            } else if (db.findActivityIdCart() != 0) {
+            }
+            else if (db.findActivityIdCart() != 0)
+            {
                 //activity cart
                 int cartId = db.findActivityIdCart();
-                if(db.totalProductItem(cartId,note.getProduct_id())==1)
+                if(db.totalProductItem(cartId,note.getProduct_id()) == 1.0)
                 {
+                    CartTable cartTableList = db.getOneCartItem(cartId,note.getProduct_id());
+                   //   Toast.makeText(getContext(), "cart item :"+cartTableList.getCart_item_id(), Toast.LENGTH_SHORT).show();
+
                     new MaterialAlertDialogBuilder(getContext(),R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
                             .setTitle("Product Exists")
                             .setMessage("Product already added to cart.\n" +
@@ -85,9 +90,8 @@ public class MainViewpagerFragment extends Fragment {
                             .setCancelable(false)
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    List<CartTable> cartTableList = db.getOneCartItem(note.getProduct_id());
-                                    CartTable List = cartTableList.get(0);
-                                    Double qty = List.getSelected_qty();
+                                  //  CartTable cartTableList = db.getOneCartItem(note.getProduct_id());
+                                    Double qty = cartTableList.getSelected_qty();
                                     qty++;
                                     Double total = note.getProduct_selling_price();
                                     total = qty*total;
@@ -96,15 +100,17 @@ public class MainViewpagerFragment extends Fragment {
                                             qty, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
                                             note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
                                             total, note.getDiscount(), note.getHSN());
-                                    cartTable.setCart_item_id(List.getCart_item_id());
+                                    cartTable.setCart_item_id(cartTableList.getCart_item_id());
                                     db.updateCartTable(cartTable);
+                                    //db.updateOneCartTable(qty,total,cartTableList.getCart_item_id());
                                     Dashboard.id_dashboard_total_items.setText(db.totalCartItem(cartId).toString());
                                     Dashboard.id_dashboard_total_amount.setText(db.totalCartAmount(cartId).toString() + " ₹ /-");
+                                    Toast.makeText(getContext(), "Updated product in cart", Toast.LENGTH_SHORT).show();
+
                                 }
                             })
                             .setNegativeButton("No", null)
                             .show();
-
                 }else {
                     CartTable cartTable = new CartTable(cartId, note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
                             note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
@@ -114,10 +120,8 @@ public class MainViewpagerFragment extends Fragment {
                     db.insertCartTable(cartTable);
                     Dashboard.id_dashboard_total_items.setText(db.totalCartItem(cartId).toString());
                     Dashboard.id_dashboard_total_amount.setText(db.totalCartAmount(cartId).toString() + " ₹ /-");
+                      Toast.makeText(getContext(), "add product in cart", Toast.LENGTH_SHORT).show();
                 }
-
-
-
               //  Toast.makeText(getContext(), "add product in cart", Toast.LENGTH_SHORT).show();
             }
         });

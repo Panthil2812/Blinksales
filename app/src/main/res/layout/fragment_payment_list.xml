@@ -22,7 +22,7 @@
             android:queryHint="Search here"
             android:paddingEnd="8dp"
             style="@style/textView"
-            android:background="@drawable/textview_background">
+            android:background="@drawable/text_view_background">
         </SearchView>
 
         <ImageButton

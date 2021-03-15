@@ -179,9 +179,9 @@ public class Pending_cart  extends Fragment {
                     public void onClick(View v) {
                         try {
                             PendingCartTable note = adapter.getNoteAt(viewHolder.getAdapterPosition());
+                            db.DeleteExpireCart(note.getCart_id());
                             db.deletePendingCartTable(note);
-                           // db.deleteCartTable();
-//                            Toast.makeText(getActivity(), "D", Toast.LENGTH_SHORT).show();
+
                             alertDialog.cancel();
 
 

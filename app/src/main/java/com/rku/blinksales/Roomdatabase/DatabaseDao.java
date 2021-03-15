@@ -86,6 +86,9 @@ public interface DatabaseDao {
     @Query("select * from ProductTable ORDER BY product_name")
     LiveData<List<ProductTable>> getCategoryProducts();
 
+    @Query("select * from ProductTable where product_stock ==:v1")
+    List<ProductTable> getAllSearchProduct(Boolean v1);
+
     @Query("Select * from ProductTable where product_name like :searchText or product_barcode like :searchText or product_category like :searchText")
     LiveData<List<ProductTable>> searchProducts(String searchText);
 
@@ -134,8 +137,8 @@ public interface DatabaseDao {
     @Query("Select * from CartTable where cart_id ==:id")
     LiveData<List<CartTable>> getDateCartTable(int id);
 
-    @Query("Select * from CartTable where product_id ==:id")
-    List<CartTable> getOneCartItem(int id);
+    @Query("Select * from CartTable WHERE cart_id ==:c_id and product_id=:p_id")
+    CartTable getOneCartItem(int c_id,int p_id);
 
     @Query("UPDATE CartTable SET selected_qty=:qty and total_amount=:amount WHERE  cart_item_id =:id")
     void updateOneCartTable(Double qty,Double amount,int id);
@@ -172,8 +175,8 @@ public interface DatabaseDao {
     @Delete
     void  deletePendingCartTable(PendingCartTable pendingCartTable);
 
-    @Query("Select * from PendingCartTable where cart_id ==:id")
-    LiveData<List<PendingCartTable>> getDatePendingCartTable(int id);
+    @Query("Delete FROM PendingCartTable where cart_id=:id")
+    void DeletePendingCartTable(int id);
 
     @Query("Select * from PendingCartTable ORDER BY cart_create DESC ")
     LiveData<List<PendingCartTable>> getAllPendingCartTable();

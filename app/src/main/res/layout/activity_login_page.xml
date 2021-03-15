@@ -23,7 +23,7 @@
             style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/textview_background"
+            android:background="@drawable/text_view_background"
             android:hint="@string/username"
             android:padding="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
