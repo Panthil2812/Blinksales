@@ -46,71 +46,74 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:paddingTop="24dp"
                     >
 
-                    <ImageButton
-                        android:id="@+id/imageButton2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="32dp"
-                        android:layout_marginEnd="32dp"
-                        android:background="@color/colorPrimaryDark"
-                        android:foregroundGravity="right"
-                        android:src="@drawable/ic_edit"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"></ImageButton>
+                    <!--                    <de.hdodenhof.circleimageview.CircleImageView-->
+                    <!--                        android:id="@+id/id_img_profile"-->
+                    <!--                        android:layout_width="150dp"-->
 
-<!--                    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--                        android:id="@+id/id_img_profile"-->
-<!--                        android:layout_width="150dp"-->
+                    <!--                        android:layout_height="150dp"-->
+                    <!--                        android:src="@drawable/ic_profile"-->
+                    <!--                        app:civ_border_color="@color/colorAccent"-->
+                    <!--                        app:civ_border_width="2dp"-->
+                    <!--                        app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                        app:layout_constraintHorizontal_bias="0.5"-->
+                    <!--                        app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                        app:layout_constraintTop_toBottomOf="@+id/imageButton2">-->
 
-<!--                        android:layout_height="150dp"-->
-<!--                        android:src="@drawable/ic_profile"-->
-<!--                        app:civ_border_color="@color/colorAccent"-->
-<!--                        app:civ_border_width="2dp"-->
-<!--                        app:layout_constraintEnd_toEndOf="parent"-->
-<!--                        app:layout_constraintHorizontal_bias="0.5"-->
-<!--                        app:layout_constraintStart_toStartOf="parent"-->
-<!--                        app:layout_constraintTop_toBottomOf="@+id/imageButton2">-->
+                    <!--                    </de.hdodenhof.circleimageview.CircleImageView>-->
 
-<!--                    </de.hdodenhof.circleimageview.CircleImageView>-->
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/card_img_profile"
-                        android:layout_width="155dp"
-                        android:layout_height="155dp"
-                        app:cardCornerRadius="250dp"
-                        app:cardBackgroundColor="@color/colorAccent"
+                        android:id="@+id/card_img_product"
+                        android:layout_width="140dp"
+                        android:layout_height="140dp"
+                        android:elevation="5dp"
+                        app:cardBackgroundColor="@color/colorPrimary"
+                        app:cardCornerRadius="15dp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/imageButton2">
+
                         <androidx.cardview.widget.CardView
-                            android:layout_width="150dp"
-                            android:layout_height="150dp"
-                            app:cardCornerRadius="250dp"
-                            android:layout_gravity="center">
+                            android:layout_width="130dp"
+                            android:layout_height="130dp"
+                            android:layout_gravity="center"
+                            app:cardCornerRadius="15dp">
 
                             <ImageView
                                 android:id="@+id/img_profile"
-                                android:layout_width="150dp"
-                                android:layout_height="150dp"
-                                android:src="@drawable/ic_products"
-                                android:scaleType="centerCrop"/>
+                                android:layout_width="133dp"
+                                android:layout_height="136dp"
+                                android:contentDescription="@string/todo"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/ic_profile" />
 
                         </androidx.cardview.widget.CardView>
                     </androidx.cardview.widget.CardView>
+
+                    <ImageView
+                        android:id="@+id/id_Rotate_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintBottom_toBottomOf="@+id/card_img_product"
+                        app:layout_constraintStart_toEndOf="@+id/card_img_product"
+                        app:srcCompat="@drawable/refresh_icon" />
+
+
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/id_profile_name_layout"
+                        style="@style/TextInputLayoutStyleForm"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        style="@style/TextInputLayoutStyleForm"
                         android:layout_marginStart="32dp"
-                        android:layout_marginTop="32dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="32dp"
                         android:hint="@string/name"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/card_img_profile">
+                        app:layout_constraintTop_toBottomOf="@+id/card_img_product">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/id_profile_name"
@@ -266,5 +269,6 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>
+
 
 </LinearLayout>

@@ -1,9 +1,206 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_height="match_parent"
+android:layout_width="match_parent"
+android:orientation="vertical"
+tools:context=".form.Profile_form"
+android:background="@color/primary_light">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimaryDark"
+            tools:context=".form.Profile_form">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="24dp">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/card_img_product"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
+                    android:elevation="5dp"
+                    app:cardBackgroundColor="@color/colorPrimary"
+                    app:cardCornerRadius="15dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageButton2">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
+                        android:layout_gravity="center"
+                        app:cardCornerRadius="15dp">
+
+                        <ImageView
+                            android:id="@+id/img_profile"
+                            android:layout_width="133dp"
+                            android:layout_height="136dp"
+                            android:contentDescription="@string/todo"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_profile" />
+
+                    </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/id_profile_name"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/text_view_form"
+                    android:drawableStart="@drawable/ic_login"
+                    android:drawablePadding="5dp"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+                    android:text="@string/name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/card_img_product">
+
+
+                </TextView>
+
+
+                <TextView
+                    android:id="@+id/id_profile_phone"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/text_view_form"
+                    android:drawableStart="@drawable/ic_phone"
+                    android:drawablePadding="5dp"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+                    android:text="@string/phone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_profile_name"/>
+
+                <TextView
+                    android:id="@+id/id_profile_email"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/text_view_form"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="5dp"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+                    android:text="@string/email"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_profile_phone"/>
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:gravity="left"
+                    android:text="COMAPNY DETAILS"
+                    android:textColor="@color/colorAccent"
+                    android:textColorHighlight="@color/colorAccent"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_profile_email" />
+
+
+                <TextView
+                    android:id="@+id/id_profile_company_name"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/text_view_form"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="5dp"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+                    android:text="@string/company_name"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+                <TextView
+                    android:id="@+id/id_profile_company_address"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/text_view_form"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="5dp"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+                    android:text="@string/address"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_profile_company_name" />
+
+
+                <TextView
+                    android:id="@+id/id_profile_company_email"
+                    style="@style/TextInputLayoutStyleForm"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@drawable/text_view_form"
+                    android:drawableStart="@drawable/ic_email"
+                    android:drawablePadding="5dp"
+                    android:gravity="start|center"
+                    android:paddingStart="12dp"
+                    android:text="@string/email"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/id_profile_company_address" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                android:clickable="true"
+                android:backgroundTint="@color/colorPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:src="@drawable/ic_edit"
+                android:elevation="6dp"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</ScrollView>
 
 </LinearLayout>

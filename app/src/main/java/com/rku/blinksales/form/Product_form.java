@@ -2,14 +2,12 @@ package com.rku.blinksales.form;
 
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
@@ -31,15 +29,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.rku.blinksales.Fragment.ADDFragment;
-import com.rku.blinksales.MainActivity;
 import com.rku.blinksales.R;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
@@ -49,9 +44,6 @@ import com.rku.blinksales.ScanCodeActivity;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.BreakIterator;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.UUID;
 
 public class Product_form extends AppCompatActivity {
@@ -87,7 +79,7 @@ public class Product_form extends AppCompatActivity {
         id_pro_barcode = findViewById(R.id.id_pro_barcode);
         id_gst_unit = findViewById(R.id.id_gst_unit);
         id_hsn_unit = findViewById(R.id.id_hsn_unit);
-        img_product = findViewById(R.id.img_product);
+        img_product = findViewById(R.id.img_profile);
         id_Switch_Stock = findViewById(R.id.id_Switch_Stock);
         id_back_arrow = findViewById(R.id.id_back_arrow);
         ck_gst_included = findViewById(R.id.product_gst_slab);
