@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -234,4 +235,32 @@ public class Purchase_list_form extends AppCompatActivity {
         return imageUri;
     }
 
+
+
+    public void pur_lst_btn_save(View view)
+    {
+        String VendorName= id_pur_lst_ven_name.getText().toString().trim();
+        String Amount=id_pur_lst_amount.getText().toString().trim();
+        String PendingAmount=id_pur_lst_tax_amount.getText().toString().trim();
+        String PurDate=id_pur_date.getText().toString().trim();
+
+        String PurAddress=id_pur_lst_address.getText().toString().trim();
+
+        if(VendorName.isEmpty())
+            Toast.makeText(this, "Please enter Vendor Name", Toast.LENGTH_SHORT).show();
+        else if(Amount.isEmpty())
+            Toast.makeText(this, "Please enter Amount", Toast.LENGTH_SHORT).show();
+        else if(PendingAmount.isEmpty())
+            Toast.makeText(this, "Please enter Pending Amount", Toast.LENGTH_SHORT).show();
+        else if(PurDate.equals("Select Date"))
+            Toast.makeText(this, "Please select Date", Toast.LENGTH_SHORT).show();
+        else if(img_pur_bill.getDrawable()==null)
+            Toast.makeText(this, "Please upload Bill", Toast.LENGTH_SHORT).show();
+        else if(PurAddress.isEmpty())
+            Toast.makeText(this, "Please enter Note", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
+
+
+    }
 }

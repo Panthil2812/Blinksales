@@ -235,4 +235,33 @@ public class Purchase_return_form extends AppCompatActivity {
         return imageUri;
     }
 
+    public void pur_re_lst_btn_save(View view)
+    {
+        String VendorName= id_pur_re_ven_name.getText().toString().trim();
+        String PurchaseAmount=id_pur_re_purAmount.getText().toString().trim();
+        String ReturnAmount=id_pur_re_pending_amount.getText().toString().trim();
+        String PurDate=id_pur_re_purdate.getText().toString().trim();
+        String Pur_Re_Date=id_pur_re_redate.getText().toString().trim();
+        String NetAmount=id_pur_re_net_amount.getText().toString().trim();
+
+
+        if(VendorName.isEmpty())
+            Toast.makeText(this, "Please enter Vendor Name", Toast.LENGTH_SHORT).show();
+        else if(PurDate.equals("Purchase Date"))
+            Toast.makeText(this, "Please select Purchase Date", Toast.LENGTH_SHORT).show();
+        else if(Pur_Re_Date.equals("Return Date"))
+            Toast.makeText(this, "Please select Return Date", Toast.LENGTH_SHORT).show();
+        else if(PurchaseAmount.isEmpty())
+            Toast.makeText(this, "Please enter Purchase Amount", Toast.LENGTH_SHORT).show();
+        else if(ReturnAmount.isEmpty())
+            Toast.makeText(this, "Please enter Return Amount", Toast.LENGTH_SHORT).show();
+        else if(NetAmount.isEmpty())
+            Toast.makeText(this, "Please enter Net Amount", Toast.LENGTH_SHORT).show();
+
+        else if(img_pur_bill.getDrawable()==null)
+            Toast.makeText(this, "Please upload Bill", Toast.LENGTH_SHORT).show();
+
+        else
+            Toast.makeText(this, "Success", Toast.LENGTH_LONG).show();
+    }
 }

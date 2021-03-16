@@ -26,7 +26,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Purchase_return  extends Fragment {
+public class Purchase_return  extends Fragment
+{
     FloatingActionButton id_add_return;
     ImageButton filter_Calendar;
     LinearLayout layout_from, layout_to;

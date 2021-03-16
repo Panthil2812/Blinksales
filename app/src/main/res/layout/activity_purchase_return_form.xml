@@ -198,6 +198,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:background="@drawable/button_background"
+                    android:onClick="pur_re_lst_btn_save"
                     android:text="@string/save"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="24sp"

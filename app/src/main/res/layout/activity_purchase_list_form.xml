@@ -176,12 +176,14 @@
                 android:layout_marginTop="32dp"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <Button
                     android:id="@+id/id_pur_re_btn_save"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:background="@drawable/button_background"
+                    android:gravity="center"
+                    android:onClick="pur_lst_btn_save"
                     android:text="@string/save"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="24sp" />
