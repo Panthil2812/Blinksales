@@ -1,5 +1,6 @@
 package com.rku.blinksales.mainfragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -98,40 +99,57 @@ public class Expense_list extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                ViewGroup viewGroup = getView().findViewById(android.R.id.content);
-                View dialogView = LayoutInflater.from(getView().getContext()).inflate(R.layout.delete_dialog, viewGroup, false);
-                builder.setView(dialogView);
-                Button OK = dialogView.findViewById(R.id.Dialog_ok);
-                Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-                OK.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try{
-                            db.deleteExpenseList(adapter.getNoteAt(viewHolder.getAdapterPosition()));
-                            Toast.makeText(getActivity(), "Expense List  deleted", Toast.LENGTH_SHORT).show();
-                            alertDialog.cancel();
-                        }catch (Exception e)
-                        {
-                            e.getStackTrace();
-                        }
-
-                    }
-                });
-                Cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            adapter.notifyItemChanged(viewHolder.getAdapterPosition());
-                            Toast.makeText(getActivity(), "Expense List  Not deleted", Toast.LENGTH_SHORT).show();
-                            alertDialog.cancel();
-                        }catch (Exception e) {
-                            e.getStackTrace();
-                        }
-                    }
-                });
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//                ViewGroup viewGroup = getView().findViewById(android.R.id.content);
+//                View dialogView = LayoutInflater.from(getView().getContext()).inflate(R.layout.delete_dialog, viewGroup, false);
+//                builder.setView(dialogView);
+//                Button OK = dialogView.findViewById(R.id.Dialog_ok);
+//                Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
+//                AlertDialog alertDialog = builder.create();
+//                alertDialog.show();
+//                OK.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try{
+//                            db.deleteExpenseList(adapter.getNoteAt(viewHolder.getAdapterPosition()));
+//                            Toast.makeText(getActivity(), "Expense List  deleted", Toast.LENGTH_SHORT).show();
+//                            alertDialog.cancel();
+//                        }catch (Exception e)
+//                        {
+//                            e.getStackTrace();
+//                        }
+//
+//                    }
+//                });
+//                Cancel.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        try {
+//                            adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+//                            Toast.makeText(getActivity(), "Expense List  Not deleted", Toast.LENGTH_SHORT).show();
+//                            alertDialog.cancel();
+//                        }catch (Exception e) {
+//                            e.getStackTrace();
+//                        }
+//                    }
+//                });
+                new AlertDialog.Builder(getContext(),R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
+                        .setTitle("Delete Expense ")
+                        .setMessage("Are you sure you want to delete?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                db.deleteExpenseList(adapter.getNoteAt(viewHolder.getAdapterPosition()));
+                                Toast.makeText(getActivity(), "Expense List  deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                            }
+                        })
+                        .show();
             }
 
             @Override

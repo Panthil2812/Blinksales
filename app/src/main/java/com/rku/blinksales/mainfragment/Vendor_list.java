@@ -1,6 +1,7 @@
 package com.rku.blinksales.mainfragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -31,8 +32,11 @@ import com.rku.blinksales.Adapter.VendorListRecyclerViewAdapter;
 import com.rku.blinksales.R;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
+import com.rku.blinksales.Roomdatabase.ProductTable;
 import com.rku.blinksales.Roomdatabase.VendorTable;
 import com.rku.blinksales.form.Vendor_list_form;
+
+import java.io.File;
 import java.util.List;
 public class Vendor_list extends Fragment {
     FloatingActionButton id_add_vendor;
@@ -93,39 +97,28 @@ public class Vendor_list extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                ViewGroup viewGroup = getView().findViewById(android.R.id.content);
-                View dialogView = LayoutInflater.from(getView().getContext()).inflate(R.layout.delete_dialog, viewGroup, false);
-                builder.setView(dialogView);
-                Button OK = dialogView.findViewById(R.id.Dialog_ok);
-                Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-                OK.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            db.deleteVendorTable(adapter.getNoteAt(viewHolder.getAdapterPosition()));
-                            Toast.makeText(getActivity(), "Vendor  deleted", Toast.LENGTH_SHORT).show();
-                            alertDialog.cancel();
-                        } catch (Exception e) {
-                            e.getStackTrace();
-                        }
-
-                    }
-                });
-                Cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            adapter.notifyItemChanged(viewHolder.getAdapterPosition());
-                            Toast.makeText(getActivity(), "Vendor Not deleted", Toast.LENGTH_SHORT).show();
-                            alertDialog.cancel();
-                        } catch (Exception e) {
-                            e.getStackTrace();
-                        }
-                    }
-                });
+                new AlertDialog.Builder(getContext(), R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
+                        .setTitle("Delete Vendor")
+                        .setMessage("Are you sure you want to delete?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                try {
+                                    db.deleteVendorTable(adapter.getNoteAt(viewHolder.getAdapterPosition()));
+                                    Toast.makeText(getActivity(), "Vendor  deleted", Toast.LENGTH_SHORT).show();
+                                } catch (Exception e) {
+                                    e.getStackTrace();
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                                Toast.makeText(getActivity(), "Vendor Not deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
             }
 
             @Override

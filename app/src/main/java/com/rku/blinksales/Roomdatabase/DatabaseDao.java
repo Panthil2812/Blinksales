@@ -193,14 +193,30 @@ public interface DatabaseDao {
     @Query("select cart_id from PendingCartTable Where cart_status == 1")
     int findActivityIdCart();
 
-
-
     @Query("UPDATE PendingCartTable SET cart_status=0")
     void updateALLPendingCartTable();
 
-
     @Query("UPDATE PendingCartTable SET cart_status=1 where cart_id=:id")
     void updateActiveCartTable(int id);
+
+
+    //    ..............................  Profile Table Query    ..............................
+
+    @Insert
+    void  insertProfileTable(ProfileTable profileTable);
+
+    @Update
+    void  updateProfileTable(ProfileTable profileTable);
+
+    @Delete
+    void  deleteProfileTable(ProfileTable profileTable);
+
+    @Query("Select * from profiletable where profile_id = 1")
+    ProfileTable getProfileData();
+
+
+    @Query("Select count(profile_id) from profiletable")
+    int getProfileId();
 
 
 }

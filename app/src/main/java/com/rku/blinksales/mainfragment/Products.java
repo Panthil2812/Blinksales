@@ -1,6 +1,7 @@
 package com.rku.blinksales.mainfragment;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -35,6 +36,7 @@ import com.rku.blinksales.Adapter.ProductRecyclerViewAdapter;
 import com.rku.blinksales.R;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
+import com.rku.blinksales.Roomdatabase.PendingCartTable;
 import com.rku.blinksales.Roomdatabase.ProductTable;
 import com.rku.blinksales.ScanCodeActivity;
 import com.rku.blinksales.form.Product_form;
@@ -67,7 +69,6 @@ public class Products extends Fragment {
         id_search_barcode = view.findViewById(R.id.id_search_barcode);
         int searchCloseButtonId = product_searchView.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
         ImageView closeButton = (ImageView) this.product_searchView.findViewById(searchCloseButtonId);
-
 
 
         //recyclerview adapter to display all product
@@ -131,55 +132,46 @@ public class Products extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                ViewGroup viewGroup = getView().findViewById(android.R.id.content);
-                View dialogView = LayoutInflater.from(getView().getContext()).inflate(R.layout.delete_dialog, viewGroup, false);
-                builder.setView(dialogView);
-                Button OK = dialogView.findViewById(R.id.Dialog_ok);
-                Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
-                TextView title = dialogView.findViewById(R.id.Dialog_title);
-                title.setText("Delete Product");
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-                OK.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            ProductTable note = recyclerViewAdapter.getNoteAt(viewHolder.getAdapterPosition());
-                            try {
-                                File file = new File(note.getProduct_image_uri());
-                                if (file.exists()) {
-                                    file.delete();
+                new AlertDialog.Builder(getContext(), R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
+                        .setTitle("Delete Product")
+                        .setMessage("Are you sure you want to delete?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                try {
+                                    ProductTable note = recyclerViewAdapter.getNoteAt(viewHolder.getAdapterPosition());
+                                    try {
+                                        File file = new File(note.getProduct_image_uri());
+                                        if (file.exists()) {
+                                            file.delete();
+                                        }
+                                    } catch (Exception e) {
+                                        e.getStackTrace();
+                                    }
+
+                                    db.deleteProductTable(note);
+                                    Toast.makeText(getActivity(), "Product  deleted", Toast.LENGTH_SHORT).show();
+                                } catch (Exception e) {
+                                    e.getStackTrace();
                                 }
-                            } catch (Exception e) {
-                                e.getStackTrace();
                             }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                recyclerViewAdapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                                Toast.makeText(getActivity(), "Product Not deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
 
-                            db.deleteProductTable(note);
-                            Toast.makeText(getActivity(), "Product  deleted", Toast.LENGTH_SHORT).show();
-                            alertDialog.cancel();
-                        } catch (Exception e) {
-                            e.getStackTrace();
-                        }
 
-                    }
-                });
-                Cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            recyclerViewAdapter.notifyItemChanged(viewHolder.getAdapterPosition());
-                            Toast.makeText(getActivity(), "Product Not deleted", Toast.LENGTH_SHORT).show();
-                            alertDialog.cancel();
-                        } catch (Exception e) {
-                            e.getStackTrace();
-                        }
-                    }
-                });
             }
 
             @Override
-            public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+            public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView
+                    recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY,
+                                    int actionState, boolean isCurrentlyActive) {
                 if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
                     // Get RecyclerView item from the ViewHolder
                     View itemView = viewHolder.itemView;
@@ -201,7 +193,9 @@ public class Products extends Fragment {
                     super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
                 }
             }
-        }).attachToRecyclerView(myrv);
+        }).
+
+                attachToRecyclerView(myrv);
 
         //search function for product search
         product_searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

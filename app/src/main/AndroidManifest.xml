@@ -61,6 +61,10 @@
             android:parentActivityName=".MainActivity"
             android:screenOrientation="locked" />
         <activity
+            android:name=".form.Profile_form"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="locked" />
+        <activity
             android:name=".login.Splash_screen"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="locked">

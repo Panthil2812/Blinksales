@@ -1,5 +1,6 @@
 package com.rku.blinksales.mainfragment;
 
+import android.content.DialogInterface;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -68,88 +69,83 @@ public class Pending_cart  extends Fragment {
             @Override
             public void onItemClick(PendingCartTable note,TextView txt) {
                 if(note.getCart_status() == 0) {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    ViewGroup viewGroup = getView().findViewById(android.R.id.content);
-                    View dialogView = LayoutInflater.from(getView().getContext()).inflate(R.layout.delete_dialog, viewGroup, false);
-                    builder.setView(dialogView);
-                    Button OK = dialogView.findViewById(R.id.Dialog_ok);
-                    Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
-                    TextView title = dialogView.findViewById(R.id.Dialog_title);
-                    TextView Dialog_message = dialogView.findViewById(R.id.Dialog_message);
-                    title.setText("Active Cart");
-                    Dialog_message.setText("Are you sure you want to make Active Cart?");
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
-                    OK.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            try {
-                                db.updateALLPendingCartTable();
-                                adapter.notifyDataSetChanged();
-                                db.updateActiveCartTable(note.getCart_id());
-                                adapter.notifyDataSetChanged();
-                                Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
-                                alertDialog.cancel();
-
-
-                            } catch (Exception e) {
-                                e.getStackTrace();
-                            }
-
-                        }
-                    });
-                    Cancel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            try {
-                                Toast.makeText(getActivity(), "No", Toast.LENGTH_SHORT).show();
-                                alertDialog.cancel();
-                            } catch (Exception e) {
-                                e.getStackTrace();
-                            }
-                        }
-                    });
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+//                    ViewGroup viewGroup = getView().findViewById(android.R.id.content);
+//                    View dialogView = LayoutInflater.from(getView().getContext()).inflate(R.layout.delete_dialog, viewGroup, false);
+//                    builder.setView(dialogView);
+//                    Button OK = dialogView.findViewById(R.id.Dialog_ok);
+//                    Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
+//                    TextView title = dialogView.findViewById(R.id.Dialog_title);
+//                    TextView Dialog_message = dialogView.findViewById(R.id.Dialog_message);
+//                    title.setText("Active Cart");
+//                    Dialog_message.setText("Are you sure you want to make Active Cart?");
+//                    AlertDialog alertDialog = builder.create();
+//                    alertDialog.show();
+//                    OK.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            try {
+//                                db.updateALLPendingCartTable();
+//                                adapter.notifyDataSetChanged();
+//                                db.updateActiveCartTable(note.getCart_id());
+//                                adapter.notifyDataSetChanged();
+//                                Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
+//                                alertDialog.cancel();
+//
+//
+//                            } catch (Exception e) {
+//                                e.getStackTrace();
+//                            }
+//
+//                        }
+//                    });
+//                    Cancel.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            try {
+//                                Toast.makeText(getActivity(), "No", Toast.LENGTH_SHORT).show();
+//                                alertDialog.cancel();
+//                            } catch (Exception e) {
+//                                e.getStackTrace();
+//                            }
+//                        }});
+                    new AlertDialog.Builder(getContext(),R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
+                            .setTitle("Active Cart")
+                            .setMessage("Are you sure you want to make Active Cart?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    try {
+                                        db.updateALLPendingCartTable();
+                                        adapter.notifyDataSetChanged();
+                                        db.updateActiveCartTable(note.getCart_id());
+                                        adapter.notifyDataSetChanged();
+                                        Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
+                                    } catch (Exception e) {
+                                        e.getStackTrace();
+                                    }
+                                }
+                            })
+                            .setNegativeButton("No", null)
+                            .show();
                 }else{
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    ViewGroup viewGroup = getView().findViewById(android.R.id.content);
-                    View dialogView = LayoutInflater.from(getView().getContext()).inflate(R.layout.delete_dialog, viewGroup, false);
-                    builder.setView(dialogView);
-                    Button OK = dialogView.findViewById(R.id.Dialog_ok);
-                    Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
-                    TextView title = dialogView.findViewById(R.id.Dialog_title);
-                    TextView Dialog_message = dialogView.findViewById(R.id.Dialog_message);
-                    title.setText("Pending Cart");
-                    Dialog_message.setText("Are you sure you want to make Pending Cart?");
-                    AlertDialog alertDialog = builder.create();
-                    alertDialog.show();
-                    OK.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            try {
-                                Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
-                                db.updateALLPendingCartTable();
-                               adapter.notifyDataSetChanged();
-                               // txt.setText("Pending");
-                                alertDialog.cancel();
-
-
-                            } catch (Exception e) {
-                                e.getStackTrace();
-                            }
-
-                        }
-                    });
-                    Cancel.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            try {
-                                Toast.makeText(getActivity(), "No", Toast.LENGTH_SHORT).show();
-                                alertDialog.cancel();
-                            } catch (Exception e) {
-                                e.getStackTrace();
-                            }
-                        }
-                    });
+                    new AlertDialog.Builder(getContext(),R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
+                            .setTitle("Pending Cart")
+                            .setMessage("Are you sure you want to make Pending Cart?")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    try {
+                                        db.updateALLPendingCartTable();
+                                        adapter.notifyDataSetChanged();
+                                        Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
+                                    } catch (Exception e) {
+                                        e.getStackTrace();
+                                    }
+                                }
+                            })
+                            .setNegativeButton("No", null)
+                            .show();
                 }
             }
         });
@@ -164,45 +160,29 @@ public class Pending_cart  extends Fragment {
 
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                ViewGroup viewGroup = getView().findViewById(android.R.id.content);
-                View dialogView = LayoutInflater.from(getView().getContext()).inflate(R.layout.delete_dialog, viewGroup, false);
-                builder.setView(dialogView);
-                Button OK = dialogView.findViewById(R.id.Dialog_ok);
-                Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
-                TextView title = dialogView.findViewById(R.id.Dialog_title);
-                title.setText("Delete Pending Cart");
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();
-                OK.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            PendingCartTable note = adapter.getNoteAt(viewHolder.getAdapterPosition());
-                            db.DeleteExpireCart(note.getCart_id());
-                            db.deletePendingCartTable(note);
+                new AlertDialog.Builder(getContext(),R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
+                        .setTitle("Delete Pending Cart")
+                        .setMessage("Are you sure you want to delete?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                try {
+                                    PendingCartTable note = adapter.getNoteAt(viewHolder.getAdapterPosition());
+                                    db.DeleteExpireCart(note.getCart_id());
+                                    db.deletePendingCartTable(note);
+                                } catch (Exception e) {
+                                    e.getStackTrace();
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                            }
+                        })
+                        .show();
 
-                            alertDialog.cancel();
-
-
-                        } catch (Exception e) {
-                            e.getStackTrace();
-                        }
-
-                    }
-                });
-                Cancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        try {
-                            adapter.notifyItemChanged(viewHolder.getAdapterPosition());
-//                            Toast.makeText(getActivity(), "Product Not deleted", Toast.LENGTH_SHORT).show();
-                            alertDialog.cancel();
-                        } catch (Exception e) {
-                            e.getStackTrace();
-                        }
-                    }
-                });
             }
 
             @Override
