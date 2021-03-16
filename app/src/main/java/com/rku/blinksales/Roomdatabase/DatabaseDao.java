@@ -16,13 +16,13 @@ public interface DatabaseDao {
 //     ..............................      User Table Query    ..............................
 
     @Insert
-    void insertUser (UserTable userTable);
+    void insertUser(UserTable userTable);
 
     @Update
-    void updateUser (UserTable userTable);
+    void updateUser(UserTable userTable);
 
     @Query("SELECT * FROM usertable WHERE user_name ==:userName and user_password==:userPassword")
-    boolean ValidateUser (String userName, String userPassword);
+    boolean ValidateUser(String userName, String userPassword);
 
 //    ..............................      Category Table Query    ..............................
 
@@ -30,10 +30,10 @@ public interface DatabaseDao {
     void insertCategory(CategoryTable categoryTable);
 
     @Update
-    void updateCategory (CategoryTable categoryTable);
+    void updateCategory(CategoryTable categoryTable);
 
     @Delete
-    void  deleteCategory(CategoryTable categoryTable);
+    void deleteCategory(CategoryTable categoryTable);
 
     @Query("SELECT * FROM CategoryTable ORDER BY category_name ")
     LiveData<List<CategoryTable>> getAllCategory();
@@ -58,13 +58,13 @@ public interface DatabaseDao {
     //    ..............................  Expense List Table Query    ..............................
 
     @Insert
-    void  insertExpenseTable(ExpenseTable expenseTable);
+    void insertExpenseTable(ExpenseTable expenseTable);
 
     @Update
-    void  updateExpenseTable(ExpenseTable expenseTable);
+    void updateExpenseTable(ExpenseTable expenseTable);
 
     @Delete
-    void  deleteExpenseList(ExpenseTable expenseTable);
+    void deleteExpenseList(ExpenseTable expenseTable);
 
     @Query("Select * from ExpenseTable ORDER BY exp_date DESC , exp_type")
     LiveData<List<ExpenseTable>> getAllExpenseList();
@@ -72,16 +72,16 @@ public interface DatabaseDao {
 
     //    ..............................  Product Table Query    ..............................
     @Insert
-    void  insertProductTable(ProductTable productTable);
+    void insertProductTable(ProductTable productTable);
 
     @Update
-    void  updateProductTable(ProductTable productTable);
+    void updateProductTable(ProductTable productTable);
 
     @Delete
-    void  deleteProductTable(ProductTable productTable);
+    void deleteProductTable(ProductTable productTable);
 
     @Query("Select * from ProductTable where product_category ==:name and product_stock ==:v1")
-    LiveData<List<ProductTable>> getAllProduct(String name,Boolean v1);
+    LiveData<List<ProductTable>> getAllProduct(String name, Boolean v1);
 
     @Query("select * from ProductTable ORDER BY product_name")
     LiveData<List<ProductTable>> getCategoryProducts();
@@ -99,22 +99,22 @@ public interface DatabaseDao {
     int countProductName(String name);
 
     @Query("UPDATE ProductTable SET product_category =:name WHERE  product_category =:old")
-    void updateCategoryProductTable(String name,String old);
+    void updateCategoryProductTable(String name, String old);
 
     @Query("SELECT * FROM ProductTable WHERE product_barcode ==:barcode")
-    ProductTable  getOneProduct(String barcode);
+    ProductTable getOneProduct(String barcode);
 
 
     //    ..............................  Vendor Table Query    ..............................
 
     @Insert
-    void  insertVendorTable(VendorTable vendorTable);
+    void insertVendorTable(VendorTable vendorTable);
 
     @Update
-    void  updateVendorTable(VendorTable vendorTable);
+    void updateVendorTable(VendorTable vendorTable);
 
     @Delete
-    void  deleteVendorTable(VendorTable vendorTable);
+    void deleteVendorTable(VendorTable vendorTable);
 
     @Query("Select * from VendorTable ORDER BY vendor_name")
     LiveData<List<VendorTable>> getAllVendorTable();
@@ -122,17 +122,19 @@ public interface DatabaseDao {
     @Query("Select * from VendorTable where vendor_name like :searchText")
     LiveData<List<VendorTable>> getFilterVendorTable(String searchText);
 
+    @Query("Select vendor_name from vendortable ORDER BY vendor_name ")
+    List<String> getVendor();
 
     //    ..............................  Cart Table Query    ..............................
 
     @Insert
-    void  insertCartTable(CartTable cartTable);
+    void insertCartTable(CartTable cartTable);
 
     @Update
-    void  updateCartTable(CartTable cartTable);
+    void updateCartTable(CartTable cartTable);
 
     @Delete
-    void  deleteCartTable(CartTable cartTable);
+    void deleteCartTable(CartTable cartTable);
 
     @Query("Select * from CartTable where cart_id ==:id")
     LiveData<List<CartTable>> getDateCartTable(int id);
@@ -141,10 +143,10 @@ public interface DatabaseDao {
     List<CartTable> getAllDateCartTable(int id);
 
     @Query("Select * from CartTable WHERE cart_id ==:c_id and product_id=:p_id")
-    CartTable getOneCartItem(int c_id,int p_id);
+    CartTable getOneCartItem(int c_id, int p_id);
 
     @Query("UPDATE CartTable SET selected_qty=:qty and total_amount=:amount WHERE  cart_item_id =:id")
-    void updateOneCartTable(Double qty,Double amount,int id);
+    void updateOneCartTable(Double qty, Double amount, int id);
 
     @Query("SELECT SUM(total_amount)  FROM CartTable WHERE cart_id ==:id")
     Double totalCartAmount(int id);
@@ -156,21 +158,21 @@ public interface DatabaseDao {
     Double totalCartItem(int id);
 
     @Query("SELECT count(product_id)  FROM CartTable WHERE cart_id ==:c_id and product_id=:p_id")
-    Double totalProductItem(int c_id,int p_id);
+    Double totalProductItem(int c_id, int p_id);
 
     @Query("Delete from CartTable where cart_id=:id")
     void DeleteExpireCart(int id);
 
     @Query("UPDATE CartTable SET selected_qty=:qty and total_amount=:amount where product_id=:id")
-    void updatePendingCartTable(Double qty,Double amount,int id);
+    void updatePendingCartTable(Double qty, Double amount, int id);
 
     //    .............................. Pending Cart Table Query    ..............................
 
     @Insert
-    void  insertPendingCartTable(PendingCartTable pendingCartTable);
+    void insertPendingCartTable(PendingCartTable pendingCartTable);
 
     @Update
-    void  updatePendingCartTable(PendingCartTable pendingCartTable);
+    void updatePendingCartTable(PendingCartTable pendingCartTable);
 
     @Query("Select cart_id FROM PendingCartTable where cart_create  between :form and :to")
     List<Integer> getAllExpireCart(long form, long to);
@@ -179,7 +181,7 @@ public interface DatabaseDao {
     void ALLDeleteExpirePendingCart(long form, long to);
 
     @Delete
-    void  deletePendingCartTable(PendingCartTable pendingCartTable);
+    void deletePendingCartTable(PendingCartTable pendingCartTable);
 
     @Query("Delete FROM PendingCartTable where cart_id=:id")
     void DeletePendingCartTable(int id);
@@ -203,13 +205,13 @@ public interface DatabaseDao {
     //    ..............................  Profile Table Query    ..............................
 
     @Insert
-    void  insertProfileTable(ProfileTable profileTable);
+    void insertProfileTable(ProfileTable profileTable);
 
     @Update
-    void  updateProfileTable(ProfileTable profileTable);
+    void updateProfileTable(ProfileTable profileTable);
 
     @Delete
-    void  deleteProfileTable(ProfileTable profileTable);
+    void deleteProfileTable(ProfileTable profileTable);
 
     @Query("Select * from profiletable where profile_id = 1")
     ProfileTable getProfileData();
@@ -218,5 +220,50 @@ public interface DatabaseDao {
     @Query("Select count(profile_id) from profiletable")
     int getProfileId();
 
+    //    .............................. Purchase Table Query    ..............................
 
+    @Insert
+    void insertPurchaseTable(PurchaseTable purchaseTable);
+
+    @Update
+    void updatePurchaseTable(PurchaseTable purchaseTable);
+
+    @Delete
+    void deletePurchaseTable(PurchaseTable purchaseTable);
+
+    @Query("Select * from PurchaseTable ORDER BY purchase_id DESC")
+    LiveData<List<PurchaseTable>> getAllPurchaseTable();
+
+    @Query("Select * from PurchaseTable where vendor_name like :searchText or purchase_id like:searchText")
+    LiveData<List<PurchaseTable>> getFilterPurchaseTable(String searchText);
+
+    @Query("Select * from PurchaseTable where purchase_id ==:id ")
+    PurchaseTable getPurchaseTable(int id);
+
+    @Query("Select count(purchase_id) from PurchaseTable where purchase_id ==:id ")
+    int getcountPurchaseTable(int id);
+
+
+    @Query("Select * FROM PurchaseTable where date  between :form and :to")
+    LiveData<List<PurchaseTable>> getFilterPurchaseTable(long form, long to);
+
+    //    .............................. Purchase return Table Query    ..............................
+
+    @Insert
+    void insertPurchaseReturnTable(PurchaseReturnTable purchaseReturnTable);
+
+    @Update
+    void updatePurchaseReturnTable(PurchaseReturnTable purchaseReturnTable);
+
+    @Delete
+    void deletePurchaseReturnTable(PurchaseReturnTable purchaseReturnTable);
+
+    @Query("Select * from PurchaseReturnTable ORDER BY date DESC")
+    LiveData<List<PurchaseReturnTable>> getAllPurchaseReturnTable();
+
+    @Query("Select * from PurchaseReturnTable where vendor_name like :searchText or id like:searchText")
+    LiveData<List<PurchaseReturnTable>> getFilterPurchaseReturnTable(String searchText);
+
+    @Query("Select * FROM PurchaseReturnTable where date  between :form and :to")
+    LiveData<List<PurchaseReturnTable>> getFilterPurchaseReturnTable(long form, long to);
 }

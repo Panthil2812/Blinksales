@@ -34,7 +34,44 @@
             android:textColor="@color/colorAccent"
             android:textSize="24sp" />
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        android:orientation="horizontal"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:padding="8dp">
+
+
+        <EditText
+            android:id="@+id/purchase_return_search"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:autofillHints="enter id"
+            android:background="@drawable/card_view_background"
+            android:hint="Search here by id"
+            android:inputType="number"
+            android:paddingStart="18dp"
+            android:paddingEnd="8dp"
+            android:textColor="@color/colorAccent"
+            android:textColorHint="@color/secondary_text" />
+
+        <ImageButton
+            android:id="@+id/search_purchase_id"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/card_view_background"
+
+            android:src="@drawable/ic_search_2" />
+
+    </LinearLayout>
     <ScrollView
+        android:id="@+id/scrollview_purchase_return"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -47,30 +84,22 @@
                 android:padding="20dp">
 
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pur_re_ven_layout"
+                <TextView
+                    android:id="@+id/id_pur_re_ven_name"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
-                    android:layout_marginTop="8dp"
-                    android:hint="Vendor Name"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/cart_background"
+                    android:gravity="center|start"
+                    android:paddingStart="12dp"
+                    android:text="Vendor Name"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.6"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_pur_re_ven_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
-
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_barcode" />
-                </com.google.android.material.textfield.TextInputLayout>
+                </TextView>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/id_pur_re_amount_layout"
@@ -86,7 +115,7 @@
                         android:id="@+id/id_pur_re_purAmount"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
+                        android:inputType="numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -103,16 +132,18 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_pur_re_pending_amount"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:inputType="numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pur_re_netamount_layout"
+                    android:id="@+id/id_pur_re_net_amount_layout"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="0dp"
                     android:layout_height="55dp"
                     android:layout_marginTop="16dp"
                     android:hint="Net Amount"
+                    android:gravity="center|start"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
@@ -121,10 +152,11 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_pur_re_net_amount"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:inputType="numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                android:id="@+id/id_pur_re_purdate"
+
 
 
                 <TextView
@@ -139,7 +171,7 @@
                     android:text="Purchase Date"
                     app:layout_constraintEnd_toStartOf="@+id/id_pur_re_redate"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pur_re_ven_layout"></TextView>
+                    app:layout_constraintTop_toBottomOf="@+id/id_pur_re_ven_name"/>
 
                 <TextView
                     android:id="@+id/id_pur_re_redate"
@@ -154,7 +186,7 @@
                     android:text="Return Date"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/id_pur_re_purdate"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pur_re_ven_layout"></TextView>
+                    app:layout_constraintTop_toBottomOf="@+id/id_pur_re_ven_name"/>
 
 
                 <LinearLayout
@@ -163,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:orientation="horizontal"
-                    app:layout_constraintTop_toBottomOf="@+id/id_pur_re_netamount_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/id_pur_re_net_amount_layout"
                     tools:layout_editor_absoluteX="20dp">
 
                     <Button
@@ -180,7 +212,7 @@
                         android:textSize="14dp" />
 
                     <ImageView
-                        android:id="@+id/img_pur_bill"
+                        android:id="@+id/img_pur_return_bill"
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_margin="18dp"
@@ -212,40 +244,7 @@
 
         </LinearLayout>
     </ScrollView>
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="horizontal"
-        android:paddingStart="18dp"
-        android:paddingTop="8dp"
-        android:paddingEnd="18dp"
-        android:paddingBottom="8dp"
-        android:visibility="gone">
 
-        <SearchView
-            android:id="@+id/purchase_return_search"
-            style="@style/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/text_view_background"
-            android:iconifiedByDefault="false"
-            android:paddingEnd="8dp"
-            android:queryHint="Search here by id"/>
-
-        <ImageButton
-            android:id="@+id/go_to_Pending"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/button_background"
-            android:backgroundTint="@color/colorAccent"
-            android:src="@drawable/ic_search"
-            android:tint="@color/primary_light" />
-
-    </LinearLayout>
 </LinearLayout>
 
 

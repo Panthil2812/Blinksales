@@ -77,8 +77,8 @@ public class Profile_form extends AppCompatActivity {
 
         if (db.getProfileId() == 1) {
             ProfileTable profileTable = db.getProfileData();
-
-            File file = new File(profileTable.getProfile_image());
+            last_image_uri =profileTable.getProfile_image();
+            File file = new File(last_image_uri);
             Glide.with(getApplicationContext()).load(file).placeholder(R.drawable.ic_products).into(img_profile_form);
             id_profile_form_name.setText(profileTable.getProfile_name());
             id_profile_form__phone.setText(profileTable.getProfile_phone());
@@ -130,6 +130,10 @@ public class Profile_form extends AppCompatActivity {
                     Profile.id_profile_company_email.setText(pro_com_email);
                     Profile.id_profile_form_company_address.setText(pro_com_address);
                 } else {
+                    File file = new File(last_image_uri);
+                    if (file.exists()) {
+                        file.delete();
+                    }
                     profileTable.setProfile_id(db.getProfileId());
                     db.updateProfileTable(profileTable);
                     Profile.img_profile.setImageBitmap(myImg);
@@ -262,7 +266,7 @@ public class Profile_form extends AppCompatActivity {
         File path = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/" + folderName, "image");
         if (path.exists()) {
 //            Toast.makeText(getApplicationContext(), "Directory is already exist", Toast.LENGTH_SHORT).show();
-            String imageName = UUID.randomUUID().toString() + ".jpg";
+            String imageName = "Profile_"+UUID.randomUUID().toString() + ".jpg";
             File imageFile = new File(path, imageName);
             if (!imageFile.exists()) {
                 //Store.....
@@ -270,7 +274,7 @@ public class Profile_form extends AppCompatActivity {
                 //txt_image_uri.setText(imageFile.toString());
                 try {
                     FileOutputStream fos = new FileOutputStream(imageFile);
-                    bitmapImage.compress(Bitmap.CompressFormat.JPEG, 25, fos);
+                    bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                     fos.flush();
                     fos.close();
                 } catch (Exception e) {
@@ -289,7 +293,7 @@ public class Profile_form extends AppCompatActivity {
                     //  txt_image_uri.setText(imagefile.toString());
                     try {
                         FileOutputStream fos = new FileOutputStream(imagefile);
-                        bitmapImage.compress(Bitmap.CompressFormat.JPEG, 25, fos);
+                        bitmapImage.compress(Bitmap.CompressFormat.JPEG, 100, fos);
                         fos.flush();
                         fos.close();
                     } catch (Exception e) {
@@ -297,11 +301,6 @@ public class Profile_form extends AppCompatActivity {
                     }
                 }
             } else {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-//                String sMessage = "Message : failed to create directory" + "\nPath : " + Environment.getExternalStorageDirectory() +
-//                        "\nmkdirs : " + path.mkdir();
-//                builder.setMessage(sMessage);
-//                builder.show();
             }
         }
         return imageUri;

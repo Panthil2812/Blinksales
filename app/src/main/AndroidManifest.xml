@@ -26,7 +26,9 @@
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".form.Checkout"></activity>
+        <activity android:name=".Main_Full_screen"
+            android:screenOrientation="locked"/>
+        <activity android:name=".form.Checkout" />
         <activity android:name=".BillingDetails" />
         <activity
             android:name=".form.Contact_us_form"

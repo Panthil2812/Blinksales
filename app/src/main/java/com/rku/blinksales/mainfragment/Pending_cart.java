@@ -69,46 +69,6 @@ public class Pending_cart  extends Fragment {
             @Override
             public void onItemClick(PendingCartTable note,TextView txt) {
                 if(note.getCart_status() == 0) {
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-//                    ViewGroup viewGroup = getView().findViewById(android.R.id.content);
-//                    View dialogView = LayoutInflater.from(getView().getContext()).inflate(R.layout.delete_dialog, viewGroup, false);
-//                    builder.setView(dialogView);
-//                    Button OK = dialogView.findViewById(R.id.Dialog_ok);
-//                    Button Cancel = dialogView.findViewById(R.id.Dialog_cancel);
-//                    TextView title = dialogView.findViewById(R.id.Dialog_title);
-//                    TextView Dialog_message = dialogView.findViewById(R.id.Dialog_message);
-//                    title.setText("Active Cart");
-//                    Dialog_message.setText("Are you sure you want to make Active Cart?");
-//                    AlertDialog alertDialog = builder.create();
-//                    alertDialog.show();
-//                    OK.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            try {
-//                                db.updateALLPendingCartTable();
-//                                adapter.notifyDataSetChanged();
-//                                db.updateActiveCartTable(note.getCart_id());
-//                                adapter.notifyDataSetChanged();
-//                                Toast.makeText(getActivity(), "yes", Toast.LENGTH_SHORT).show();
-//                                alertDialog.cancel();
-//
-//
-//                            } catch (Exception e) {
-//                                e.getStackTrace();
-//                            }
-//
-//                        }
-//                    });
-//                    Cancel.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            try {
-//                                Toast.makeText(getActivity(), "No", Toast.LENGTH_SHORT).show();
-//                                alertDialog.cancel();
-//                            } catch (Exception e) {
-//                                e.getStackTrace();
-//                            }
-//                        }});
                     new AlertDialog.Builder(getContext(),R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
                             .setTitle("Active Cart")
                             .setMessage("Are you sure you want to make Active Cart?")
@@ -182,7 +142,6 @@ public class Pending_cart  extends Fragment {
                             }
                         })
                         .show();
-
             }
 
             @Override

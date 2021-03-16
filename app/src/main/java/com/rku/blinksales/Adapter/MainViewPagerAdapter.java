@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.rku.blinksales.Fragment.MainViewpagerFragment;
-import com.rku.blinksales.Fragment.ProductViewpagerFragment;
 
 import java.util.List;
 

@@ -414,7 +414,7 @@ public class Product_form extends AppCompatActivity {
         File path = new File(Environment.getExternalStorageDirectory().getAbsoluteFile() + "/" + folderName, "image");
         if (path.exists()) {
 //            Toast.makeText(getApplicationContext(), "Directory is already exist", Toast.LENGTH_SHORT).show();
-            String imageName = UUID.randomUUID().toString() + ".jpg";
+            String imageName = "Product_"+UUID.randomUUID().toString() + ".jpg";
             File imageFile = new File(path, imageName);
             if (!imageFile.exists()) {
                 //Store.....

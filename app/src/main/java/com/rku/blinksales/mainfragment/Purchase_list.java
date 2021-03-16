@@ -1,30 +1,51 @@
 package com.rku.blinksales.mainfragment;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.rku.blinksales.Adapter.PendingRecyclerViewAdapter;
+import com.rku.blinksales.Adapter.PurchaseRecyclerViewAdapter;
 import com.rku.blinksales.R;
+import com.rku.blinksales.Roomdatabase.DatabaseDao;
+import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
+import com.rku.blinksales.Roomdatabase.PendingCartTable;
+import com.rku.blinksales.Roomdatabase.ProductTable;
+import com.rku.blinksales.Roomdatabase.PurchaseTable;
 import com.rku.blinksales.form.Purchase_list_form;
 import com.rku.blinksales.form.Vendor_list_form;
 
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Purchase_list  extends Fragment {
     FloatingActionButton id_add_purchase;
@@ -33,6 +54,9 @@ public class Purchase_list  extends Fragment {
     Date startSelectDate, endSelectDate;
     TextView id_from_date, id_to_date, Dialog_cancel, Dialog_done;
     CalendarView date_picker_actions;
+    RecyclerView purchase_list_recyclerview;
+    SearchView purchase_search_view;
+    DatabaseDao db;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,8 +66,46 @@ public class Purchase_list  extends Fragment {
         ImageButton id_btn_refresh =getActivity().findViewById(R.id.id_btn_refresh);
         id_weight.setVisibility(View.GONE);
         id_btn_refresh.setVisibility(View.GONE);
-        id_add_purchase = view.findViewById(R.id.id_add_purchase);
 
+        db = MainRoomDatabase.getInstance(getContext()).getDao();
+
+        //view main code
+        id_add_purchase = view.findViewById(R.id.id_add_purchase);
+        filter_Calendar = view.findViewById(R.id.purchase_list_filter_Calendar);
+        purchase_list_recyclerview = view.findViewById(R.id.purchase_list_recyclerview);
+        purchase_search_view = view.findViewById(R.id.purchase_search_view);
+        int searchCloseButtonId = purchase_search_view.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
+        ImageView closeButton = (ImageView) this.purchase_search_view.findViewById(searchCloseButtonId);
+
+
+        purchase_list_recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+        purchase_list_recyclerview.setHasFixedSize(true);
+        final PurchaseRecyclerViewAdapter adapter = new PurchaseRecyclerViewAdapter(getContext());
+        purchase_list_recyclerview.setAdapter(adapter);
+        try {
+            db.getAllPurchaseTable().observe(this, new Observer<List<PurchaseTable>>() {
+
+                @Override
+                public void onChanged(@Nullable List<PurchaseTable> notes) {
+                    adapter.setNotes(notes);
+                }
+            });
+
+        } catch (Exception e)
+        {
+            e.getStackTrace();
+        }
+        adapter.setOnItemClickListener(new PurchaseRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(PurchaseTable note) {
+                Intent intent_edit = new Intent(getActivity(),Purchase_list_form.class);
+                intent_edit.putExtra("id",note.getPurchase_id());
+                startActivity(intent_edit);
+                purchase_list_recyclerview.setAdapter(adapter);
+
+            }
+        });
+        // add new purchase bill
         id_add_purchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,8 +113,69 @@ public class Purchase_list  extends Fragment {
             }
         });
 
-        //view main code
-        filter_Calendar = view.findViewById(R.id.purchase_list_filter_Calendar);
+        // delete bill
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                new AlertDialog.Builder(getContext(),R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
+                        .setTitle("Delete Pending Cart")
+                        .setMessage("Are you sure you want to delete?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                try {
+                                    PurchaseTable note = adapter.getNoteAt(viewHolder.getAdapterPosition());
+                                    File file = new File(note.getBill_image());
+                                    if (file.exists()) {
+                                        file.delete();
+                                    }
+                                    db.deletePurchaseTable(note);
+                                } catch (Exception e) {
+                                    e.getStackTrace();
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                adapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                            }
+                        })
+                        .show();
+            }
+
+            @Override
+            public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
+                if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+                    // Get RecyclerView item from the ViewHolder
+                    View itemView = viewHolder.itemView;
+                    Paint p = new Paint();
+                    try {
+                        if (dX > 0) {
+                            p.setColor(getResources().getColor(R.color.colorPrimary));
+                            c.drawRect((float) itemView.getLeft(), (float) itemView.getTop(), dX,
+                                    (float) itemView.getBottom(), p);
+                        } else {
+                            p.setColor(getResources().getColor(R.color.colorPrimary));
+                            c.drawRect((float) itemView.getRight() + dX, (float) itemView.getTop(),
+                                    (float) itemView.getRight(), (float) itemView.getBottom(), p);
+                        }
+                    } catch (Exception e) {
+                        e.getStackTrace();
+                    }
+
+                    super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+                }
+            }
+        }).attachToRecyclerView(purchase_list_recyclerview);
+
+        // calendar dialog
         filter_Calendar.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             ViewGroup viewGroup = getView().findViewById(android.R.id.content);
@@ -144,7 +267,17 @@ public class Purchase_list  extends Fragment {
                 } else if (id_to_date.getText().toString().trim().equals("dd-MMM-yyyy")) {
                     Toast.makeText(getContext(), "Please Select To Date", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getContext(), id_from_date.getText().toString() + " TO " + id_to_date.getText().toString(), Toast.LENGTH_SHORT).show();
+                    purchase_search_view.setQuery("filter",false);
+                    db.getFilterPurchaseTable(startSelectDate.getTime(),endSelectDate.getTime()).observe(getViewLifecycleOwner(), new Observer<List<PurchaseTable>>() {
+                        @Override
+                        public void onChanged(List<PurchaseTable> notes) {
+                            adapter.setNotes(notes);
+                        }
+                    });
+                   // Toast.makeText(getContext(), startSelectDate.getTime() + " TO " + endSelectDate.getTime(), Toast.LENGTH_SHORT).show();
+                    alertDialog.dismiss();
+
+
                 }
             });
 
@@ -153,7 +286,58 @@ public class Purchase_list  extends Fragment {
             });
 
         });
+
+
+        //search bill
+        purchase_search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (query != null) {
+                    Toast.makeText(getContext(), "Search : " + query, Toast.LENGTH_LONG).show();
+                    GetFilterData(query);
+                }
+                closeKeyboard();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //  adapter.getFilter().filter(newText);
+                if (newText != null) {
+                    //Toast.makeText(getContext(),"OnSearch : "+newText,Toast.LENGTH_LONG).show();
+                    GetFilterData(newText);
+                }
+                return true;
+            }
+
+            private void GetFilterData(String str) {
+
+                str = "%" + str + "%";
+                db.getFilterPurchaseTable(str).observe(getViewLifecycleOwner(), new Observer<List<PurchaseTable>>() {
+                    @Override
+                    public void onChanged(List<PurchaseTable> notes) {
+                        adapter.setNotes(notes);
+                    }
+                });
+
+            }
+        });
+
+        //SearchView Close Button Event
+        closeButton.setOnClickListener(v -> {
+            purchase_search_view.setQuery("", false);
+            purchase_search_view.clearFocus();
+            purchase_list_recyclerview.setAdapter(adapter);
+            closeKeyboard();
+        });
         return view;
     }
-
+    public void closeKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            purchase_search_view.clearFocus();
+        }
+    }
 }
