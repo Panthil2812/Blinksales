@@ -6,8 +6,9 @@
     android:background="@color/primary_light"
     android:padding="32dp">
 
-    <Button
-        android:id="@+id/btn_set_general"
+    <TextView
+        android:id="@+id/txt_set_general"
+        android:gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -20,10 +21,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    </Button>
+    </TextView>
 
-    <Button
-        android:id="@+id/btn_set_wireless_conn"
+    <TextView
+        android:id="@+id/txt_set_wireless_conn"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -34,12 +36,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_set_general">
+        app:layout_constraintTop_toBottomOf="@+id/txt_set_general">
 
-    </Button>
+    </TextView>
 
-    <Button
-        android:id="@+id/btn_set_barcode_printing"
+    <TextView
+        android:id="@+id/txt_set_barcode_printing"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -50,12 +53,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_set_wireless_conn">
+        app:layout_constraintTop_toBottomOf="@+id/txt_set_wireless_conn">
 
-    </Button>
+    </TextView>
 
-    <Button
-        android:id="@+id/btn_set_invoice_printing"
+    <TextView
+        android:id="@+id/txt_set_invoice_printing"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -66,12 +70,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_set_barcode_printing">
+        app:layout_constraintTop_toBottomOf="@+id/txt_set_barcode_printing">
 
-    </Button>
+    </TextView>
 
-    <Button
-        android:id="@+id/btn_set_imp_ex_db"
+    <TextView
+        android:id="@+id/txt_set_imp_ex_db"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -82,12 +87,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_set_invoice_printing">
+        app:layout_constraintTop_toBottomOf="@+id/txt_set_invoice_printing">
 
-    </Button>
+    </TextView>
 
-    <Button
-        android:id="@+id/btn_set_other"
+    <TextView
+        android:id="@+id/txt_set_other"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -98,9 +104,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_set_imp_ex_db">
+        app:layout_constraintTop_toBottomOf="@+id/txt_set_imp_ex_db">
 
-    </Button>
+    </TextView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
