@@ -183,14 +183,29 @@ public class Cart extends Fragment {
 
         //clear cart onclick method
         id_clear_cart.setOnClickListener(v -> {
+
             if (db.countCart() != 0) {
-                db.DeletePendingCartTable(db.findActivityIdCart());
-                cart_recycler_view.setAdapter(null);
-                Toast.makeText(getContext(), "CLEAR CART : id " + db.findActivityIdCart(), Toast.LENGTH_SHORT).show();
+                new AlertDialog.Builder(getContext(),R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
+                        .setTitle("Clear Cart")
+                        .setMessage("Are you sure you want to clear?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                db.DeletePendingCartTable(db.findActivityIdCart());
+                                cart_recycler_view.setAdapter(null);
+                                Toast.makeText(getContext(), "CLEAR CART : id " + db.findActivityIdCart(), Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+
+                return;
             } else {
                 Toast.makeText(getContext(), "Not Active Cart ", Toast.LENGTH_SHORT).show();
 
             }
+
+
         });
 
         //check out cart onclick method

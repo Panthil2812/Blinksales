@@ -21,9 +21,12 @@ android:background="@color/primary_light">
             tools:context=".form.Profile_form">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="24dp">
+                android:paddingTop="24dp"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="0dp">
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/card_img_product"
@@ -44,8 +47,8 @@ android:background="@color/primary_light">
 
                         <ImageView
                             android:id="@+id/img_profile"
-                            android:layout_width="133dp"
-                            android:layout_height="136dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:contentDescription="@string/todo"
                             android:scaleType="centerCrop"
                             android:src="@drawable/ic_profile" />
@@ -59,7 +62,6 @@ android:background="@color/primary_light">
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="32dp"
                     android:layout_marginEnd="32dp"
                     android:background="@drawable/text_view_form"
                     android:drawableStart="@drawable/ic_login"
@@ -91,7 +93,7 @@ android:background="@color/primary_light">
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_profile_name"/>
+                    app:layout_constraintTop_toBottomOf="@+id/id_profile_name" />
 
                 <TextView
                     android:id="@+id/id_profile_email"
@@ -109,7 +111,7 @@ android:background="@color/primary_light">
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/id_profile_phone"/>
+                    app:layout_constraintTop_toBottomOf="@+id/id_profile_phone" />
 
                 <TextView
                     android:id="@+id/textView"
@@ -185,20 +187,22 @@ android:background="@color/primary_light">
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/id_profile_company_address" />
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/go_to_profile_form"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:clickable="true"
+                    android:elevation="6dp"
+                    android:src="@drawable/ic_edit"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/card_img_product"
+                    app:layout_constraintTop_toTopOf="parent" />
+
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floatingActionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:clickable="true"
-                android:backgroundTint="@color/colorPrimary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:src="@drawable/ic_edit"
-                android:elevation="6dp"/>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </ScrollView>

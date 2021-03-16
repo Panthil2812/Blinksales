@@ -70,7 +70,7 @@
                         app:cardCornerRadius="15dp">
 
                         <ImageView
-                            android:id="@+id/img_profile"
+                            android:id="@+id/img_product_form"
                             android:layout_width="133dp"
                             android:layout_height="136dp"
                             android:contentDescription="@string/todo"

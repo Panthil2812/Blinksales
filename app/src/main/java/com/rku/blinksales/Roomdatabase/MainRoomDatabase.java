@@ -9,6 +9,8 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.rku.blinksales.mainfragment.Profile;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,7 +24,10 @@ import java.util.Date;
         ProductTable.class,
         VendorTable.class,
         CartTable.class,
-        PendingCartTable.class
+        PendingCartTable.class,
+        ProfileTable.class,
+        SoldItemTable.class,
+        BillTable.class
 }, version = 1,exportSchema = false)
 
 
