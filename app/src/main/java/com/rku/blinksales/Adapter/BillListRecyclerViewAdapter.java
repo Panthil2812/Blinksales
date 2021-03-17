@@ -76,13 +76,13 @@ public class BillListRecyclerViewAdapter extends RecyclerView.Adapter<BillListRe
             id_list_item_3 = itemView.findViewById(R.id.id_pur_3);
             id_list_item_4 = itemView.findViewById(R.id.id_pur_4);
             id_list_item_5 = itemView.findViewById(R.id.id_pur_5);
-//            id_list_item_4.setOnClickListener(v -> {
-//
-//                int position = getAdapterPosition();
-//                if (listener != null && position != RecyclerView.NO_POSITION ) {
-//                    listener.onItemClick(notes.get(position));
-//                }
-//            });
+            itemView.setOnClickListener(v -> {
+
+                int position = getAdapterPosition();
+                if (listener != null && position != RecyclerView.NO_POSITION ) {
+                    listener.onItemClick(notes.get(position));
+                }
+            });
         }
     }
     public interface OnItemClickListener {

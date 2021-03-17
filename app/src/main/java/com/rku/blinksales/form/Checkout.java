@@ -153,25 +153,19 @@ public class Checkout extends AppCompatActivity {
         //only save bill onclick method
         checkout_save.setOnClickListener(v -> {
             SaveBill();
-            //Toast.makeText(getApplicationContext(), "only save bill", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "save bill", Toast.LENGTH_SHORT).show();
             closeKeyboard();
         });
 
         // save and print bill onclick method
         checkout_print.setOnClickListener(v -> {
             SaveBill();
-            //Toast.makeText(getApplicationContext(), "save and print bill ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "save and print bill ", Toast.LENGTH_SHORT).show();
             closeKeyboard();
         });
     }
 
     private void SaveBill() {
-//        Double total_amount,total_gst,grand_total_amount;
-//        TextView checkout_total_item,checkout_total_amount,
-//                checkout_total_gst,
-//                checkout_pay_method,checkout_save,checkout_print;
-//        TextInputEditText checkout_packing_charge,checkout_delivery_charge,checkout_discount,checkout_grand_total
-//                ,checkout_change_amount,checkout_customer_name,checkout_customer_number,checkout_customer_gst,checkout_return_amount;
         String unique_id = UUID.randomUUID().toString();
         Date bill_date = new Date();
         Double totalItem = total_item;
@@ -214,7 +208,6 @@ public class Checkout extends AppCompatActivity {
                     db.deleteCartTable(note);
                 }
                 db.DeletePendingCartTable(db.findActivityIdCart());
-                Toast.makeText(getApplicationContext(),"Total Item : "+db.getCountSoldItemTable(bill_id),Toast.LENGTH_SHORT).show();
                 closeKeyboard();
             }
         }

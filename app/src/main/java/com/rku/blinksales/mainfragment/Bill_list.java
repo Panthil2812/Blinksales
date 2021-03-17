@@ -1,6 +1,7 @@
 package com.rku.blinksales.mainfragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.rku.blinksales.Adapter.BillListRecyclerViewAdapter;
 import com.rku.blinksales.Adapter.ProductRecyclerViewAdapter;
+import com.rku.blinksales.BillingDetails;
 import com.rku.blinksales.R;
 import com.rku.blinksales.Roomdatabase.BillTable;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
@@ -57,7 +59,7 @@ public class Bill_list extends Fragment {
         ImageButton id_btn_refresh = getActivity().findViewById(R.id.id_btn_refresh);
         id_weight.setVisibility(View.GONE);
         id_btn_refresh.setVisibility(View.GONE);
-         db = MainRoomDatabase.getInstance(getContext()).getDao();
+        db = MainRoomDatabase.getInstance(getContext()).getDao();
         //view main code
         filter_Calendar = view.findViewById(R.id.filter_Calendar);
         id_bill_list_recyclerView = view.findViewById(R.id.id_bill_list_recyclerView);
@@ -70,6 +72,15 @@ public class Bill_list extends Fragment {
             @Override
             public void onChanged(@Nullable List<BillTable> notes) {
                 recyclerViewAdapter.setNotes(notes);
+            }
+        });
+
+        recyclerViewAdapter.setOnItemClickListener(new BillListRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BillTable note) {
+                Intent intent = new Intent(getContext(), BillingDetails.class);
+                intent.putExtra("bill_id",note.getBill_id());
+                startActivity(intent);
             }
         });
 
@@ -136,7 +147,6 @@ public class Bill_list extends Fragment {
                 }
             }
         }).attachToRecyclerView(id_bill_list_recyclerView);
-
 
 
         filter_Calendar.setOnClickListener(v -> {

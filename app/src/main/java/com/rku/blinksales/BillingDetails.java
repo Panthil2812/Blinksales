@@ -3,6 +3,7 @@ package com.rku.blinksales;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.ViewGroup;
@@ -17,21 +18,28 @@ public class BillingDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_billing_details);
-        addItems();
+        Intent intent =getIntent();
+        if(intent.hasExtra("bill_id"))
+        {
+            int bill_id = intent.getIntExtra("bill_id",-1);
+            addItems(bill_id);
+        }
+
     }
 
     @SuppressLint("ResourceAsColor")
-    private void addItems(){
+    private void addItems(int id){
         item_table = findViewById(R.id.item_table);
 
-        for (int i =0;i<3;i++ ){
+        for (int i =0;i<10;i++ ){
             TableRow row = new TableRow(this);
             row.setLayoutParams(new TableLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
+
             TextView txt_item = new TextView(this);
-            txt_item.setText("item "+ i);
+            txt_item.setText("Earphone "+ i);
             txt_item.setTextSize(18);
-            txt_item.setTextColor(R.color.colorAccent);
+            txt_item.setTextColor(R.color.colorPrimary);
             txt_item.setGravity(Gravity.CENTER);
             txt_item.setLayoutParams(new TableRow.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT,1f));
             row.addView(txt_item);

@@ -42,7 +42,7 @@ public class PurchaseRecyclerViewAdapter extends RecyclerView.Adapter<PurchaseRe
         PurchaseTable currentNote = notes.get(position);
         holder.id_list_item_1.setText(String.valueOf(currentNote.getPurchase_id()));
         holder.id_list_item_2.setText(currentNote.getVendor_name());
-     //   holder.id_list_item_3.setText(currentNote.getDate().toString());
+        //   holder.id_list_item_3.setText(currentNote.getDate().toString());
         try {
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
 
@@ -94,7 +94,7 @@ public class PurchaseRecyclerViewAdapter extends RecyclerView.Adapter<PurchaseRe
 //
             id_list_item_4.setPadding(0,8,0,8);
             id_list_item_4.setGravity(Gravity.CENTER);
-            id_list_item_4.setOnClickListener(v -> {
+            itemView.setOnClickListener(v -> {
 
                 int position = getAdapterPosition();
                 if (listener != null && position != RecyclerView.NO_POSITION ) {
