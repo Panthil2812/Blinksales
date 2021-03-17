@@ -1,5 +1,8 @@
 package com.rku.blinksales.mainfragment;
 
+import android.content.DialogInterface;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +14,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.rku.blinksales.Adapter.BillListRecyclerViewAdapter;
+import com.rku.blinksales.Adapter.ProductRecyclerViewAdapter;
 import com.rku.blinksales.R;
+import com.rku.blinksales.Roomdatabase.BillTable;
+import com.rku.blinksales.Roomdatabase.DatabaseDao;
+import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 import com.rku.blinksales.Roomdatabase.ProductTable;
 
 import java.io.File;
@@ -24,6 +37,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Bill_list extends Fragment {
     ImageButton filter_Calendar;
@@ -31,7 +45,8 @@ public class Bill_list extends Fragment {
     Date startSelectDate, endSelectDate;
     TextView id_from_date, id_to_date, Dialog_cancel, Dialog_done;
     CalendarView date_picker_actions;
-
+    RecyclerView id_bill_list_recyclerView;
+    DatabaseDao db;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,9 +57,88 @@ public class Bill_list extends Fragment {
         ImageButton id_btn_refresh = getActivity().findViewById(R.id.id_btn_refresh);
         id_weight.setVisibility(View.GONE);
         id_btn_refresh.setVisibility(View.GONE);
-
+         db = MainRoomDatabase.getInstance(getContext()).getDao();
         //view main code
         filter_Calendar = view.findViewById(R.id.filter_Calendar);
+        id_bill_list_recyclerView = view.findViewById(R.id.id_bill_list_recyclerView);
+
+        final BillListRecyclerViewAdapter recyclerViewAdapter = new BillListRecyclerViewAdapter(getContext());
+        id_bill_list_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        id_bill_list_recyclerView.setHasFixedSize(true);
+        id_bill_list_recyclerView.setAdapter(recyclerViewAdapter);
+        db.getAllBillTable().observe(this, new Observer<List<BillTable>>() {
+            @Override
+            public void onChanged(@Nullable List<BillTable> notes) {
+                recyclerViewAdapter.setNotes(notes);
+            }
+        });
+
+        // delete product with delete dialog box
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                new AlertDialog.Builder(getContext(), R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
+                        .setTitle("Delete Bill")
+                        .setMessage("Are you sure you want to delete?")
+                        .setCancelable(false)
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                try {
+                                    BillTable note = recyclerViewAdapter.getNoteAt(viewHolder.getAdapterPosition());
+                                    db.deleteBillTable(note);
+                                    Toast.makeText(getActivity(), "Bill  deleted", Toast.LENGTH_SHORT).show();
+                                } catch (Exception e) {
+                                    e.getStackTrace();
+                                }
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                recyclerViewAdapter.notifyItemChanged(viewHolder.getAdapterPosition());
+                                Toast.makeText(getActivity(), "Bill Not deleted", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
+
+
+            }
+
+            @Override
+            public void onChildDraw(@NonNull Canvas c, @NonNull RecyclerView
+                    recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, float dX, float dY,
+                                    int actionState, boolean isCurrentlyActive) {
+                if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
+                    // Get RecyclerView item from the ViewHolder
+                    View itemView = viewHolder.itemView;
+                    Paint p = new Paint();
+                    try {
+                        if (dX > 0) {
+                            p.setColor(getResources().getColor(R.color.colorPrimary));
+                            c.drawRect((float) itemView.getLeft(), (float) itemView.getTop(), dX,
+                                    (float) itemView.getBottom(), p);
+                        } else {
+                            p.setColor(getResources().getColor(R.color.colorPrimary));
+                            c.drawRect((float) itemView.getRight() + dX, (float) itemView.getTop(),
+                                    (float) itemView.getRight(), (float) itemView.getBottom(), p);
+                        }
+                    } catch (Exception e) {
+                        e.getStackTrace();
+                    }
+
+                    super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+                }
+            }
+        }).attachToRecyclerView(id_bill_list_recyclerView);
+
+
+
         filter_Calendar.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             ViewGroup viewGroup = getView().findViewById(android.R.id.content);

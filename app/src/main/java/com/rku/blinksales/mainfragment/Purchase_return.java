@@ -114,7 +114,7 @@ public class Purchase_return  extends Fragment
             @Override
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
                 new AlertDialog.Builder(getContext(),R.style.ThemeOverlay_MaterialComponents_MaterialAlertDialog_Background)
-                        .setTitle("Delete Pending Cart")
+                        .setTitle("Delete Purchase list")
                         .setMessage("Are you sure you want to delete?")
                         .setCancelable(false)
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {

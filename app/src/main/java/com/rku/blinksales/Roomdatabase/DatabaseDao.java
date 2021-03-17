@@ -266,4 +266,66 @@ public interface DatabaseDao {
 
     @Query("Select * FROM PurchaseReturnTable where date  between :form and :to")
     LiveData<List<PurchaseReturnTable>> getFilterPurchaseReturnTable(long form, long to);
+
+
+
+    //    .............................. Bill Table Query    ..............................
+
+    @Insert
+    void insertBillTable(BillTable billTable);
+
+    @Update
+    void updateBillTable(BillTable billTable);
+
+    @Delete
+    void deleteBillTable(BillTable billTable);
+
+    @Query("Select * from BillTable ORDER BY bill_date DESC")
+    LiveData<List<BillTable>> getAllBillTable();
+
+    @Query("Select * from BillTable where customer_name like :searchText or bill_id like:searchText")
+    LiveData<List<BillTable>> getFilterBillTable(String searchText);
+
+    @Query("Select * FROM BillTable where bill_date  between :form and :to")
+    LiveData<List<BillTable>> getFilterBillTable(long form, long to);
+
+    @Query("Select bill_id from BillTable where unique_id =:str")
+    int getBillId(String str);
+
+    //    .............................. soldItem  Table Query    ..............................
+
+    @Insert
+    void insertSoldItemTable(SoldItemTable soldItemTable);
+
+    @Update
+    void updateSoldItemTable(BillTable billTable);
+
+    @Delete
+    void deleteSoldItemTable(BillTable billTable);
+
+    @Query("Select * from SoldItemTable ORDER BY bill_id DESC")
+    LiveData<List<SoldItemTable>> getAllSoldItemTable();
+
+    @Query("Select * FROM SoldItemTable where bill_id =:id")
+    LiveData<List<SoldItemTable>> getFilterSoldItemTable(int id);
+
+    @Query("Select count(product_id) FROM SoldItemTable where bill_id =:id")
+    int getCountSoldItemTable(int id);
+
+    //    .............................. Customer Table Query    ..............................
+
+    @Insert
+    void insertCustomerTable(CustomerTable customerTable);
+
+    @Update
+    void updateCustomerTable(BillTable billTable);
+
+    @Delete
+    void deleteCustomerTable(BillTable billTable);
+
+    @Query("Select * from CustomerTable ORDER BY c_name DESC")
+    LiveData<List<CustomerTable>> getAllCustomerTable();
+//
+//    @Query("Select * FROM CustomerTable where bill_id =:id")
+//    LiveData<List<CustomerTable>> getFilterCustomerTable(int id);
 }

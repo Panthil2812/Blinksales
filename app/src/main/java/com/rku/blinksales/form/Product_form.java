@@ -246,6 +246,7 @@ public class Product_form extends AppCompatActivity {
                                     GST, GST_AMOUNT, DISCOUNT, pro_hsn);
 
                             if (editCount == -1) {
+
                                 db.insertProductTable(productTable);
                             } else {
 
