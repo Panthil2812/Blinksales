@@ -261,10 +261,10 @@ public class Cart extends Fragment {
 
                     int cartId = db.findActivityIdCart();
                     CartTable cartTable = new CartTable(cartId, note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
-                            note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
+                            note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(),note.getGood_value(), note.getProduct_qty(),
                             1.0, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
-                            note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
-                            note.getProduct_selling_price(), note.getDiscount(), note.getHSN());
+                            note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(), note.getGst_amount(),
+                            note.getProduct_selling_price(),note.getGood_value(), note.getDiscount(), note.getHSN());
                     db.insertCartTable(cartTable);
                     AddCart();
                     Dashboard.id_dashboard_total_items.setText(db.totalCartItem(cartId).toString());
@@ -291,11 +291,14 @@ public class Cart extends Fragment {
                                         qty++;
                                         Double total = note.getProduct_selling_price();
                                         total = qty*total;
+
+                                        Double total_good_value = qty*note.getGood_value();
+                                        Double total_gst_amount = (qty*note.getGst_amount());
                                         CartTable cartTable = new CartTable(cartId, note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
-                                                note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
+                                                note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(),note.getGood_value(), note.getProduct_qty(),
                                                 qty, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
-                                                note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
-                                                total, note.getDiscount(), note.getHSN());
+                                                note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(), total_gst_amount,
+                                                total,total_good_value, note.getDiscount(), note.getHSN());
                                         cartTable.setCart_item_id(cartTableList.getCart_item_id());
                                         db.updateCartTable(cartTable);
                                         //db.updateOneCartTable(qty,total,cartTableList.getCart_item_id());
@@ -309,10 +312,10 @@ public class Cart extends Fragment {
                                 .show();
                     }else {
                         CartTable cartTable = new CartTable(cartId, note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
-                                note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
+                                note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(),note.getGood_value(), note.getProduct_qty(),
                                 1.0, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
-                                note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
-                                note.getProduct_selling_price(), note.getDiscount(), note.getHSN());
+                                note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(), note.getGst_amount(),
+                                note.getProduct_selling_price(),note.getGood_value(), note.getDiscount(), note.getHSN());
                         db.insertCartTable(cartTable);
                         Dashboard.id_dashboard_total_items.setText(db.totalCartItem(cartId).toString());
                         Dashboard.id_dashboard_total_amount.setText(db.totalCartAmount(cartId).toString() + " ₹ /-");
@@ -344,10 +347,10 @@ public class Cart extends Fragment {
 
                     int cartId = db.findActivityIdCart();
                     CartTable cartTable = new CartTable(cartId, note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
-                            note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
+                            note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(),note.getGood_value(), note.getProduct_qty(),
                             1.0, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
-                            note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
-                            note.getProduct_selling_price(), note.getDiscount(), note.getHSN());
+                            note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(), note.getGst_amount(),
+                            note.getProduct_selling_price(),note.getGood_value(), note.getDiscount(), note.getHSN());
                     db.insertCartTable(cartTable);
                     AddCart();
                     Dashboard.id_dashboard_total_items.setText(db.totalCartItem(cartId).toString());
@@ -374,11 +377,13 @@ public class Cart extends Fragment {
                                         qty++;
                                         Double total = note.getProduct_selling_price();
                                         total = qty * total;
+                                        Double total_good_value = (qty * note.getGood_value());
+                                        Double total_gst_amount = (qty*note.getGst_amount());
                                         CartTable cartTable = new CartTable(cartId, note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
-                                                note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
+                                                note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(),note.getGood_value(), note.getProduct_qty(),
                                                 qty, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
-                                                note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
-                                                total, note.getDiscount(), note.getHSN());
+                                                note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(), total_gst_amount,
+                                                total,total_good_value, note.getDiscount(), note.getHSN());
                                         cartTable.setCart_item_id(cartTableList.getCart_item_id());
                                         db.updateCartTable(cartTable);
                                         AddCart();
@@ -393,10 +398,10 @@ public class Cart extends Fragment {
                                 .show();
                     } else {
                         CartTable cartTable = new CartTable(cartId, note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
-                                note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
+                                note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(),note.getGood_value(), note.getProduct_qty(),
                                 1.0, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
-                                note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
-                                note.getProduct_selling_price(), note.getDiscount(), note.getHSN());
+                                note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(), note.getGst_amount(),
+                                note.getProduct_selling_price(),note.getGood_value(), note.getDiscount(), note.getHSN());
                         db.insertCartTable(cartTable);
                         AddCart();
                         Dashboard.id_dashboard_total_items.setText(db.totalCartItem(cartId).toString());
@@ -439,11 +444,13 @@ public class Cart extends Fragment {
                     Double total_amount = Double.valueOf(value).doubleValue();
                     number++;
                     total_amount = (number * total_amount);
+                    Double total_gst_amount = (number*note.getGst_amount());
+                    Double total_good_value = (number*note.getGood_value());
                     CartTable cartTable = new CartTable(note.getCart_id(), note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
-                            note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(), note.getProduct_qty(),
+                            note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(),note.getGood_value(), note.getProduct_qty(),
                             number, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
-                            note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),
-                            total_amount, note.getDiscount(), note.getHSN());
+                            note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(), total_gst_amount,
+                            total_amount,total_good_value, note.getDiscount(), note.getHSN());
                     cartTable.setCart_item_id(note.getCart_item_id());
                     db.updateCartTable(cartTable);
                     Dashboard.id_dashboard_total_items.setText(db.totalCartItem(note.getCart_id()).toString());
@@ -464,13 +471,13 @@ public class Cart extends Fragment {
                     } else {
 
                         total_amount = (number * total_amount);
-
-                        CartTable cartTable = new CartTable(note.getCart_id(), note.getProduct_id(), note.getProduct_image_uri(),
-                                note.getProduct_name(), note.getProduct_category(), note.getProduct_mrp(),
-                                note.getProduct_selling_price(), note.getProduct_qty(), number, note.getProduct_unit(),
-                                note.getProduct_price_unit(), note.getProduct_barcode(), note.getProduct_stock(),
-                                note.getProduct_is_include(), note.getGst(), note.getGst_amount(), total_amount, note.getDiscount(),
-                                note.getHSN());
+                        Double total_good_value = (number*note.getGood_value());
+                        Double total_gst_amount = (number*note.getGst_amount());
+                        CartTable cartTable = new CartTable(note.getCart_id(), note.getProduct_id(), note.getProduct_image_uri(), note.getProduct_name(),
+                                note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price(),note.getGood_value(), note.getProduct_qty(),
+                                number, note.getProduct_unit(), note.getProduct_price_unit(), note.getProduct_barcode(),
+                                note.getProduct_stock(), note.getProduct_is_include(), note.getGst(), note.getGst_amount(),total_gst_amount,
+                                total_amount,total_good_value, note.getDiscount(), note.getHSN());
 
                         cartTable.setCart_item_id(note.getCart_item_id());
                         db.updateCartTable(cartTable);

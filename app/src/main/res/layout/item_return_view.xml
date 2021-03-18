@@ -13,30 +13,13 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:paddingStart="8dp"
         android:orientation="vertical">
+            <CheckBox
+                android:id="@+id/return_checkbox"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"/>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_margin="8dp"
-            app:cardCornerRadius="18dp">
-
-            <ImageView
-                android:id="@+id/cart_pro_image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerInside"
-                app:srcCompat="@drawable/p3" />
-
-        </androidx.cardview.widget.CardView>
-
-        <TextView
-            android:id="@+id/id_item"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-
-            android:text="12345"
-            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
@@ -52,7 +35,7 @@
             android:paddingStart="8dp">
 
             <TextView
-                android:id="@+id/cart_pro_name"
+                android:id="@+id/return_pro_name"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -67,7 +50,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/product_price"
+                    android:id="@+id/return_product_price"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -77,10 +60,11 @@
                     android:textColor="@color/colorAccent"
                     android:textSize="18sp" />
                 <TextView
-                    android:id="@+id/product_unit"
+                    android:id="@+id/return_product_unit"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center|end"
+                    android:paddingStart="4dp"
                     android:paddingEnd="8dp"
                     android:text=" ₹ /-"
                     android:textColor="@color/colorAccent"
@@ -100,10 +84,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/cart_background"
+
                 android:orientation="horizontal">
 
                 <ImageButton
-                    android:id="@+id/cart_btn_plus"
+                    android:id="@+id/return_btn_plus"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -112,16 +97,16 @@
                     app:srcCompat="@drawable/ic_plus" />
 
                 <EditText
-                    android:id="@+id/cart_pro_Quantity"
+                    android:id="@+id/return_pro_Quantity"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:inputType="number"
-                    android:text="0" />
+                    android:text="1.00" />
 
                 <ImageButton
-                    android:id="@+id/cart_btn_min"
+                    android:id="@+id/return_btn_min"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -130,30 +115,31 @@
                     app:srcCompat="@drawable/ic_minus" />
 
             </LinearLayout>
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:layout_weight="1"
-               android:orientation="horizontal">
-               <TextView
-                   android:id="@+id/cart_pro_amount"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:layout_weight="1"
-                   android:gravity="center|end"
-                   android:paddingStart="8dp"
-                   android:text="10000"
-                   android:textColor="@color/colorAccent"
-                   android:textSize="18sp" />
-               <TextView
-                   android:layout_width="wrap_content"
-                   android:layout_height="match_parent"
-                   android:gravity="center|end"
-                   android:paddingEnd="8dp"
-                   android:text=" ₹ /-"
-                   android:textColor="@color/colorAccent"
-                   android:textSize="18sp" />
-           </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/return_pro_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center|end"
+                    android:paddingStart="8dp"
+                    android:text="10000"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center|end"
+                    android:paddingEnd="8dp"
+                    android:paddingStart="4dp"
+                    android:text=" ₹ /-"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="18sp" />
+            </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>

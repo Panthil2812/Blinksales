@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.icu.number.Precision;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -24,6 +25,7 @@ import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 import com.rku.blinksales.Roomdatabase.SoldItemTable;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -35,7 +37,7 @@ public class Checkout extends AppCompatActivity {
             checkout_pay_method, checkout_save, checkout_print;
     TextInputEditText checkout_packing_charge, checkout_delivery_charge, checkout_discount, checkout_grand_total, checkout_change_amount, checkout_customer_name, checkout_customer_number, checkout_customer_gst, checkout_return_amount;
     DatabaseDao db;
-    Double discount_amount = 0.0, total_amount = 0.0, total_gst = 0.0, grand_total_amount = 0.0, total_item = 0.0;
+    Double discount_amount = 0.0, total_amount = 0.0, total_gst = 0.0, grand_total_amount = 0.0, total_item = 0.0,total_good_value=0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,13 +63,15 @@ public class Checkout extends AppCompatActivity {
         db = MainRoomDatabase.getInstance(getApplicationContext()).getDao();
         //static date get in database
         if (db.findActivityIdCart() != 0) {
+            DecimalFormat df = new DecimalFormat("#.###");
             int id = db.findActivityIdCart();
             total_item = db.totalCartItem(id);
-            total_amount = db.totalCartAmount(id);
-            total_gst = db.totalGstAmount(id);
-            grand_total_amount = total_amount + total_gst;
+            total_amount = Double.valueOf(df.format(db.totalCartAmount(id)));
+            total_gst = Double.valueOf(df.format(db.totalGstAmount(id)));
+            total_good_value =Double.valueOf(df.format( db.totalGoodAmount(id)));
+            grand_total_amount =  Double.valueOf(df.format(total_good_value+total_gst));
             checkout_total_item.setText(String.valueOf(total_item.intValue()));
-            checkout_total_amount.setText(String.valueOf(total_amount));
+            checkout_total_amount.setText(String.valueOf(total_good_value));
             checkout_total_gst.setText(String.valueOf(total_gst));
             checkout_grand_total.setText(String.valueOf(grand_total_amount.intValue()));
             checkout_return_amount.setText("0.00");
@@ -108,9 +112,9 @@ public class Checkout extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().trim().isEmpty()) {
                     Double dis = Double.valueOf(s.toString().trim()).doubleValue();
-                    discount_amount = (total_amount * (dis / 100));
+                    discount_amount = (total_good_value * (dis / 100));
 
-                    Double total = (total_amount - discount_amount) + total_gst;
+                    Double total = (total_good_value - discount_amount) + total_gst;
 
                     checkout_grand_total.setText(String.valueOf(total.intValue()));
                 } else if (s.toString().trim().isEmpty()) {
@@ -170,6 +174,7 @@ public class Checkout extends AppCompatActivity {
         Date bill_date = new Date();
         Double totalItem = total_item;
         Double amount = total_amount;
+        Double total_value = total_good_value;
         Double bill_amount = Double.valueOf(checkout_grand_total.getText().toString().trim()).doubleValue();
         Double total_discount = 0.0, dis_amount = 0.0, packing_charge = 0.0, delivery_charge = 0.0;
         if (!checkout_discount.getText().toString().trim().isEmpty()) {
@@ -189,7 +194,7 @@ public class Checkout extends AppCompatActivity {
             delivery_charge = Double.valueOf(checkout_delivery_charge.getText().toString().trim()).doubleValue();
         }
 
-        BillTable billTable = new BillTable(unique_id, bill_date, totalItem, amount, bill_amount, total_discount, dis_amount, total_get,
+        BillTable billTable = new BillTable(unique_id, bill_date, totalItem,total_value,amount, bill_amount, total_discount, dis_amount, total_get,
                 bill_method, customer_name, customer_number, customer_gst, packing_charge, delivery_charge);
         db.insertBillTable(billTable);
         if (db.getBillId(unique_id) != 0) {
@@ -201,9 +206,9 @@ public class Checkout extends AppCompatActivity {
                     CartTable note = cartTableList.get(i);
                     SoldItemTable soldItemTable = new SoldItemTable(bill_id, note.getProduct_id(), note.getProduct_image_uri(),
                             note.getProduct_name(), note.getProduct_category(), note.getProduct_mrp(), note.getProduct_selling_price()
-                            , note.getProduct_qty(), note.getSelected_qty(), note.getProduct_unit(), note.getProduct_price_unit()
+                            ,note.getGood_value(), note.getProduct_qty(), note.getSelected_qty(), note.getProduct_unit(), note.getProduct_price_unit()
                             , note.getProduct_barcode(), note.getProduct_stock(), note.getProduct_is_include(), note.getGst()
-                            , note.getGst_amount(), note.getTotal_amount(), note.getDiscount(), note.getHSN());
+                            , note.getGst_amount(), note.getTotal_amount(),note.getTotal_good_value(), note.getDiscount(), note.getHSN());
                     db.insertSoldItemTable(soldItemTable);
                     db.deleteCartTable(note);
                 }

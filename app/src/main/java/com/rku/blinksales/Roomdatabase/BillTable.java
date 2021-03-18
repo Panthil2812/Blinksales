@@ -12,7 +12,8 @@ public class BillTable {
     String unique_id;
     Date bill_date;
     Double totalItem;
-    Double amount;
+    Double good_amount;
+    Double grand_total;
     Double bill_amount;
     Double total_discount;
     Double discount_amount;
@@ -24,14 +25,12 @@ public class BillTable {
     Double packing_charge;
     Double delivery_charge;
 
-    public BillTable(String unique_id, Date bill_date, Double totalItem, Double amount,
-                     Double bill_amount, Double total_discount, Double discount_amount,
-                     Double total_get, String bill_method, String customer_name, String customer_number,
-                     String customer_gst, Double packing_charge, Double delivery_charge) {
+    public BillTable(String unique_id, Date bill_date, Double totalItem, Double good_amount, Double grand_total, Double bill_amount, Double total_discount, Double discount_amount, Double total_get, String bill_method, String customer_name, String customer_number, String customer_gst, Double packing_charge, Double delivery_charge) {
         this.unique_id = unique_id;
         this.bill_date = bill_date;
         this.totalItem = totalItem;
-        this.amount = amount;
+        this.good_amount = good_amount;
+        this.grand_total = grand_total;
         this.bill_amount = bill_amount;
         this.total_discount = total_discount;
         this.discount_amount = discount_amount;
@@ -76,12 +75,20 @@ public class BillTable {
         this.totalItem = totalItem;
     }
 
-    public Double getAmount() {
-        return amount;
+    public Double getGood_amount() {
+        return good_amount;
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
+    public void setGood_amount(Double good_amount) {
+        this.good_amount = good_amount;
+    }
+
+    public Double getGrand_total() {
+        return grand_total;
+    }
+
+    public void setGrand_total(Double grand_total) {
+        this.grand_total = grand_total;
     }
 
     public Double getBill_amount() {
@@ -163,5 +170,4 @@ public class BillTable {
     public void setDelivery_charge(Double delivery_charge) {
         this.delivery_charge = delivery_charge;
     }
-
 }

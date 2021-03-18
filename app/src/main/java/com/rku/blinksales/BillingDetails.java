@@ -17,6 +17,7 @@ import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 import com.rku.blinksales.Roomdatabase.SoldItemTable;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -25,9 +26,9 @@ public class BillingDetails extends AppCompatActivity {
     TableLayout item_table;
     DatabaseDao db;
     TextView billing_details_id, billing_details_total_item, billing_details_date, billing_details_c_name, billing_details_phone, billing_details_discount,
-            billing_details_get_amount, billing_details_grand_total, billing_details_net_amount;
+            billing_details_get_amount, billing_details_grand_total, billing_details_net_amount,billing_details_p_charge,billing_details_d_charge;
     ImageButton id_back_arrow;
-
+    DecimalFormat df = new DecimalFormat("#.###");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,8 @@ public class BillingDetails extends AppCompatActivity {
         billing_details_get_amount = findViewById(R.id.billing_details_get_amount);
         billing_details_grand_total = findViewById(R.id.billing_details_grand_total);
         billing_details_net_amount = findViewById(R.id.billing_details_net_amount);
+        billing_details_d_charge = findViewById(R.id.billing_details_d_charge);
+        billing_details_p_charge = findViewById(R.id.billing_details_p_charge);
 
         id_back_arrow.setOnClickListener(v -> {
             onBackPressed();
@@ -62,16 +65,21 @@ public class BillingDetails extends AppCompatActivity {
         if (id != -1) {
             BillTable billTable = db.getBillTable(id);
             billing_details_id.setText(String.valueOf(billTable.getBill_id()));
-            billing_details_total_item.setText(String.valueOf(billTable.getTotalItem().intValue()));
+            billing_details_total_item.setText(df.format(billTable.getGood_amount()));
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
             String date = simpleDateFormat.format(billTable.getBill_date());
             billing_details_date.setText(date);
             billing_details_c_name.setText(billTable.getCustomer_name());
             billing_details_phone.setText(billTable.getCustomer_number());
+
+            billing_details_p_charge.setText(String.valueOf(billTable.getPacking_charge().intValue()));
+            billing_details_d_charge.setText(String.valueOf(billTable.getDelivery_charge().intValue()));
+
             billing_details_discount.setText(billTable.getTotal_discount().intValue() + " %");
-            billing_details_get_amount.setText(String.valueOf(billTable.getTotal_get().intValue()));
-            billing_details_grand_total.setText(String.valueOf(billTable.getAmount().intValue()));
-            billing_details_net_amount.setText(String.valueOf(billTable.getBill_amount()));
+            billing_details_get_amount.setText(String.valueOf(billTable.getTotal_get()));
+            billing_details_grand_total.setText(String.valueOf(billTable.getBill_amount().intValue()));
+
+            billing_details_net_amount.setText(String.valueOf((billTable.getBill_amount().intValue()+billTable.getDelivery_charge().intValue()+billTable.getPacking_charge().intValue())));
 
             List<SoldItemTable> soldItemTables = db.getFilterSoldItemTable(id);
 

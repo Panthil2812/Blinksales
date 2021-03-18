@@ -14,6 +14,7 @@ public class SoldItemTable {
     String product_category;
     Double product_mrp;
     Double product_selling_price;
+    Double good_value;
     String product_qty;
     Double selected_qty;
     String product_unit;
@@ -24,10 +25,11 @@ public class SoldItemTable {
     Double gst;
     Double gst_amount;
     Double total_amount;
+    Double total_good_value;
     Double discount;
     String HSN = "";
 
-    public SoldItemTable(int bill_id, int product_id, String product_image_uri, String product_name, String product_category, Double product_mrp, Double product_selling_price, String product_qty, Double selected_qty, String product_unit, String product_price_unit, String product_barcode, Boolean product_stock, Boolean product_is_include, Double gst, Double gst_amount, Double total_amount, Double discount, String HSN) {
+    public SoldItemTable(int bill_id, int product_id, String product_image_uri, String product_name, String product_category, Double product_mrp, Double product_selling_price, Double good_value, String product_qty, Double selected_qty, String product_unit, String product_price_unit, String product_barcode, Boolean product_stock, Boolean product_is_include, Double gst, Double gst_amount, Double total_amount, Double total_good_value, Double discount, String HSN) {
         this.bill_id = bill_id;
         this.product_id = product_id;
         this.product_image_uri = product_image_uri;
@@ -35,6 +37,7 @@ public class SoldItemTable {
         this.product_category = product_category;
         this.product_mrp = product_mrp;
         this.product_selling_price = product_selling_price;
+        this.good_value = good_value;
         this.product_qty = product_qty;
         this.selected_qty = selected_qty;
         this.product_unit = product_unit;
@@ -45,6 +48,7 @@ public class SoldItemTable {
         this.gst = gst;
         this.gst_amount = gst_amount;
         this.total_amount = total_amount;
+        this.total_good_value = total_good_value;
         this.discount = discount;
         this.HSN = HSN;
     }
@@ -111,6 +115,14 @@ public class SoldItemTable {
 
     public void setProduct_selling_price(Double product_selling_price) {
         this.product_selling_price = product_selling_price;
+    }
+
+    public Double getGood_value() {
+        return good_value;
+    }
+
+    public void setGood_value(Double good_value) {
+        this.good_value = good_value;
     }
 
     public String getProduct_qty() {
@@ -191,6 +203,14 @@ public class SoldItemTable {
 
     public void setTotal_amount(Double total_amount) {
         this.total_amount = total_amount;
+    }
+
+    public Double getTotal_good_value() {
+        return total_good_value;
+    }
+
+    public void setTotal_good_value(Double total_good_value) {
+        this.total_good_value = total_good_value;
     }
 
     public Double getDiscount() {

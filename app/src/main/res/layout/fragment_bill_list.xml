@@ -16,7 +16,7 @@
         android:paddingEnd="8dp">
 
         <SearchView
-            android:id="@+id/simpleSearchView"
+            android:id="@+id/id_bill_search"
             style="@style/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

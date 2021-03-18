@@ -151,8 +151,11 @@ public interface DatabaseDao {
     @Query("SELECT SUM(total_amount)  FROM CartTable WHERE cart_id ==:id")
     Double totalCartAmount(int id);
 
-    @Query("SELECT SUM(gst_amount)  FROM CartTable WHERE cart_id ==:id")
+    @Query("SELECT SUM(total_gst_amount)  FROM CartTable WHERE cart_id ==:id")
     Double totalGstAmount(int id);
+
+    @Query("SELECT SUM(total_good_value)  FROM CartTable WHERE cart_id ==:id")
+    Double totalGoodAmount(int id);
 
     @Query("SELECT count(cart_id)  FROM CartTable WHERE cart_id ==:id")
     Double totalCartItem(int id);

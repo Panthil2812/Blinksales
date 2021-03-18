@@ -122,10 +122,12 @@
                 android:layout_weight="1.5"
                 android:background="@drawable/dialog_false"
                 >
+
                 <ImageButton
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_search_2"/>
+                    android:backgroundTint="@color/colorPrimaryDark"
+                    android:src="@drawable/ic_search_2" />
 
 
             </LinearLayout>

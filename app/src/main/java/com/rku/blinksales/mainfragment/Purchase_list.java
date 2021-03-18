@@ -113,7 +113,7 @@ public class Purchase_list  extends Fragment {
             }
         });
 
-        // delete bill
+        // delete purchase bill
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
 
             @Override

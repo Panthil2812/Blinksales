@@ -234,14 +234,14 @@ public class Product_form extends AppCompatActivity {
                         try {
 //                            dialog.show();
                             Double DISCOUNT = ((MRP - PRICE) / MRP) * 100;
-                            Double GST_AMOUNT = (PRICE * GST) / 100;
                             Bitmap bitmap = ((BitmapDrawable) img_product.getDrawable()).getBitmap();
                             String price_unit = pro_price + " ₹/" + pro_unit;
                             String imagepath = saveToExternalStorage(bitmap);
-
+                            Double Good_value = ((PRICE*100)/(100+GST));
+                            Double GST_AMOUNT = (Good_value * GST) / 100;
                             ProductTable productTable = new ProductTable(imagepath,
                                     product_name, pro_category, MRP,
-                                    PRICE, pro_qty, pro_unit, price_unit,
+                                    PRICE,Good_value ,pro_qty, pro_unit, price_unit,
                                     pro_Barcode, pro_stock, pro_is_included,
                                     GST, GST_AMOUNT, DISCOUNT, pro_hsn);
 

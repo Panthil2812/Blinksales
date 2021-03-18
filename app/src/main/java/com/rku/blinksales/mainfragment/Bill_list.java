@@ -1,5 +1,6 @@
 package com.rku.blinksales.mainfragment;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -8,10 +9,12 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +36,7 @@ import com.rku.blinksales.Roomdatabase.BillTable;
 import com.rku.blinksales.Roomdatabase.DatabaseDao;
 import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
 import com.rku.blinksales.Roomdatabase.ProductTable;
+import com.rku.blinksales.Roomdatabase.PurchaseTable;
 
 import java.io.File;
 import java.text.DateFormat;
@@ -49,6 +53,7 @@ public class Bill_list extends Fragment {
     CalendarView date_picker_actions;
     RecyclerView id_bill_list_recyclerView;
     DatabaseDao db;
+    SearchView id_bill_search;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -62,6 +67,7 @@ public class Bill_list extends Fragment {
         db = MainRoomDatabase.getInstance(getContext()).getDao();
         //view main code
         filter_Calendar = view.findViewById(R.id.filter_Calendar);
+        id_bill_search = view.findViewById(R.id.id_bill_search);
         id_bill_list_recyclerView = view.findViewById(R.id.id_bill_list_recyclerView);
 
         final BillListRecyclerViewAdapter recyclerViewAdapter = new BillListRecyclerViewAdapter(getContext());
@@ -240,16 +246,69 @@ public class Bill_list extends Fragment {
                 } else if (id_to_date.getText().toString().trim().equals("dd-MMM-yyyy")) {
                     Toast.makeText(getContext(), "Please Select To Date", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getContext(), id_from_date.getText().toString() + " TO " + id_to_date.getText().toString(), Toast.LENGTH_SHORT).show();
+                    id_bill_search.setQuery("filter",false);
+                    db.getFilterBillTable(startSelectDate.getTime(),endSelectDate.getTime()).observe(getViewLifecycleOwner(), new Observer<List<BillTable>>() {
+                        @Override
+                        public void onChanged(List<BillTable> notes) {
+                            recyclerViewAdapter.setNotes(notes);
+                        }
+                    });
+                    // Toast.makeText(getContext(), startSelectDate.getTime() + " TO " + endSelectDate.getTime(), Toast.LENGTH_SHORT).show();
+                    alertDialog.dismiss();
+
+
                 }
             });
+
 
             Dialog_cancel.setOnClickListener(v1 -> {
                 alertDialog.dismiss();
             });
 
         });
+
+        //search bill
+        id_bill_search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (query != null) {
+                    Toast.makeText(getContext(), "Search : " + query, Toast.LENGTH_LONG).show();
+                    GetFilterData(query);
+                }
+                closeKeyboard();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //  adapter.getFilter().filter(newText);
+                if (newText != null) {
+                    //Toast.makeText(getContext(),"OnSearch : "+newText,Toast.LENGTH_LONG).show();
+                    GetFilterData(newText);
+                }
+                return true;
+            }
+
+            private void GetFilterData(String str) {
+
+                str = "%" + str + "%";
+                db.getFilterBillTable(str).observe(getViewLifecycleOwner(), new Observer<List<BillTable>>() {
+                    @Override
+                    public void onChanged(List<BillTable> notes) {
+                        recyclerViewAdapter.setNotes(notes);
+                    }
+                });
+
+            }
+        });
         return view;
     }
-
+    public void closeKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            id_bill_search.clearFocus();
+        }
+    }
 }
