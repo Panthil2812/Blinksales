@@ -88,7 +88,7 @@
                                 android:layout_weight="1"
                                 android:background="@color/colorPrimaryDark"
                                 android:paddingStart="4dp"
-                                android:text="Total" />
+                                android:text="Item" />
 
                             <TextView
                                 style="@style/TextForHeading"
@@ -110,6 +110,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/billing_details_id"
                                 style="@style/TextForHeading"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -120,6 +121,7 @@
                                 android:text="23" />
 
                             <TextView
+                                android:id="@+id/billing_details_total_item"
                                 style="@style/TextForHeading"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -130,6 +132,7 @@
                                 android:text="450" />
 
                             <TextView
+                                android:id="@+id/billing_details_date"
                                 style="@style/TextForHeading"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
@@ -187,6 +190,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/billing_details_c_name"
                                 style="@style/TextForHeading"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -197,6 +201,7 @@
                                 android:text="John" />
 
                             <TextView
+                                android:id="@+id/billing_details_phone"
                                 style="@style/TextForHeading"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -225,6 +230,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:background="@color/colorAccent"
+                                android:layout_marginBottom="8dp"
                                 android:padding="8dp">
 
                                 <TextView
@@ -292,7 +298,7 @@
                                 android:layout_weight="1"
                                 android:background="@color/colorPrimaryDark"
                                 android:paddingStart="4dp"
-                                android:text="GST" />
+                                android:text="Discount" />
 
                             <TextView
                                 style="@style/TextForHeading"
@@ -331,6 +337,7 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:id="@+id/billing_details_discount"
                                 style="@style/TextForHeading"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -341,6 +348,7 @@
                                 android:text="5" />
 
                             <TextView
+                                android:id="@+id/billing_details_get_amount"
                                 style="@style/TextForHeading"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -351,6 +359,7 @@
                                 android:text="45" />
 
                             <TextView
+                                android:id="@+id/billing_details_grand_total"
                                 style="@style/TextForHeading"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -361,6 +370,7 @@
                                 android:text="2300" />
 
                             <TextView
+                                android:id="@+id/billing_details_net_amount"
                                 style="@style/TextForHeading"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -384,6 +394,7 @@
                         android:paddingBottom="8dp">
 
                         <Button
+                            android:id="@+id/billing_details_print"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"

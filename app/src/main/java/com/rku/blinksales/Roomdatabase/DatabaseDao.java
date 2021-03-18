@@ -268,7 +268,6 @@ public interface DatabaseDao {
     LiveData<List<PurchaseReturnTable>> getFilterPurchaseReturnTable(long form, long to);
 
 
-
     //    .............................. Bill Table Query    ..............................
 
     @Insert
@@ -289,6 +288,9 @@ public interface DatabaseDao {
     @Query("Select * FROM BillTable where bill_date  between :form and :to")
     LiveData<List<BillTable>> getFilterBillTable(long form, long to);
 
+    @Query("Select * FROM BillTable where bill_id ==:id")
+    BillTable getBillTable(int id);
+
     @Query("Select bill_id from BillTable where unique_id =:str")
     int getBillId(String str);
 
@@ -307,7 +309,7 @@ public interface DatabaseDao {
     LiveData<List<SoldItemTable>> getAllSoldItemTable();
 
     @Query("Select * FROM SoldItemTable where bill_id =:id")
-    LiveData<List<SoldItemTable>> getFilterSoldItemTable(int id);
+    List<SoldItemTable> getFilterSoldItemTable(int id);
 
     @Query("Select count(product_id) FROM SoldItemTable where bill_id =:id")
     int getCountSoldItemTable(int id);
