@@ -50,20 +50,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_pur_re_ven_layout"
+                <TextView
+                    android:id="@+id/id_pur_re_ven_name"
                     style="@style/TextInputLayoutStyleForm"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:layout_marginTop="8dp"
-                    android:hint="Vendor Name">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/id_pur_re_ven_name"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:text="Vendor Name"
+                    android:background="@drawable/cart_background"
+                    android:gravity="center|start"
+                    android:paddingStart="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -81,7 +80,7 @@
                         android:id="@+id/id_pur_re_purAmount"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:inputType="none|textPersonName" />
+                        android:inputType="none|numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/id_pur_re_reamount_layout"
@@ -95,7 +94,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/id_pur_re_pending_amount"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="match_parent"
+                        android:inputType="numberDecimal" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
             <LinearLayout
@@ -167,6 +167,7 @@
                         android:id="@+id/id_pur_lst_note"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:inputType="textLongMessage|textPersonName"
                         android:singleLine="false" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
@@ -183,7 +184,6 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_background"
                     android:gravity="center"
-                    android:onClick="pur_lst_btn_save"
                     android:text="@string/save"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="24sp" />
@@ -193,15 +193,3 @@
     </ScrollView>
 
 </LinearLayout>
-
-
-
-
-
-
-
-
-
-
-
-

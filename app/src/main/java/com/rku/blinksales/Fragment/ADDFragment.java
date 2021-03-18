@@ -76,6 +76,12 @@ public class ADDFragment extends BottomSheetDialogFragment {
         {
             list_text  = db.getExpenseType();
             title.setText("Choose Expense Type");
+        }else if (i == 22)
+        {
+            list_text  = db.getVendor();
+            title.setText("Choose Vendor Name");
+            id_cat_btn_save.setVisibility(View.GONE);
+            id_Delete_type.setVisibility(View.GONE);
         }
         id_cat_btn_save.setOnClickListener(new View.OnClickListener() {
             @Override

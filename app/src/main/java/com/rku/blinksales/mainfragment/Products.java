@@ -193,9 +193,7 @@ public class Products extends Fragment {
                     super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
                 }
             }
-        }).
-
-                attachToRecyclerView(myrv);
+        }).attachToRecyclerView(myrv);
 
         //search function for product search
         product_searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

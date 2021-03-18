@@ -59,7 +59,7 @@ public class Dashboard extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 //        closeKeyboard();
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.nav_dashboard);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Dashboard");
         FragmentManager fm = getActivity().getSupportFragmentManager();
 
         for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {

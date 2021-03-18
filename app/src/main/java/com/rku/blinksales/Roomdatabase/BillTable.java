@@ -9,7 +9,9 @@ import java.util.Date;
 public class BillTable {
     @PrimaryKey(autoGenerate = true)
     int bill_id;
+    String unique_id;
     Date bill_date;
+    Double totalItem;
     Double amount;
     Double bill_amount;
     Double total_discount;
@@ -19,9 +21,28 @@ public class BillTable {
     String customer_name;
     String customer_number;
     String customer_gst;
-    String gst_number;
     Double packing_charge;
     Double delivery_charge;
+
+    public BillTable(String unique_id, Date bill_date, Double totalItem, Double amount,
+                     Double bill_amount, Double total_discount, Double discount_amount,
+                     Double total_get, String bill_method, String customer_name, String customer_number,
+                     String customer_gst, Double packing_charge, Double delivery_charge) {
+        this.unique_id = unique_id;
+        this.bill_date = bill_date;
+        this.totalItem = totalItem;
+        this.amount = amount;
+        this.bill_amount = bill_amount;
+        this.total_discount = total_discount;
+        this.discount_amount = discount_amount;
+        this.total_get = total_get;
+        this.bill_method = bill_method;
+        this.customer_name = customer_name;
+        this.customer_number = customer_number;
+        this.customer_gst = customer_gst;
+        this.packing_charge = packing_charge;
+        this.delivery_charge = delivery_charge;
+    }
 
     public int getBill_id() {
         return bill_id;
@@ -31,12 +52,28 @@ public class BillTable {
         this.bill_id = bill_id;
     }
 
+    public String getUnique_id() {
+        return unique_id;
+    }
+
+    public void setUnique_id(String unique_id) {
+        this.unique_id = unique_id;
+    }
+
     public Date getBill_date() {
         return bill_date;
     }
 
     public void setBill_date(Date bill_date) {
         this.bill_date = bill_date;
+    }
+
+    public Double getTotalItem() {
+        return totalItem;
+    }
+
+    public void setTotalItem(Double totalItem) {
+        this.totalItem = totalItem;
     }
 
     public Double getAmount() {
@@ -111,14 +148,6 @@ public class BillTable {
         this.customer_gst = customer_gst;
     }
 
-    public String getGst_number() {
-        return gst_number;
-    }
-
-    public void setGst_number(String gst_number) {
-        this.gst_number = gst_number;
-    }
-
     public Double getPacking_charge() {
         return packing_charge;
     }
@@ -135,19 +164,4 @@ public class BillTable {
         this.delivery_charge = delivery_charge;
     }
 
-    public BillTable(Date bill_date, Double amount, Double bill_amount, Double total_discount, Double discount_amount, Double total_get, String bill_method, String customer_name, String customer_number, String customer_gst, String gst_number, Double packing_charge, Double delivery_charge) {
-        this.bill_date = bill_date;
-        this.amount = amount;
-        this.bill_amount = bill_amount;
-        this.total_discount = total_discount;
-        this.discount_amount = discount_amount;
-        this.total_get = total_get;
-        this.bill_method = bill_method;
-        this.customer_name = customer_name;
-        this.customer_number = customer_number;
-        this.customer_gst = customer_gst;
-        this.gst_number = gst_number;
-        this.packing_charge = packing_charge;
-        this.delivery_charge = delivery_charge;
-    }
 }
