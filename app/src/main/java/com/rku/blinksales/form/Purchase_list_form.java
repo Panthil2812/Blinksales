@@ -46,8 +46,8 @@ import java.util.UUID;
 
 public class Purchase_list_form extends AppCompatActivity {
 
-    EditText id_pur_lst_amount, id_pur_re_pending_amount, id_pur_lst_address, id_pur_lst_note;
-    TextView id_pur_date, id_pur_re_ven_name;
+    EditText id_pur_lst_amount, id_pur_re_pending_amount, id_pur_lst_note;
+    TextView id_pur_date, id_pur_re_ven_name,title_purchase;
     Button id_pur_lst_btn_save, id_upload_bill;
     ImageButton id_back_arrow;
     ImageView img_pur_bill;
@@ -75,11 +75,14 @@ public class Purchase_list_form extends AppCompatActivity {
         id_upload_bill = findViewById(R.id.id_upload_bill);
         img_pur_bill = findViewById(R.id.img_pur_bill);
         id_pur_lst_note = findViewById(R.id.id_pur_lst_note);
+        title_purchase = findViewById(R.id.title_purchase);
+
         id_pur_re_pending_amount.setText("0.0");
         Intent intent = getIntent();
         if (intent.hasExtra("id")) {
             int id = intent.getIntExtra("id", -1);
             if (id != -1) {
+                title_purchase.setText("Edit Purchase");
                 PurchaseTable note = db.getPurchaseTable(id);
                 id_pur_re_ven_name.setText(note.getVendor_name());
                 id_pur_lst_amount.setText(String.valueOf(note.getAmount()));

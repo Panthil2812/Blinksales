@@ -323,14 +323,14 @@ public interface DatabaseDao {
     void insertCustomerTable(CustomerTable customerTable);
 
     @Update
-    void updateCustomerTable(BillTable billTable);
+    void updateCustomerTable(CustomerTable customerTable);
 
     @Delete
-    void deleteCustomerTable(BillTable billTable);
+    void deleteCustomerTable(CustomerTable customerTable);
 
     @Query("Select * from CustomerTable ORDER BY c_name DESC")
     LiveData<List<CustomerTable>> getAllCustomerTable();
 //
-//    @Query("Select * FROM CustomerTable where bill_id =:id")
-//    LiveData<List<CustomerTable>> getFilterCustomerTable(int id);
+    @Query("Select * FROM CustomerTable where customer_id =:id")
+   CustomerTable getOneCustomerTable(int id);
 }

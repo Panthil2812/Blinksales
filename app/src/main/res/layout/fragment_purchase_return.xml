@@ -40,13 +40,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/purchase_return_recyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dp"
-                    android:layout_marginBottom="8dp"
-                    tools:listitem="@layout/purchase_return_card"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/purchase_return_recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp"
+            tools:listitem="@layout/purchase_return_card" />
 
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
