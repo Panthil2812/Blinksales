@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/primary_light"
     android:orientation="vertical"
-    android:padding="32dp">
+    android:padding="32dp"    >
 
-    <Button
+    <TextView
         android:id="@+id/txt_rpt_sales"
         android:text="SALES REPORT"
         android:gravity="center"

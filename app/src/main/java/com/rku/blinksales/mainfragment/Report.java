@@ -21,8 +21,7 @@ import com.rku.blinksales.form.Product_form;
 
 public class Report  extends Fragment {
 
-    Button txt_rpt_sales;
-    TextView txt_rpt_purchase,txt_rpt_expense,txt_rpt_customer,txt_rpt_tax,txt_rpt_vendor;
+    TextView txt_rpt_sales,txt_rpt_purchase,txt_rpt_expense,txt_rpt_customer,txt_rpt_tax,txt_rpt_vendor;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,13 +42,13 @@ public class Report  extends Fragment {
         id_btn_refresh.setVisibility(View.GONE);
         return view;
 
+
 //        txt_rpt_sales.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Intent i = new Intent(getContext().getApplicationContext(), Sales_report.class);
-//                startActivity(i);
+//                //Do something
+//
 //            }
 //        });
-
     }
 }

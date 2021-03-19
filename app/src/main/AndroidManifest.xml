@@ -26,10 +26,16 @@
         android:roundIcon="@drawable/ic_shopping_cart"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Reports.Sales_report"></activity>
+        <activity android:name=".Reports.Sales_report">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".Reports.Report" />
         <activity android:name=".Reports.Expense_report" />
-        <activity android:name=".Reports.Vendor_report" />
+<!--        <activity android:name=".Reports.Vendor_report" />-->
         <activity android:name=".Reports.Tax_report" />
         <activity android:name=".Reports.Purchase_report" />
         <activity android:name=".form.Checkout" />
@@ -74,11 +80,7 @@
             android:name=".login.Splash_screen"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="locked">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".login.Login_page"

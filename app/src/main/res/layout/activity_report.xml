@@ -123,6 +123,8 @@
                 android:background="@drawable/dialog_false"
                 >
                 <ImageButton
+                    android:id="@+id/btn_search"
+                    android:backgroundTint="@color/colorPrimaryDark"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:src="@drawable/ic_search_2"/>
