@@ -58,8 +58,9 @@ public class Expense_report extends AppCompatActivity {
             if (!id_to_date.getText().toString().trim().equals("dd-MMM-yyyy")){
                 datePickerDialog.getDatePicker().setMaxDate(chosenDate.getTime());
             }
-            datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-            datePickerDialog.show();
+            else {
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+            }            datePickerDialog.show();
         });
 
         //DATE DIALOG BOX SELECT

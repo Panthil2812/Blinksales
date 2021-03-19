@@ -84,8 +84,9 @@ public class Report extends AppCompatActivity {
             }, mYear, mMonth, mDay);
             if (!id_from_date.getText().toString().trim().equals("dd-MMM-yyyy")){
                 datePickerDialog.getDatePicker().setMinDate(temp.getTime());
+            }else {
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
             }
-            datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
             datePickerDialog.show();
         });
 
