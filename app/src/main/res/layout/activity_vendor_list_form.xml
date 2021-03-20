@@ -33,7 +33,7 @@
             android:text="Add Vendor"
             android:textStyle="bold"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"

@@ -32,7 +32,7 @@
             android:text="Purchase Return"
             android:textStyle="bold"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
     <LinearLayout

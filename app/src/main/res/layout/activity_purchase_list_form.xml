@@ -34,7 +34,7 @@
             android:gravity="center"
             android:text="Add Purchase"
             android:textColor="@color/colorAccent"
-            android:textSize="24sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
     </LinearLayout>
 

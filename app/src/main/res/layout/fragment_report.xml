@@ -1,103 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_light"
     android:orientation="vertical"
-    android:padding="32dp"    >
+    android:padding="32dp">
 
-    <TextView
-        android:id="@+id/txt_rpt_sales"
-        android:text="SALES REPORT"
-        android:gravity="center"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/colorPrimary"
-        android:drawableRight="@drawable/ic_arrow"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="18dp">
 
+        <TextView
+            android:id="@+id/txt_rpt_sales"
+            android:text="SALES REPORT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:drawableRight="@drawable/ic_arrow"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/txt_rpt_purchase"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/colorPrimary"
-        android:drawableRight="@drawable/ic_arrow"
-        android:gravity="center"
-        android:text="PURCHASE REPORT"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_rpt_sales" />
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="18dp">
 
+        <TextView
+            android:id="@+id/txt_rpt_purchase"
+            android:text="PURCHASE REPORT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:drawableRight="@drawable/ic_arrow"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/txt_rpt_expense"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/colorPrimary"
-        android:drawableRight="@drawable/ic_arrow"
-        android:gravity="center"
-        android:text="EXPENSE REPORT"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_rpt_purchase" />
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="18dp">
 
+        <TextView
+            android:id="@+id/txt_rpt_expense"
+            android:text="EXPENSE REPORT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:drawableRight="@drawable/ic_arrow"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/txt_rpt_customer"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/colorPrimary"
-        android:drawableRight="@drawable/ic_arrow"
-        android:gravity="center"
-        android:text="CUSTOMER REPORT"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_rpt_expense" />
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="18dp">
 
+        <TextView
+            android:id="@+id/txt_rpt_customer"
+            android:text="CUSTOMER REPORT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:drawableRight="@drawable/ic_arrow"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/txt_rpt_tax"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/colorPrimary"
-        android:drawableRight="@drawable/ic_arrow"
-        android:gravity="center"
-        android:text="TAX REPORT"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_rpt_customer" />
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="18dp">
 
-    <TextView
-        android:id="@+id/txt_rpt_vendor"
-        android:layout_width="0dp"
+        <TextView
+            android:id="@+id/txt_rpt_tax"
+            android:text="TAX REPORT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:drawableRight="@drawable/ic_arrow"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@color/colorPrimary"
-        android:drawableRight="@drawable/ic_arrow"
-        android:gravity="center"
-        android:text="VENDOR REPORT"
-        android:textColor="@color/colorAccent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_rpt_tax" />
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:padding="18dp">
+
+        <TextView
+            android:id="@+id/txt_rpt_vendor"
+            android:text="VENDOR REPORT"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            android:background="@color/colorPrimary"
+            android:drawableRight="@drawable/ic_arrow"
+            android:gravity="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="18dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
