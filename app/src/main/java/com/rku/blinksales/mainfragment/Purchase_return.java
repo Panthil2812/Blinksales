@@ -311,6 +311,13 @@ public class Purchase_return  extends Fragment
             });
 
         });
+
+        //SearchView Close Button Event
+        closeButton.setOnClickListener(v -> {
+            simpleSearchView.setQuery("", false);
+            simpleSearchView.clearFocus();
+            closeKeyboard();
+        });
         return view;
     }
     public void closeKeyboard() {

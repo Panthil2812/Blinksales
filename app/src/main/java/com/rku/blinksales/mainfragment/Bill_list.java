@@ -13,6 +13,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -68,7 +69,10 @@ public class Bill_list extends Fragment {
         //view main code
         filter_Calendar = view.findViewById(R.id.filter_Calendar);
         id_bill_search = view.findViewById(R.id.id_bill_search);
+        int searchCloseButtonId = id_bill_search.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
+        ImageView closeButton = (ImageView) this.id_bill_search.findViewById(searchCloseButtonId);
         id_bill_list_recyclerView = view.findViewById(R.id.id_bill_list_recyclerView);
+
 
         final BillListRecyclerViewAdapter recyclerViewAdapter = new BillListRecyclerViewAdapter(getContext());
         id_bill_list_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -157,6 +161,12 @@ public class Bill_list extends Fragment {
             }
         }).attachToRecyclerView(id_bill_list_recyclerView);
 
+        //SearchView Close Button Event
+        closeButton.setOnClickListener(v -> {
+            id_bill_search.setQuery("", false);
+            id_bill_search.clearFocus();
+            closeKeyboard();
+        });
 
         filter_Calendar.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());

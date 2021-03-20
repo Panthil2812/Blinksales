@@ -371,6 +371,12 @@ public interface DatabaseDao {
     @Query("Delete from SalesReturnTable where bill_id =:id")
     void  SalesReturnTableDelete(int id);
 
+
+    @Query("Select * from SalesReturnTable where bill_id like:searchText")
+    LiveData<List<SalesReturnTable>> getFilterSalesReturnTable(String searchText);
+
+    @Query("Select * FROM SalesReturnTable where create_date between :form and :to")
+    LiveData<List<SalesReturnTable>> getFilterSalesReturnTable(long form, long to);
     // .......................................ReturnItem Table Query ...................................
 
     @Insert

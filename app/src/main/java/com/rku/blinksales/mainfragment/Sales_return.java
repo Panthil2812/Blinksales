@@ -1,13 +1,17 @@
 package com.rku.blinksales.mainfragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +48,7 @@ public class Sales_return extends Fragment {
     TextView id_from_date, id_to_date, Dialog_cancel, Dialog_done;
     CalendarView date_picker_actions;
     RecyclerView sales_return_recyclerView;
+    SearchView search_sales_return;
     DatabaseDao db;
     @Nullable
     @Override
@@ -59,6 +64,10 @@ public class Sales_return extends Fragment {
         //main code
         id_add_sales = view.findViewById(R.id.id_add_sales);
         sales_return_recyclerView = view.findViewById(R.id.sales_return_recyclerView);
+        search_sales_return = view.findViewById(R.id.search_sales_return);
+        filter_Calendar = view.findViewById(R.id.sales_filter_Calendar);
+        int searchCloseButtonId = search_sales_return.getContext().getResources().getIdentifier("android:id/search_close_btn", null, null);
+        ImageView closeButton = (ImageView) this.search_sales_return.findViewById(searchCloseButtonId);
 
         final SalesReturnRecyclerViewAdapter recyclerViewAdapter = new SalesReturnRecyclerViewAdapter(getContext());
         sales_return_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -71,7 +80,40 @@ public class Sales_return extends Fragment {
             }
         });
 
+        //search bill
+        search_sales_return.setOnQueryTextListener(new android.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (query != null) {
+                    Toast.makeText(getContext(), "Search : " + query, Toast.LENGTH_LONG).show();
+                    GetFilterData(query);
+                }
+                closeKeyboard();
+                return true;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                //  adapter.getFilter().filter(newText);
+                if (newText != null) {
+                    //Toast.makeText(getContext(),"OnSearch : "+newText,Toast.LENGTH_LONG).show();
+                    GetFilterData(newText);
+                }
+                return true;
+            }
+
+            private void GetFilterData(String str) {
+
+                str = "%" + str + "%";
+                db.getFilterSalesReturnTable(str).observe(getViewLifecycleOwner(), new Observer<List<SalesReturnTable>>() {
+                    @Override
+                    public void onChanged(List<SalesReturnTable> notes) {
+                        recyclerViewAdapter.setNotes(notes);
+                    }
+                });
+
+            }
+        });
         id_add_sales.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,8 +121,13 @@ public class Sales_return extends Fragment {
 //                Toast.makeText(getContext(), "Open sales return form", Toast.LENGTH_SHORT).show();
             }
         });
-        //view main code
-        filter_Calendar = view.findViewById(R.id.sales_filter_Calendar);
+        //SearchView Close Button Event
+        closeButton.setOnClickListener(v -> {
+            search_sales_return.setQuery("", false);
+            search_sales_return.clearFocus();
+            closeKeyboard();
+        });
+
         filter_Calendar.setOnClickListener(v -> {
             AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
             ViewGroup viewGroup = getView().findViewById(android.R.id.content);
@@ -172,8 +219,15 @@ public class Sales_return extends Fragment {
                 } else if (id_to_date.getText().toString().trim().equals("dd-MMM-yyyy")) {
                     Toast.makeText(getContext(), "Please Select To Date", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(getContext(), id_from_date.getText().toString() + " TO " + id_to_date.getText().toString(), Toast.LENGTH_SHORT).show();
-                }
+                    search_sales_return.setQuery("filter",false);
+                    db.getFilterSalesReturnTable(startSelectDate.getTime(),endSelectDate.getTime()).observe(getViewLifecycleOwner(), new Observer<List<SalesReturnTable>>() {
+                        @Override
+                        public void onChanged(List<SalesReturnTable> notes) {
+                            recyclerViewAdapter.setNotes(notes);
+                        }
+                    });
+                    // Toast.makeText(getContext(), startSelectDate.getTime() + " TO " + endSelectDate.getTime(), Toast.LENGTH_SHORT).show();
+                    alertDialog.dismiss();                }
             });
 
             Dialog_cancel.setOnClickListener(v1 -> {
@@ -183,5 +237,12 @@ public class Sales_return extends Fragment {
         });
         return view;
     }
-
+    public void closeKeyboard() {
+        View view = getActivity().getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+            search_sales_return.clearFocus();
+        }
+    }
 }
