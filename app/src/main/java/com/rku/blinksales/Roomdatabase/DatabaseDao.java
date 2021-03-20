@@ -294,6 +294,9 @@ public interface DatabaseDao {
     @Query("Select * FROM BillTable where bill_id ==:id")
     BillTable getBillTable(int id);
 
+    @Query("Select count(bill_id) FROM BillTable where bill_id ==:id")
+    int getCountBillTable(int id);
+
     @Query("Select bill_id from BillTable where unique_id =:str")
     int getBillId(String str);
 
@@ -303,20 +306,36 @@ public interface DatabaseDao {
     void insertSoldItemTable(SoldItemTable soldItemTable);
 
     @Update
-    void updateSoldItemTable(BillTable billTable);
+    void updateSoldItemTable(SoldItemTable soldItemTable);
 
     @Delete
-    void deleteSoldItemTable(BillTable billTable);
+    void deleteSoldItemTable(SoldItemTable soldItemTable);
 
     @Query("Select * from SoldItemTable ORDER BY bill_id DESC")
     LiveData<List<SoldItemTable>> getAllSoldItemTable();
 
     @Query("Select * FROM SoldItemTable where bill_id =:id")
     List<SoldItemTable> getFilterSoldItemTable(int id);
+    @Query("Select * FROM SoldItemTable where bill_id =:id")
+    LiveData<List<SoldItemTable>> getReturnSoldItemTable(int id);
 
     @Query("Select count(product_id) FROM SoldItemTable where bill_id =:id")
     int getCountSoldItemTable(int id);
 
+    @Query("Select * FROM SoldItemTable where bill_id =:id and product_id =:p_id")
+    SoldItemTable getOneSoldItemTable(int id,int p_id);
+
+    @Query("SELECT SUM(total_amount)  FROM SoldItemTable WHERE bill_id ==:id")
+    Double totalCartAmountSoldItem(int id);
+
+    @Query("SELECT SUM(selected_qty*gst_amount)  FROM SoldItemTable WHERE bill_id ==:id")
+    Double totalGstAmountSoldItem(int id);
+
+    @Query("SELECT SUM(total_good_value)  FROM SoldItemTable WHERE bill_id ==:id")
+    Double totalGoodAmountSoldItem(int id);
+
+    @Query("Delete from SoldItemTable where bill_id =:id")
+    void  billSoldItemDelete(int id);
     //    .............................. Customer Table Query    ..............................
 
     @Insert
@@ -333,4 +352,60 @@ public interface DatabaseDao {
 //
     @Query("Select * FROM CustomerTable where customer_id =:id")
    CustomerTable getOneCustomerTable(int id);
+
+
+    // .......................................salesReturn Table Query ...................................
+
+    @Insert
+    void insertSalesReturnTable(SalesReturnTable salesReturnTable);
+
+    @Update
+    void updateSalesReturnTable(SalesReturnTable salesReturnTable);
+
+    @Delete
+    void deleteSalesReturnTable(SalesReturnTable salesReturnTable);
+
+    @Query("Select * from SalesReturnTable ORDER BY create_date DESC")
+    LiveData<List<SalesReturnTable>> getAllSalesReturnTable();
+
+    @Query("Delete from SalesReturnTable where bill_id =:id")
+    void  SalesReturnTableDelete(int id);
+
+    // .......................................ReturnItem Table Query ...................................
+
+    @Insert
+    void insertReturnItemsTable(ReturnItemsTable returnItemsTable);
+
+    @Update
+    void updateReturnItemsTable(ReturnItemsTable returnItemsTable);
+
+    @Delete
+    void deleteReturnItemsTable(ReturnItemsTable returnItemsTable);
+
+    @Query("Select count() from ReturnItemsTable where product_id ==:id and bill_id ==:bill")
+    int  getCountReturnItemsTable(int id,int bill);
+
+    @Query("Select r_item_id from ReturnItemsTable where product_id ==:id and bill_id ==:bill")
+    int  getReturnItemsIdTable(int id,int bill);
+
+    @Query("Select count(product_id) from ReturnItemsTable where `check` ==:ch and bill_id ==:id")
+    int  getTotalReturnItemsTable(int ch,int id);
+    @Query("Select * FROM ReturnItemsTable where `check` ==:ch and bill_id ==:id")
+    List<ReturnItemsTable> getOneReturnItemsTable(int ch,int id);
+
+    @Query("UPDATE ReturnItemsTable SET `check`=0 where product_id=:ch and bill_id==:id")
+    void updateItemTable(int ch,int id);
+
+    @Query("Delete from ReturnItemsTable where bill_id =:id")
+    void  ReturnSoldItemDelete(int id);
+
+
+
+
+
+
+
+
+
+
 }

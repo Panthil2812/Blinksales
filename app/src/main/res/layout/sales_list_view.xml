@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_marginBottom="8dp"
     android:background="@drawable/card_view_background"
     android:elevation="4dp"
     android:orientation="vertical"
@@ -18,7 +18,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/iduploadre"
+            android:id="@+id/sales_item_1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/button_background"
@@ -30,22 +30,11 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center|start"
-            android:paddingStart="18dp"
-            android:paddingEnd="18dp"
-            android:text="Qty : 5"
-            android:textColor="@color/colorAccent"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/textView11"
+            android:id="@+id/sales_item_2"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center|end"
+            android:gravity="center"
             android:paddingEnd="18dp"
             android:text="28/12/2020 21:42:15"
             android:textColor="@color/colorAccent"
@@ -59,7 +48,7 @@
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/sales_item_3"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -71,7 +60,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/sales_item_4"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"

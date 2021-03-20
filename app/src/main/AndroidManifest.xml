@@ -27,11 +27,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Reports.Sales_report">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".Reports.Report" />
         <activity android:name=".Reports.Expense_report" />
@@ -80,7 +76,11 @@
             android:name=".login.Splash_screen"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="locked">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".login.Login_page"

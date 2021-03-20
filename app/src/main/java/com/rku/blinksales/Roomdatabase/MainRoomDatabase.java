@@ -30,7 +30,9 @@ import java.util.Date;
         BillTable.class,
         PurchaseTable.class,
         PurchaseReturnTable.class,
-        CustomerTable.class
+        CustomerTable.class,
+        SalesReturnTable.class,
+        ReturnItemsTable.class
 }, version = 1,exportSchema = false)
 
 

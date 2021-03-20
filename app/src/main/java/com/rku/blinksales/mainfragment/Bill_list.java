@@ -108,6 +108,9 @@ public class Bill_list extends Fragment {
                             public void onClick(DialogInterface dialog, int id) {
                                 try {
                                     BillTable note = recyclerViewAdapter.getNoteAt(viewHolder.getAdapterPosition());
+                                    db.billSoldItemDelete(note.getBill_id());
+                                    db.ReturnSoldItemDelete(note.getBill_id());
+                                    db.SalesReturnTableDelete(note.getBill_id());
                                     db.deleteBillTable(note);
                                     Toast.makeText(getActivity(), "Bill  deleted", Toast.LENGTH_SHORT).show();
                                 } catch (Exception e) {

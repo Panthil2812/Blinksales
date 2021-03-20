@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import  androidx.appcompat.widget.AppCompatTextView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.rku.blinksales.MainActivity;
 import com.rku.blinksales.R;
@@ -30,32 +30,37 @@ public class Login_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        Username = findViewById(R.id.id_login_username);
-        Password = findViewById(R.id.id_login_password);
-        login = findViewById(R.id.id_login_btn);
-        chk_remember_me = findViewById(R.id.chk_remember_me);
-        InToUp = findViewById(R.id.id_login_signup);
-        db = MainRoomDatabase.getInstance(this).getDao();
-        session = new Session(this);
-        if (session.getUsername() != ""){
-            Intent intent = new Intent(Login_page.this, MainActivity.class);
-            startActivity(intent);
-            this.finish();
-        }
-        login.setOnClickListener(v -> {
-            String txtusername = Username.getText().toString().trim();
-            String txtpassword = Password.getText().toString().trim();
-            if(db.ValidateUser(txtusername,txtpassword))
-            {
-                if(chk_remember_me.isChecked()){
-                    session.setUsername(txtusername);
-                }
-                startActivity(new Intent(Login_page.this, MainActivity.class));
+        try{
+            Username = findViewById(R.id.id_login_username);
+            Password = findViewById(R.id.id_login_password);
+            login = findViewById(R.id.id_login_btn);
+            chk_remember_me = findViewById(R.id.chk_remember_me);
+            InToUp = findViewById(R.id.id_login_signup);
+            db = MainRoomDatabase.getInstance(this).getDao();
+            session = new Session(this);
+            if (session.getUsername() != ""){
+                Intent intent = new Intent(Login_page.this, MainActivity.class);
+                startActivity(intent);
                 this.finish();
-            }else{
-                Toast.makeText(Login_page.this,"Login failed",Toast.LENGTH_SHORT).show();
             }
-        });
+            login.setOnClickListener(v -> {
+                String txtusername = Username.getText().toString().trim();
+                String txtpassword = Password.getText().toString().trim();
+                if(db.ValidateUser(txtusername,txtpassword))
+                {
+                    if(chk_remember_me.isChecked()){
+                        session.setUsername(txtusername);
+                    }
+                    startActivity(new Intent(Login_page.this, MainActivity.class));
+                    this.finish();
+                }else{
+                    Toast.makeText(Login_page.this,"Login failed",Toast.LENGTH_SHORT).show();
+                }
+            });
+        }catch (Exception e){
+            e.getStackTrace();
+        }
+
     }
 
     public void LoginToSignUp(View view) {

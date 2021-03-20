@@ -63,7 +63,6 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
         holder.product_unit.setText(" ₹/" + currentNote.getProduct_unit());
         holder.Product_selected_qty.setText(currentNote.getSelected_qty().toString());
         holder.Product_amount.setText(currentNote.getTotal_amount().toString());
-        holder.cart_item_id.setText(String.valueOf(currentNote.getCart_item_id()));
         File f = new File(currentNote.getProduct_image_uri());
         Glide.with(context).load(f).autoClone().placeholder(R.drawable.p1).into(holder.Product_Image);
         total.setText(db.totalCartAmount(currentNote.getCart_id()).toString()+" ₹ /-");
@@ -87,7 +86,7 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
 
 
      class NameHolder extends RecyclerView.ViewHolder {
-        public TextView Product_Name, product_unit, Product_amount, product_price, cart_item_id;
+        public TextView Product_Name, product_unit, Product_amount, product_price;
         public ImageView Product_Image;
         public EditText Product_selected_qty;
         ImageButton cart_btn_plus, cart_btn_min;
@@ -102,7 +101,6 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
             Product_amount = itemView.findViewById(R.id.cart_pro_amount);
             cart_btn_plus = itemView.findViewById(R.id.cart_btn_plus);
             cart_btn_min = itemView.findViewById(R.id.cart_btn_min);
-            cart_item_id = itemView.findViewById(R.id.id_item);
             cart_btn_plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

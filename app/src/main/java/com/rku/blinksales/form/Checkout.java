@@ -186,7 +186,6 @@ public class Checkout extends AppCompatActivity {
         String customer_name = checkout_customer_name.getText().toString().trim();
         String customer_number = checkout_customer_number.getText().toString().trim();
         String customer_gst = checkout_customer_gst.getText().toString().trim();
-        ;
         if (!checkout_packing_charge.getText().toString().trim().isEmpty()) {
             packing_charge = Double.valueOf(checkout_packing_charge.getText().toString().trim()).doubleValue();
         }

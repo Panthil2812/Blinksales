@@ -15,9 +15,18 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.rku.blinksales.Adapter.BillListRecyclerViewAdapter;
+import com.rku.blinksales.Adapter.SalesReturnRecyclerViewAdapter;
 import com.rku.blinksales.R;
+import com.rku.blinksales.Roomdatabase.BillTable;
+import com.rku.blinksales.Roomdatabase.DatabaseDao;
+import com.rku.blinksales.Roomdatabase.MainRoomDatabase;
+import com.rku.blinksales.Roomdatabase.SalesReturnTable;
 import com.rku.blinksales.form.Expense_list_form;
 import com.rku.blinksales.form.Sales_return_form;
 
@@ -25,6 +34,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Sales_return extends Fragment {
     FloatingActionButton id_add_sales;
@@ -33,6 +43,8 @@ public class Sales_return extends Fragment {
     Date startSelectDate, endSelectDate;
     TextView id_from_date, id_to_date, Dialog_cancel, Dialog_done;
     CalendarView date_picker_actions;
+    RecyclerView sales_return_recyclerView;
+    DatabaseDao db;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,7 +54,23 @@ public class Sales_return extends Fragment {
         ImageButton id_btn_refresh =getActivity().findViewById(R.id.id_btn_refresh);
         id_weight.setVisibility(View.GONE);
         id_btn_refresh.setVisibility(View.GONE);
+        db = MainRoomDatabase.getInstance(getContext()).getDao();
+
+        //main code
         id_add_sales = view.findViewById(R.id.id_add_sales);
+        sales_return_recyclerView = view.findViewById(R.id.sales_return_recyclerView);
+
+        final SalesReturnRecyclerViewAdapter recyclerViewAdapter = new SalesReturnRecyclerViewAdapter(getContext());
+        sales_return_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        sales_return_recyclerView.setHasFixedSize(true);
+        sales_return_recyclerView.setAdapter(recyclerViewAdapter);
+        db.getAllSalesReturnTable().observe(this, new Observer<List<SalesReturnTable>>() {
+            @Override
+            public void onChanged(@Nullable List<SalesReturnTable> notes) {
+                recyclerViewAdapter.setNotes(notes);
+            }
+        });
+
 
         id_add_sales.setOnClickListener(new View.OnClickListener() {
             @Override

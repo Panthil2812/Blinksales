@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:background="@color/primary_light">
@@ -15,7 +16,7 @@
         android:paddingEnd="8dp">
 
         <SearchView
-            android:id="@+id/simpleSearchView"
+            android:id="@+id/search_sales_return"
             style="@style/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,18 +41,20 @@
         android:layout_weight="1"
         android:background="@color/primary_light"
         android:orientation="vertical" >
-        <!--            <<androidx.recyclerview.widget.RecyclerView-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="match_parent"-->
-        <!--                android:layout_alignParentStart="true"-->
-        <!--                android:layout_alignParentTop="true"-->
-        <!--                android:layout_alignParentEnd="true"-->
-        <!--                android:layout_alignParentBottom="true"-->
-        <!--                android:layout_marginStart="0dp"-->
-        <!--                android:layout_marginTop="0dp"-->
-        <!--                android:layout_marginEnd="0dp" />-->
-        <include
-            layout="@layout/sales_list_view"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/sales_return_recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="0dp"
+                        android:layout_marginTop="0dp"
+                        android:padding="8dp"
+                        android:layout_marginEnd="0dp"
+                        tools:listitem="@layout/sales_list_view"/>
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/id_add_sales"
