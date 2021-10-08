@@ -109,7 +109,7 @@ public abstract class MainRoomDatabase extends RoomDatabase {
 
                 Dao.insertProductTable(new ProductTable("android.resource://com.rku.blinksales/" +  R.drawable.kajukatri,"Kaju Katli","Dairy products",80.98,80.00,80.00,"100","kg","80/kg","18SOEIT11014",true,true,8.0,90.0,0.0,"R356FHR"));
                 Dao.insertProductTable(new ProductTable("android.resource://com.rku.blinksales/" +  R.drawable.kitkat,"Kit-Kat","Chocolate",80.98,80.00,80.00,"100","kg","80/kg","18SOEIT11017",true,true,8.0,90.0,0.0,"R356FHR"));
-                Dao.insertProductTable(new ProductTable("android.resource://com.rku.blinksales/" +  R.drawable.kiwi,"Kiwi","Fruits",80.98,80.00,80.00,"100","kg","80/kg","18SOEIT11017",true,true,8.0,90.0,0.0,"R356FHR"));
+                Dao.insertProductTable(new ProductTable("android.resource://com.rku.blinksales/" +  R.drawable.kiwi,"Kiwi","Fruits",80.98,80.00,80.00,"100","pack","80/kg","18SOEIT11017",true,true,8.0,90.0,0.0,"R356FHR"));
                 Dao.insertProductTable(new ProductTable("android.resource://com.rku.blinksales/" +  R.drawable.lemon,"Lemon","Vegetable",80.98,80.00,80.00,"100","kg","80/kg","18SOEIT11014",true,true,8.0,90.0,0.0,"R356FHR"));
                 Dao.insertProductTable(new ProductTable("android.resource://com.rku.blinksales/" +  R.drawable.mango,"Mango","Fruits",80.98,80.00,80.00,"100","kg","80/kg","18SOEIT11017",true,true,8.0,90.0,0.0,"R356FHR"));
                 Dao.insertProductTable(new ProductTable("android.resource://com.rku.blinksales/" +  R.drawable.masala,"Masala","Beverages",80.98,80.00,80.00,"100","kg","80/kg","18SOEIT11028",true,true,8.0,90.0,0.0,"R356FHR"));
