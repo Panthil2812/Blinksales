@@ -90,9 +90,19 @@ public class Product_form extends AppCompatActivity {
         if (intent.hasExtra("id")) {
             editCount = intent.getIntExtra("id", -1);
             porductpageTite.setText("Edit Expense");
-            last_image_uri = intent.getStringExtra("image");
-            File file = new File(last_image_uri);
-            Glide.with(getApplicationContext()).load(file).placeholder(R.drawable.ic_products).into(img_product);
+           // last_image_uri = intent.getStringExtra("image");
+           // File file = new File(last_image_uri);
+           // Glide.with(getApplicationContext()).load(file).placeholder(R.drawable.ic_products).into(img_product);
+            String str= intent.getStringExtra("image");
+            String str1 ="android.resource://com.rku.blinksales/";
+
+            if(str.charAt(0)==str1.charAt(0))
+            {
+                Glide.with(getApplicationContext()).load(str).autoClone().placeholder(R.drawable.p1).into(img_product);
+            }else{
+                File f = new File(str);
+                Glide.with(getApplicationContext()).load(f).autoClone().placeholder(R.drawable.p1).into(img_product);
+            }
             id_pro_name.setText(intent.getStringExtra("pro_name"));
             id_pro_category.setText(intent.getStringExtra("category"));
             id_pro_mrp.setText(intent.getStringExtra("mrp"));

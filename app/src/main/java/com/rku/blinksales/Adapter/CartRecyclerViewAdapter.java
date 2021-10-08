@@ -63,8 +63,16 @@ public class CartRecyclerViewAdapter extends RecyclerView.Adapter<CartRecyclerVi
         holder.product_unit.setText(" ₹/" + currentNote.getProduct_unit());
         holder.Product_selected_qty.setText(currentNote.getSelected_qty().toString());
         holder.Product_amount.setText(currentNote.getTotal_amount().toString());
-        File f = new File(currentNote.getProduct_image_uri());
-        Glide.with(context).load(f).autoClone().placeholder(R.drawable.p1).into(holder.Product_Image);
+        String str = currentNote.getProduct_image_uri();
+        String str1 ="android.resource://com.rku.blinksales/";
+
+        if(str.charAt(0)==str1.charAt(0))
+        {
+            Glide.with(context).load(str).autoClone().placeholder(R.drawable.p1).into(holder.Product_Image);
+        }else{
+            File f = new File(str);
+            Glide.with(context).load(f).autoClone().placeholder(R.drawable.p1).into(holder.Product_Image);
+        }
         total.setText(db.totalCartAmount(currentNote.getCart_id()).toString()+" ₹ /-");
         Dashboard.id_dashboard_total_items.setText(db.totalCartItem(currentNote.getCart_id()).toString());
         Dashboard.id_dashboard_total_amount.setText(db.totalCartAmount(currentNote.getCart_id()).toString() + " ₹ /-");

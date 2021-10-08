@@ -221,30 +221,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 //                Toast.makeText(this, R.string.nav_purchase_return, Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_report:
-                //    getSupportActionBar().setTitle(R.string.nav_report);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Report()).commit();
-//                Toast.makeText(this, R.string.nav_report, Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_app_manual:
-                //   getSupportActionBar().setTitle(R.string.nav_app_manual);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new App_manual()).commit();
-//                Toast.makeText(this, R.string.nav_app_manual, Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_contact_Us:
-            //    getSupportActionBar().setTitle(R.string.nav_contact_Us);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Contact_us()).commit();
-//                Toast.makeText(this, R.string.nav_contact_Us, Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.nav_settings:
-              //  getSupportActionBar().setTitle(R.string.nav_settings);
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new Settings()).commit();
-//                Toast.makeText(this, R.string.nav_settings, Toast.LENGTH_SHORT).show();
-                break;
+//            case R.id.nav_report:
+//                //    getSupportActionBar().setTitle(R.string.nav_report);
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new Report()).commit();
+////                Toast.makeText(this, R.string.nav_report, Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.nav_app_manual:
+//                //   getSupportActionBar().setTitle(R.string.nav_app_manual);
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new App_manual()).commit();
+////                Toast.makeText(this, R.string.nav_app_manual, Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.nav_contact_Us:
+//            //    getSupportActionBar().setTitle(R.string.nav_contact_Us);
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new Contact_us()).commit();
+////                Toast.makeText(this, R.string.nav_contact_Us, Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.nav_settings:
+//              //  getSupportActionBar().setTitle(R.string.nav_settings);
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                        new Settings()).commit();
+////                Toast.makeText(this, R.string.nav_settings, Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.nav_profile:
               //  getSupportActionBar().setTitle(R.string.nav_profile);
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,

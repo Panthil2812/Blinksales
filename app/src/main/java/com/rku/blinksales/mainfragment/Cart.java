@@ -73,8 +73,8 @@ public class Cart extends Fragment {
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.nav_cart);
         TextView id_weight = getActivity().findViewById(R.id.id_weight);
         ImageButton id_btn_refresh = getActivity().findViewById(R.id.id_btn_refresh);
-        id_weight.setVisibility(View.VISIBLE);
-        id_btn_refresh.setVisibility(View.VISIBLE);
+        id_weight.setVisibility(View.INVISIBLE);
+        id_btn_refresh.setVisibility(View.INVISIBLE);
         db = MainRoomDatabase.getInstance(getContext()).getDao();
 
 

@@ -47,10 +47,18 @@ public class ProductRecyclerViewAdapter extends RecyclerView.Adapter<ProductRecy
         holder.Product_price_unit.setText(currentNote.getProduct_price_unit());
 //        //holder.Product_Image.setText(currentNote.getExp_amount()+" ₹");
         String str = currentNote.getProduct_image_uri();
-        File f = new File(str);
+       // File f = new File(str);
 //        Picasso.get().load(f).centerInside().placeholder(R.drawable.p1).into(holder.Product_Image);
+       String str1 ="android.resource://com.rku.blinksales/";
 
-        Glide.with(context).load(f).autoClone().placeholder(R.drawable.p1).into(holder.Product_Image);
+        if(str.charAt(0)==str1.charAt(0))
+        {
+            Glide.with(context).load(str).autoClone().placeholder(R.drawable.p1).into(holder.Product_Image);
+        }else{
+            File f = new File(str);
+            Glide.with(context).load(f).autoClone().placeholder(R.drawable.p1).into(holder.Product_Image);
+        }
+
 
     }
 
